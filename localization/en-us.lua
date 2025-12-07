@@ -4,8 +4,8 @@ return {
             bl_dandy_dandy = {
                 name = "Dandy",
                 text = {
-                    "1 hand, 0 discards,",
-                    "very large Blind"
+                    "1 Hand, 0 Discards,",
+                    "Default Blind Size"
                 },
             },
             bl_dandy_dyle = {
@@ -49,6 +49,22 @@ return {
                     "{C:inactive,s:0.8}did you expect?"
                 },
             },
+            j_dandy_clownhorn = {
+                name = "Clown Horn",
+                text = {
+                    "{C:mult}+#1#{} Mult on {C:attention}odd",
+                    "numbered rounds",
+                    "{C:inactive}#2#"
+                },
+            },
+            j_dandy_ribbonspool = {
+                name = "Ribbon Spool",
+                text = {
+                    "{X:mult,C:white}X#1#{} Mult on {C:attention}even",
+                    "numbered rounds",
+                    "{C:inactive}#2#"
+                },
+            },
 
             j_dandy_toodles = {
                 name = "Toodles",
@@ -81,6 +97,16 @@ return {
                     "hand scores {C:mult}+#1#{} Mult",
                 },
                 
+            },
+            j_dandy_razzledazzle = {
+                name = "Razzle & Dazzle",
+                text = {
+                    "{C:mult}+#2#{} Mult on {C:attention}odd",
+                    "{}numbered rounds",
+                    "{X:mult,C:white}X#1#{} Mult on {C:attention}even",
+                    "numbered rounds",
+                    "{C:inactive}(Currently {B:2,V:1}#4##3#{C:inactive} Mult)"
+                },
             },
             j_dandy_pebble = {
                 name = "Pebble",
@@ -115,6 +141,14 @@ return {
                     
                 },
             },
+            j_dandy_BNAT = {
+                name = "Bone Needle & Thread",
+                text = {
+                    "Becomes {C:attention}Ribecca{}, {C:attention}Soulvester{},",
+                    "{C:attention}Eclipse{} or {C:attention}Gourdy{} when",
+                    "{C:attention}Blind{} is defeated"
+                },
+            },
             j_dandy_ribecca = {
                 name = "Ribecca",
                 text = {
@@ -129,6 +163,12 @@ return {
                     "{C:chips}+#1#{} Hand"
                 },
             },
+            j_dandy_eclipse = {
+                name = "Eclipse",
+                text = {
+                    "Incomplete"
+                },
+            },
             j_dandy_gourdy = {
                 name = "Gourdy",
                 text = {
@@ -139,14 +179,18 @@ return {
             j_dandy_dandy = {
                 name = "Dandy",
                 text = {
-                    "The star of",
-                    "the show"
+                    "Create a {C:dark_edition}Negative{}",
+                    "{C:spectral}Spectral{} card when",
+                    "{C:attention}Blind{} is selected",
                 },
             },
             j_dandy_dyle = {
                 name = "Dyle",
                 text = {
-                    "+5 Hand Size"
+                    "Add {C:dark_edition}Foil{}, {C:dark_edition}Holographic{},",
+                    "or {C:dark_edition}Polychrome{} edition to",
+                    "all cards in first",
+                    "hand played"
                 },
             },
         }
@@ -218,6 +262,11 @@ return {
 
             dw_gourdy_ability = "Boo!",
 
+            k_dandy_inactive = "Inactive!",
+            k_dandy_active = "Active!",
+
+            k_dandy_joy_ex = "Joy!",
+            k_dandy_misery_ex = "Misery!",
             k_dandy_leader = "Leader",
         },
         labels = {

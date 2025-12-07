@@ -137,6 +137,86 @@ SMODS.Joker{
 }
 
 SMODS.Joker{
+    key = "clownhorn", 
+    atlas = 'dandysworld',
+    config = { extra = {mult = 20} },
+    pos = { x = 8, y = 1 },
+    rarity = 1,
+    cost = 5,
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true, 
+    effect=nil,
+    soul_pos=nil,
+
+    calculate = function(self,card,context)
+        if context.setting_blind and not context.blueprint then
+            if (G.GAME.round % 2) ~= 0 then
+                return {
+                    message = localize('k_active_ex'),
+                    colour = G.C.FILTER
+                }
+            end
+        end
+        if context.joker_main and context.cardarea == G.jokers then
+            if (G.GAME.round % 2) ~= 0 then
+                return {
+                    mult = card.ability.extra.mult, 
+                    colour = G.C.MULT
+                }
+            end
+        end
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        local active = ((G.GAME.round % 2) ~= 0 and "k_dandy_active") or "k_dandy_inactive"
+        return { vars = {card.ability.extra.mult, localize(active)}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = "ribbonspool", 
+    atlas = 'dandysworld',
+    config = { extra = {x_mult = 2} },
+    pos = { x = 6, y = 2 },
+    rarity = 1,
+    cost = 5,
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true, 
+    effect=nil,
+    soul_pos=nil,
+
+    calculate = function(self,card,context)
+        if context.setting_blind and not context.blueprint then
+            if (G.GAME.round % 2) == 0 then
+                return {
+                    message = localize('k_active_ex'),
+                    colour = G.C.FILTER
+                }
+            end
+        end
+        if context.joker_main and context.cardarea == G.jokers then
+            if (G.GAME.round % 2) == 0 then
+                return {
+                    x_mult = card.ability.extra.x_mult, 
+                    colour = G.C.MULT
+                }
+            end
+        end
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        local active = ((G.GAME.round % 2) == 0 and "k_dandy_active") or "k_dandy_inactive"
+        return { vars = {card.ability.extra.x_mult, localize(active)}, key = self.key }
+    end
+}
+
+SMODS.Joker{
     key = "toodles",
     atlas = 'dandysworld',
     pos = {x = 3, y = 6},
@@ -175,8 +255,8 @@ SMODS.Joker{
     atlas = 'dandysworld',
     pos = { x = 0, y = 6},
     soul_pos=nil,
-    rarity = 3,
-    cost = 10,
+    rarity = 1,
+    cost = 1,
     config = { extra = {} },
     blueprint_compat=true,
     eternal_compat=true,
@@ -258,6 +338,62 @@ SMODS.Joker{
 
     loc_vars = function(self, info_queue, card)
         return { vars = {card.ability.extra.mult}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = "razzledazzle", 
+    atlas = 'dandysworld',
+    config = { extra = {x_mult = 2, mult = 20} },
+    pos = { x = 7, y = 5 },
+    rarity = 2,
+    cost = 6,
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true, 
+    effect=nil,
+    soul_pos=nil,
+
+    calculate = function(self,card,context)
+        if context.setting_blind and not context.blueprint then
+            if (G.GAME.round % 2) == 0 then
+                return {
+                    message = localize('k_dandy_misery_ex'),
+                    colour = G.C.BLACK
+                }
+            else
+                return {
+                    message = localize('k_dandy_joy_ex'),
+                    colour = G.C.WHITE
+                }
+            end
+        end
+        if context.joker_main and context.cardarea == G.jokers then
+            if (G.GAME.round % 2) == 0 then
+                return {
+                    x_mult = card.ability.extra.x_mult, 
+                    colour = G.C.MULT
+                }
+            else
+                return {
+                    mult = card.ability.extra.mult, 
+                    colour = G.C.MULT
+                }
+            end
+        end
+    end,
+
+    loc_vars = function(self, info_queue, card)          --defines variables to use in the UI. you can use #1# for example to show the chips variable
+        local evenRound = (G.GAME.round % 2) == 0
+
+        local currentVal = (evenRound and card.ability.extra.x_mult) or card.ability.extra.mult
+        local currentType = (evenRound and "X") or "+"
+        local currentCol = (evenRound and G.C.WHITE) or G.C.MULT
+        local currentBg = (evenRound and G.C.MULT) or G.C.WHITE
+
+        return { vars = {card.ability.extra.x_mult, card.ability.extra.mult, currentVal, currentType, colours = {currentCol, currentBg}}, key = self.key }
     end
 }
 
@@ -380,164 +516,3 @@ SMODS.Sound ({
     path = 'dw_vee.ogg',
     pitch = 1,
 })
-
-SMODS.Sound ({
-    key = 'bobette',
-    path = 'dw_bobette.ogg',
-    pitch = 1,
-})
-
-SMODS.Sound ({
-    key = 'cocoa',
-    path = 'dw_cocoa.ogg',
-    pitch = 1,
-})
-
-SMODS.Sound ({
-    key = 'bassie',
-    path = 'dw_bassie.ogg',
-    pitch = 1,
-})
-
-SMODS.Joker{
-    key = "ribecca",
-    atlas = 'dandysworld',
-    pos = { x = 4, y = 9},
-    soul_pos=nil,
-    rarity = 1,
-    cost = 5,
-    config = { extra = {} },
-    blueprint_compat=false,
-    eternal_compat=true,
-    perishable_compat=true,
-    unlocked = true,
-    discovered = true,
-    
-    calculate = function(self,card,context)
-        if context.individual and context.cardarea == G.hand and not context.end_of_round then
-            if context.other_card.debuff then
-                return {
-                    mult = context.other_card.base.nominal
-                }
-            end
-        end
-    end,
-    loc_vars = function(self, info_queue, card)          --defines variables to use in the UI. you can use #1# for example to show the chips variable
-        return { vars = {}, key = self.key }
-    end
-}
-
-SMODS.Joker{
-    key = "soulvester",
-    atlas = 'dandysworld',
-    pos = { x = 5, y = 9},
-    soul_pos=nil,
-    rarity = 2,
-    cost = 6,
-    config = { extra = {hands = 1} },
-    blueprint_compat=false,
-    eternal_compat=true,
-    perishable_compat=true,
-    unlocked = true,
-    discovered = true,
-    add_to_deck = function(self, card, from_debuff)
-        G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.d_size
-    end,
-    remove_from_deck = function(self, card, from_debuff)
-        G.GAME.round_resets.hands = G.GAME.round_resets.hands - card.ability.extra.d_size
-    end,
-    loc_vars = function(self, info_queue, card)          --defines variables to use in the UI. you can use #1# for example to show the chips variable
-        return { vars = {card.ability.extra.hands}, key = self.key }
-    end
-}
-
-SMODS.Joker{
-    key = "eclipse",
-    atlas = 'dandysworld',
-    pos = { x = 6, y = 9},
-    soul_pos=nil,
-    rarity = 3,
-    cost = 8,
-    config = { extra = {hands = 3} },
-    blueprint_compat=false,
-    eternal_compat=true,
-    perishable_compat=true,
-    unlocked = true,
-    discovered = true,
-    calculate = function(self,card,context)
-        if context.setting_blind and context.blind.boss then
-            ease_hands_played(card.ability.extra.hands)
-            return {
-                message = localize{type = 'variable', key = 'a_hands', vars = {hands} } ,
-            }
-        end
-    end,
-    loc_vars = function(self, info_queue, card)          --defines variables to use in the UI. you can use #1# for example to show the chips variable
-        return { vars = {card.ability.extra.hands}, key = self.key }
-    end,
-}
-
-SMODS.Sound ({
-    key = 'gourdy_ability',
-    path = 'dw_gourdy_ability.ogg',
-    pitch = 1,
-})
-
-SMODS.Sound ({
-    key = 'gourdy',
-    path = 'dw_gourdy.ogg',
-    pitch = 1,
-})
-
-SMODS.Joker{
-    key = "gourdy",
-    atlas = 'dandysworld',
-    pos = { x = 7, y = 9},
-    soul_pos=nil,
-    rarity = 3,
-    cost = 10,
-    config = { extra = {chips = 50, mult = 10, x_mult = 1.5} },
-    blueprint_compat=true,
-    eternal_compat=true,
-    perishable_compat=true,
-    unlocked = true,
-    discovered = true,
-    calculate = function(self,card,context)
-        if context.joker_main then
-            local effects = {
-                {
-                    message = localize("dw_gourdy_ability"),
-                    sound = "dandy_gourdy_ability",
-                    colour = G.C.FILTER
-                }
-            }
-
-            for _,v in ipairs(G.jokers.cards) do
-                if v ~= card then
-                    local vEffectType = pseudorandom('dw_gourdy', 1, 3)
-                    local vEffect = {
-                        message_card = v,
-                        sound = "dandy_gourdy",
-                        colour = G.C.FILTER,
-                    }
-
-                    if vEffectType == 1 then
-                        vEffect.x_mult = card.ability.extra.x_mult
-                    elseif vEffectType == 2 then
-                        vEffect.mult = card.ability.extra.mult
-                    elseif vEffectType == 3 then
-                        vEffect.chips = card.ability.extra.chips
-                    end
-                    
-                    effects[#effects+1] = vEffect
-                end
-            end
-
-            return SMODS.merge_effects(effects)
-        end
-    end,
-
-    loc_vars = function(self, info_queue, card)
-        return { vars = {card.ability.extra.chips, card.ability.extra.mult, card.ability.extra.x_mult}, key = self.key }
-    end
-}
