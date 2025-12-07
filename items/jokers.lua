@@ -1,3 +1,13 @@
+SMODS.Rarity({
+	key = "epic",
+	loc_txt = {},
+	badge_colour = HEX("ef0098"),
+	default_weight = 0.003,
+	pools = { ["Joker"] = true },
+	get_weight = 0.003
+	end,
+})
+
 SMODS.Atlas({
     key = 'dandysworld',
     path = "DandyJokers.png",
