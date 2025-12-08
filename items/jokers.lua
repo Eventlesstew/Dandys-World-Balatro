@@ -279,21 +279,22 @@ SMODS.Joker{
     unlocked = true,
     discovered = true,
     calculate = function(self,card,context)
-        if context.first_hand_drawn then
-            G.GAME.blind.chips = G.GAME.blind.chips * 2
-            G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
-
+        if context.before then
+            local scored_card = pseudorandom_element(context.scoring_hand, "dw_shrimpo")
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    scored_card:juice_up()
+                    scored_card:set_debuff(true)
+                    return true
+                end
+            }))
             return {
-                message = localize("dw_shrimpo_ability"),
-                colour = G.C.MULT,
+                message = localize('k_debuffed'),
+                colour = G.C.RED,
                 sound = "tarot2",
             }
         end
     end,
-
-    loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
-    end
 }
 
 SMODS.Joker{
@@ -302,7 +303,7 @@ SMODS.Joker{
     pos = { x = 9, y = 4},
     soul_pos=nil,
     rarity = 1,
-    cost = 1,
+    cost = 5,
     config = { extra = {x_mult = 0.5} },
     blueprint_compat=true,
     eternal_compat=true,

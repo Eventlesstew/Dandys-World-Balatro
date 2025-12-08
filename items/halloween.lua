@@ -17,6 +17,7 @@ SMODS.Joker{
             local jokers = {"j_dandy_ribecca", "j_dandy_soulvester", "j_dandy_eclipse", "j_dandy_gourdy"}
             local chosen_joker = pseudorandom_element(jokers, "boneneedleandthread")
             SMODS.add_card{key = chosen_joker}
+            SMODS.destroy_cards(card, nil, nil, true)
         end
     end,
     loc_vars = function(self, info_queue, card)

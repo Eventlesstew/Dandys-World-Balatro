@@ -151,6 +151,38 @@ SMODS.Blind {
     end,
 }
 
+SMODS.Tag {
+    key = "timesup",
+    pos = { x = 0, y = 2 },
+    apply = function(self, tag, context)
+        if context.type == 'new_blind_choice' then
+            local lock = tag.ID
+            G.CONTROLLER.locks[lock] = true
+            tag:yep('+', G.C.GREEN, function()
+                G.from_boss_tag = true
+                G.FORCE_BOSS('bl_dandy_dyle')
+                --G.FUNCS.reroll_boss()
+
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        G.E_MANAGER:add_event(Event({
+                            func = function()
+                                G.CONTROLLER.locks[lock] = nil
+                                return true
+                            end
+                        }))
+                        return true
+                    end
+                }))
+
+                return true
+            end)
+            tag.triggered = true
+            return true
+        end
+    end
+}
+
 SMODS.Joker{
     key = "dyle",
     atlas = 'dwJoker',
@@ -190,37 +222,4 @@ SMODS.Joker{
         info_queue[#info_queue + 1] = G.P_CENTERS.e_polychrome
         return { vars = {}, key = self.key }
     end,
-}
-
-SMODS.Tag {
-    key = "timesup",
-    pos = { x = 0, y = 2 },
-    apply = function(self, tag, context)
-        if context.type == 'new_blind_choice' then
-            local lock = tag.ID
-            G.CONTROLLER.locks[lock] = true
-            tag:yep('+', G.C.GREEN, function()
-                G.from_boss_tag = true
-                G.GAME.perscribed_bosses[G.GAME.round_resets.ante] = 'bl_dandy_dyle'
-                print(G.GAME.perscribed_bosses)
-                G.FUNCS.reroll_boss()
-
-                G.E_MANAGER:add_event(Event({
-                    func = function()
-                        G.E_MANAGER:add_event(Event({
-                            func = function()
-                                G.CONTROLLER.locks[lock] = nil
-                                return true
-                            end
-                        }))
-                        return true
-                    end
-                }))
-
-                return true
-            end)
-            tag.triggered = true
-            return true
-        end
-    end
 }

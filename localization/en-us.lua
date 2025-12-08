@@ -92,8 +92,8 @@ return {
             j_dandy_shrimpo = {
                 name = "Shrimpo",
                 text = {
-                    "Doubles {C:attention}Blind{}",
-                    "score",
+                    "{C:attention}Debuffs{} 1 random",
+                    "card in played hand",
                 }
             },
             j_dandy_cosmo = {
@@ -108,7 +108,7 @@ return {
             j_dandy_blot = {
                 name = "tolB",
                 text = {
-                    "Allows the Blot Jr.",
+                    "Allows the Blot Jr",
                     "{C:attention}Boss Blind {}to appear"
                     --[["Each card held in",
                     "hand scores {C:mult}+#1#{} Mult",]]
@@ -193,6 +193,15 @@ return {
                     "{C:mult}+#2#{} Mult or {X:mult,C:white}X#3#{} Mult"
                 },
             },
+
+            j_dandy_coalTrinket = {
+                name = "Coal",
+                text = {
+                    "Doubles {C:attention}Blind{}",
+                    "score",
+                }
+            },
+
             j_dandy_dandy = {
                 name = "Dandy",
                 text = {
@@ -244,6 +253,7 @@ return {
             k_heat_ex="Heat!",
             k_cool_ex="Cool!",
 
+            dw_naughty_ex = "Naughty!",
             dw_shrimpo_ability = "I HATE YOU!",
 
             dw_pebble_quote1 = "ARF!",
