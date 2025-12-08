@@ -33,15 +33,21 @@ SMODS.Atlas{
 
 SMODS.Blind {
     key = 'dandy',
-    atlas = 'dwBlindLethal',
+    atlas = 'dwBlind',
     pos = {x = 0, y = 0},
-    display_size = { w = 34 * 2, h = 34 * 2 },
     unlocked = true,
     discovered = true,     
-    dollars = 10,
+    dollars = 0,
     mult = 2,
     boss = {min = 1},
     boss_colour = HEX("615852"),
+    in_pool = function()
+        if G.GAME.current_round.twistedDandyCheck and G.GAME.current_round.twistedDandyCheck >= 3 then
+            return true
+        else
+            return false
+        end
+    end,
     calculate = function(self, blind, context)
         if context.setting_blind then
             blind.discards_sub = G.GAME.current_round.discards_left
@@ -98,6 +104,24 @@ SMODS.Joker{
     end
 }
 
+function SMODS.current_mod.reset_game_globals(run_start)
+    if run_start then
+        G.GAME.current_round.twistedDandyCheck = 0
+    end
+end
+
+function SMODS.current_mod.calculate(self, context)
+    if context.skip_blind then
+        G.GAME.current_round.twistedDandyCheck = 0
+    end
+    if context.reroll_shop or context.buying_card or context.open_booster then
+        G.GAME.current_round.twistedDandyCheck = -1
+    end
+    if context.ending_shop then
+        G.GAME.current_round.twistedDandyCheck = G.GAME.current_round.twistedDandyCheck + 1
+    end
+end
+
 SMODS.Sound ({
     key = 'dyle_music',
     path = 'dw_mus_dyle.ogg',
@@ -109,14 +133,17 @@ SMODS.Sound ({
 
 SMODS.Blind {
     key = 'dyle',
-    atlas = 'dwBlindLethal',
+    atlas = 'dwBlind',
     pos = {x = 0, y = 1},
-    display_size = { w = 34 * 2, h = 34 * 2 },
     unlocked = true,
     discovered = true,     
-    dollars = 10,
+    dollars = 0,
     mult = 25,
+    boss = {min = 1},
     boss_colour = HEX("d4ac76"),
+    in_pool = function()
+        return false
+    end,
     calculate = function(self, blind, context)
         if context.end_of_round and context.game_over == false and context.main_eval then
             SMODS.add_card{key = "j_dandy_dyle"}
@@ -162,11 +189,11 @@ SMODS.Joker{
         info_queue[#info_queue + 1] = G.P_CENTERS.e_holo
         info_queue[#info_queue + 1] = G.P_CENTERS.e_polychrome
         return { vars = {}, key = self.key }
-    end
+    end,
 }
 
 SMODS.Tag {
-    key = "dyle",
+    key = "timesup",
     pos = { x = 0, y = 2 },
     apply = function(self, tag, context)
         if context.type == 'new_blind_choice' then
@@ -174,6 +201,8 @@ SMODS.Tag {
             G.CONTROLLER.locks[lock] = true
             tag:yep('+', G.C.GREEN, function()
                 G.from_boss_tag = true
+                G.GAME.perscribed_bosses[G.GAME.round_resets.ante] = 'bl_dandy_dyle'
+                print(G.GAME.perscribed_bosses)
                 G.FUNCS.reroll_boss()
 
                 G.E_MANAGER:add_event(Event({

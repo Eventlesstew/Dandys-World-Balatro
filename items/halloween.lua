@@ -145,6 +145,8 @@ SMODS.Joker{
                     if vEffectType == 1 then
                         vEffect = {
                             x_mult = card.ability.extra.x_mult,
+                            remove_default_message = true,
+                            message = localize{type = 'variable', key = 'a_xmult', vars = {card.ability.extra.x_mult}},
                             sound = "dandy_gourdy",
                             colour = G.C.FILTER,
                             message_card = v
@@ -152,6 +154,8 @@ SMODS.Joker{
                     elseif vEffectType == 2 then
                         vEffect = {
                             mult = card.ability.extra.mult,
+                            remove_default_message = true,
+                            message = localize{type = 'variable', key = 'a_chips', vars = {card.ability.extra.x_mult}},
                             sound = "dandy_gourdy",
                             colour = G.C.FILTER,
                             message_card = v
@@ -159,6 +163,8 @@ SMODS.Joker{
                     elseif vEffectType == 3 then
                         vEffect = {
                             chips = card.ability.extra.chips,
+                            remove_default_message = true,
+                            message = localize{type = 'variable', key = 'a_mult', vars = {card.ability.extra.x_mult}},
                             sound = "dandy_gourdy",
                             colour = G.C.FILTER,
                             message_card = v

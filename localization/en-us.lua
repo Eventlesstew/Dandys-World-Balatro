@@ -1,11 +1,11 @@
 return {
     descriptions = {
+
         Blind = {
             bl_dandy_dandy = {
                 name = "Dandy",
                 text = {
                     "1 Hand, 0 Discards,",
-                    "Default Blind Size"
                 },
             },
             bl_dandy_dyle = {
@@ -17,7 +17,16 @@ return {
             bl_dandy_blotjr = {
                 name = "Blot Jr",
                 text = {
-                    "No special effects",
+                },
+            },
+        },
+        Tag = {
+            tag_dandy_timesup = {
+                name = "TIME'S UP",
+                text = {
+                    "Boss Blind becomes {C:red}Lethal",
+                    "Creates a powerful {C:attention}Joker{}",
+                    "when defeated",
                 },
             },
         },
