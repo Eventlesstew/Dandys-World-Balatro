@@ -1,12 +1,17 @@
-SMODS.Rarity({
+SMODS.Rarity{
 	key = "epic",
 	loc_txt = {},
 	badge_colour = HEX("ef0098"),
 	default_weight = 0.003,
 	pools = { ["Joker"] = true },
-	get_weight = 0.003
-	end,
-})
+	get_weight = function()
+        if SMODS.find_mod("Cryptid") or (not dandysworld.config.epic) then
+            return 0
+        else
+            return 0.003
+        end
+    end,
+}
 
 SMODS.Atlas({
     key = 'dandysworld',
@@ -325,13 +330,13 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = 3,
     cost = 10,
-    config = { extra = {mult = 2} },
+    config = { extra = {} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
     discovered = true,
-    calculate = function(self,card,context)
+    --[[calculate = function(self,card,context)
         if context.individual and context.cardarea == G.hand and not context.end_of_round then
             if context.other_card.debuff then
                 return {
@@ -348,7 +353,7 @@ SMODS.Joker{
 
     loc_vars = function(self, info_queue, card)
         return { vars = {card.ability.extra.mult}, key = self.key }
-    end
+    end]]
 }
 
 SMODS.Joker{
@@ -450,9 +455,17 @@ SMODS.Joker{
     atlas = 'dandysworld',
     pos = { x = 6, y = 6},
     soul_pos=nil,
-    rarity = 3,
+    rarity = function()
+        if SMODS.find_mod("Cryptid") then
+            return 'cry_epic'
+        elseif dandysworld.config.epic then
+            return 'dandy_epic'
+        else
+            return 3
+        end
+    end,
     cost = 10,
-    config = { extra = {x_mult = 0.5} },
+    config = { extra = {} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
@@ -487,8 +500,16 @@ SMODS.Joker{
     atlas = 'dandysworld',
     pos = { x = 7, y = 6},
     soul_pos=nil,
-    rarity = 3,
-    cost = 10,
+    rarity = function()
+        if SMODS.find_mod("Cryptid") then
+            return 'cry_epic'
+        elseif dandysworld.config.epic then
+            return 'dandy_epic'
+        else
+            return 3
+        end
+    end,
+    cost = 10
     config = { extra = {hand_mod = 1, dollars = 20} },
     blueprint_compat=true,
     eternal_compat=true,

@@ -14,6 +14,12 @@ return {
                     "Extremely Large Blind",
                 },
             },
+            bl_dandy_blotjr = {
+                name = "Blot Jr",
+                text = {
+                    "No special effects",
+                },
+            },
         },
         Joker = {
             j_dandy_coinPurse = {
@@ -93,8 +99,10 @@ return {
             j_dandy_blot = {
                 name = "tolB",
                 text = {
-                    "Each card held in",
-                    "hand scores {C:mult}+#1#{} Mult",
+                    "Allows the Blot Jr.",
+                    "{C:attention}Boss Blind {}to appear"
+                    --[["Each card held in",
+                    "hand scores {C:mult}+#1#{} Mult",]]
                 },
                 
             },
@@ -267,10 +275,13 @@ return {
 
             k_dandy_joy_ex = "Joy!",
             k_dandy_misery_ex = "Misery!",
+
             k_dandy_leader = "Leader",
+            k_dandy_epic = "Epic"
         },
         labels = {
             dandy_leader = "Leader",
+            dandy_epic = "Epic",
         },
     }
 }

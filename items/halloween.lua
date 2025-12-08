@@ -119,7 +119,15 @@ SMODS.Joker{
     atlas = 'dandysworld',
     pos = { x = 7, y = 9},
     soul_pos=nil,
-    rarity = 3,
+    rarity = function()
+        if SMODS.find_mod("Cryptid") then
+            return 'cry_epic'
+        elseif dandysworld.config.epic then
+            return 'dandy_epic'
+        else
+            return 3
+        end
+    end,
     cost = 10,
     config = { extra = {chips = 50, mult = 10, x_mult = 1.5} },
     blueprint_compat=true,
