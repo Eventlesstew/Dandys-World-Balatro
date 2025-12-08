@@ -1,6 +1,6 @@
 SMODS.Joker{
     key = "BNAT",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 0, y = 8},
     soul_pos=nil,
     rarity = 2,
@@ -26,7 +26,7 @@ SMODS.Joker{
 
 SMODS.Joker{
     key = "ribecca",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 4, y = 9},
     soul_pos=nil,
     rarity = 1,
@@ -54,7 +54,7 @@ SMODS.Joker{
 
 SMODS.Joker{
     key = "soulvester",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 5, y = 9},
     soul_pos=nil,
     rarity = 2,
@@ -78,7 +78,7 @@ SMODS.Joker{
 
 SMODS.Joker{
     key = "eclipse",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 6, y = 9},
     soul_pos=nil,
     rarity = 3,
@@ -116,18 +116,10 @@ SMODS.Sound ({
 
 SMODS.Joker{
     key = "gourdy",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 7, y = 9},
     soul_pos=nil,
-    rarity = function()
-        if SMODS.find_mod("Cryptid") then
-            return 'cry_epic'
-        elseif dandysworld.config.epic then
-            return 'dandy_epic'
-        else
-            return 3
-        end
-    end,
+    rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or (dandysworld.config.epic and 'dandy_epic') or 3,
     cost = 10,
     config = { extra = {chips = 50, mult = 10, x_mult = 1.5} },
     blueprint_compat=true,

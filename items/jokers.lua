@@ -4,17 +4,17 @@ SMODS.Rarity{
 	badge_colour = HEX("ef0098"),
 	default_weight = 0.003,
 	pools = { ["Joker"] = true },
-	get_weight = function()
+	--[[get_weight = function()
         if SMODS.find_mod("Cryptid") or (not dandysworld.config.epic) then
             return 0
         else
             return 0.003
         end
-    end,
+    end,]]
 }
 
 SMODS.Atlas({
-    key = 'dandysworld',
+    key = 'dwJoker',
     path = "DandyJokers.png",
     px = 71,
     py = 95
@@ -22,7 +22,7 @@ SMODS.Atlas({
 
 SMODS.Joker{
     key = 'coinPurse',
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 1, y = 0},
     soul_pos=nil,
     rarity = 1,
@@ -48,7 +48,7 @@ SMODS.Joker{
 
 SMODS.Joker{
     key = "researchMap",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 2, y = 0},
     soul_pos=nil,
     rarity = 1,
@@ -74,7 +74,7 @@ SMODS.Joker{
 
 SMODS.Joker{
     key = "machineManual",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 4, y = 0},
     soul_pos=nil,
     rarity = 1,
@@ -100,7 +100,7 @@ SMODS.Joker{
 
 SMODS.Joker{
     key = 'fancyPurse',
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 8, y = 2},
     soul_pos=nil,
     rarity = 2,
@@ -126,7 +126,7 @@ SMODS.Joker{
 
 SMODS.Joker{
     key = "brick",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 0, y = 2},
     soul_pos=nil,
     rarity = 1,
@@ -153,7 +153,7 @@ SMODS.Joker{
 
 SMODS.Joker{
     key = "clownhorn", 
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     config = { extra = {mult = 20} },
     pos = { x = 8, y = 1 },
     rarity = 1,
@@ -193,7 +193,7 @@ SMODS.Joker{
 
 SMODS.Joker{
     key = "ribbonspool", 
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     config = { extra = {x_mult = 2} },
     pos = { x = 6, y = 2 },
     rarity = 1,
@@ -233,7 +233,7 @@ SMODS.Joker{
 
 SMODS.Joker{
     key = "toodles",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = {x = 3, y = 6},
     soul_pos=nil,
     rarity = 1,
@@ -267,7 +267,7 @@ SMODS.Joker{
 
 SMODS.Joker{
     key = "shrimpo",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 0, y = 6},
     soul_pos=nil,
     rarity = 1,
@@ -298,7 +298,7 @@ SMODS.Joker{
 
 SMODS.Joker{
     key = "cosmo",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 9, y = 4},
     soul_pos=nil,
     rarity = 1,
@@ -325,7 +325,7 @@ SMODS.Joker{
 
 SMODS.Joker{
     key = "blot",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 4, y = 4},
     soul_pos=nil,
     rarity = 3,
@@ -358,7 +358,7 @@ SMODS.Joker{
 
 SMODS.Joker{
     key = "razzledazzle", 
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     config = { extra = {x_mult = 2, mult = 20} },
     pos = { x = 7, y = 5 },
     rarity = 2,
@@ -419,7 +419,7 @@ SMODS.Sound ({
 
 SMODS.Joker{
     key = "pebble",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 5, y = 6},
     soul_pos=nil,
     rarity = 3,
@@ -452,18 +452,10 @@ SMODS.Sound ({
 
 SMODS.Joker{
     key = "astro",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 6, y = 6},
     soul_pos=nil,
-    rarity = function()
-        if SMODS.find_mod("Cryptid") then
-            return 'cry_epic'
-        elseif dandysworld.config.epic then
-            return 'dandy_epic'
-        else
-            return 3
-        end
-    end,
+    rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or (dandysworld.config.epic and 'dandy_epic') or 3,
     cost = 10,
     config = { extra = {} },
     blueprint_compat=true,
@@ -497,19 +489,11 @@ SMODS.Sound ({
 
 SMODS.Joker{
     key = "sprout",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 7, y = 6},
     soul_pos=nil,
-    rarity = function()
-        if SMODS.find_mod("Cryptid") then
-            return 'cry_epic'
-        elseif dandysworld.config.epic then
-            return 'dandy_epic'
-        else
-            return 3
-        end
-    end,
-    cost = 10
+    rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or (dandysworld.config.epic and 'dandy_epic') or 3,
+    cost = 10,
     config = { extra = {hand_mod = 1, dollars = 20} },
     blueprint_compat=true,
     eternal_compat=true,

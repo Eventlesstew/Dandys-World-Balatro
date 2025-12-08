@@ -22,12 +22,22 @@ SMODS.Sound {
     end,
 }
 
+SMODS.Atlas{
+    key = 'dwBlindLethal',
+    path = "lethalBlinds.png",
+    atlas_table = 'ANIMATION_ATLAS',
+    frames = 16,
+    px = 34 * 2,
+    py = 34 * 2
+}
+
 SMODS.Blind {
     key = 'dandy',
-    --atlas = 'tesloid',
+    atlas = 'dwBlindLethal',
+    pos = {x = 0, y = 0},
+    display_size = { w = 34 * 2, h = 34 * 2 },
     unlocked = true,
     discovered = true,     
-    pos = {x = 0, y = 0},
     dollars = 10,
     mult = 2,
     boss = {min = 1},
@@ -47,7 +57,7 @@ SMODS.Blind {
 
 SMODS.Joker{
     key = "dandy",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 8, y = 7},
     soul_pos=nil,
     rarity = 'dandy_leader',
@@ -99,13 +109,14 @@ SMODS.Sound ({
 
 SMODS.Blind {
     key = 'dyle',
-    --atlas = 'tesloid',
+    atlas = 'dwBlindLethal',
+    pos = {x = 0, y = 1},
+    display_size = { w = 34 * 2, h = 34 * 2 },
     unlocked = true,
     discovered = true,     
-    pos = {x = 0, y = 1},
     dollars = 10,
     mult = 25,
-    boss_colour = HEX("ccb089"),
+    boss_colour = HEX("d4ac76"),
     calculate = function(self, blind, context)
         if context.end_of_round and context.game_over == false and context.main_eval then
             SMODS.add_card{key = "j_dandy_dyle"}
@@ -115,7 +126,7 @@ SMODS.Blind {
 
 SMODS.Joker{
     key = "dyle",
-    atlas = 'dandysworld',
+    atlas = 'dwJoker',
     pos = { x = 9, y = 7},
     soul_pos=nil,
     rarity = 'dandy_leader',
