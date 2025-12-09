@@ -1,4 +1,319 @@
 SMODS.Joker{
+    key = 'poppy',
+    atlas = 'dwJoker',
+    pos = { x = 6, y = 5},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = 'boxten',
+    atlas = 'dwJoker',
+    pos = { x = 5, y = 4},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = 'brightney',
+    atlas = 'dwJoker',
+    pos = { x = 6, y = 4},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = 'brusha',
+    atlas = 'dwJoker',
+    pos = { x = 7, y = 4},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = 'connie',
+    atlas = 'dwJoker',
+    pos = { x = 8, y = 4},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = 'finn',
+    atlas = 'dwJoker',
+    pos = { x = 0, y = 5},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = 'flutter',
+    atlas = 'dwJoker',
+    pos = { x = 1, y = 5},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = 'gigi',
+    atlas = 'dwJoker',
+    pos = { x = 2, y = 5},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = 'glisten',
+    atlas = 'dwJoker',
+    pos = { x = 3, y = 5},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = 'goob',
+    atlas = 'dwJoker',
+    pos = { x = 4, y = 5},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = 'looey',
+    atlas = 'dwJoker',
+    pos = { x = 5, y = 5},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = 'rodger',
+    atlas = 'dwJoker',
+    pos = { x = 8, y = 5},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = 'scraps',
+    atlas = 'dwJoker',
+    pos = { x = 9, y = 5},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = 'teagan',
+    atlas = 'dwJoker',
+    pos = { x = 0, y = 6},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = 'tisha',
+    atlas = 'dwJoker',
+    pos = { x = 2, y = 6},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
+SMODS.Joker{
     key = "toodles",
     atlas = 'dwJoker',
     pos = {x = 3, y = 6},
@@ -29,6 +344,27 @@ SMODS.Joker{
 
     loc_vars = function(self, info_queue, card)
         return { vars = {card.ability.extra.chips, card.ability.extra.mult, card.ability.extra.x_mult}, key = self.key }
+    end
+}
+
+SMODS.Joker{
+    key = 'yatta',
+    atlas = 'dwJoker',
+    pos = { x = 4, y = 6},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
     end
 }
 
@@ -294,8 +630,50 @@ SMODS.Sound ({
     pitch = 1,
 })
 
+SMODS.Joker{
+    key = 'shelly',
+    atlas = 'dwJoker',
+    pos = { x = 8, y = 6},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
 SMODS.Sound ({
     key = 'vee',
     path = 'dw_vee.ogg',
     pitch = 1,
 })
+
+SMODS.Joker{
+    key = 'vee',
+    atlas = 'dwJoker',
+    pos = { x = 9, y = 6},
+    soul_pos=nil,
+    rarity = 1,
+    cost = 2,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = true,
+    discovered = true,
+    calculate = function(self,card,context)
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
