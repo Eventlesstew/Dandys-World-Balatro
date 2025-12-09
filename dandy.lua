@@ -47,7 +47,10 @@ dandysworld.config_tab = function()
 end
 
 -- Jokers
-assert(SMODS.load_file("items/jokers.lua"))()
+assert(SMODS.load_file("items/atlas.lua"))()
+
+assert(SMODS.load_file("items/trinketJokers.lua"))()
+assert(SMODS.load_file("items/toonJokers.lua"))()
 assert(SMODS.load_file("items/easter.lua"))()
 assert(SMODS.load_file("items/halloween.lua"))()
 assert(SMODS.load_file("items/christmas.lua"))()

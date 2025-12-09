@@ -1,12 +1,3 @@
-SMODS.Atlas{
-    key = 'dwBlind',
-    path = "blinds.png",
-    atlas_table = 'ANIMATION_ATLAS',
-    frames = 1,
-    px = 34,
-    py = 34
-}
-
 SMODS.Blind {
     key = 'blotjr',
     atlas = 'dwBlind',

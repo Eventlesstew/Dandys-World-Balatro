@@ -1,17 +1,4 @@
---[[SMODS.Atlas({
-    key = 'tesloid',
-    path = "clackerblinds.png",
-    atlas_table = 'ANIMATION_ATLAS',
-    frames = 21,
-    px = 34,
-    py = 34
-})]]
 
-SMODS.Rarity {
-    key = 'leader',
-    badge_colour = HEX("E44F4F"),
-    default_weight = 0
-}
 
 SMODS.Sound {
     key = 'dandy_music',
