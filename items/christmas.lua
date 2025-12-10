@@ -11,6 +11,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -32,6 +35,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -84,6 +90,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -105,6 +114,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -126,6 +138,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -147,6 +162,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 

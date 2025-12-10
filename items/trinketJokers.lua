@@ -63,6 +63,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -110,6 +113,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -131,6 +137,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -152,6 +161,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -173,6 +185,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -194,6 +209,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -215,6 +233,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -236,6 +257,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -257,6 +281,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -278,6 +305,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -301,10 +331,12 @@ SMODS.Joker{
     discovered = true,
     calculate = function(self,card,context)
     end,
-
     loc_vars = function(self, info_queue, card)
         return { vars = {}, key = self.key }
-    end
+    end,
+    in_pool = function()
+        return false
+    end,
 }
 
 SMODS.Joker{
@@ -322,10 +354,12 @@ SMODS.Joker{
     discovered = true,
     calculate = function(self,card,context)
     end,
-
     loc_vars = function(self, info_queue, card)
         return { vars = {}, key = self.key }
-    end
+    end,
+    in_pool = function()
+        return false
+    end,
 }
 
 SMODS.Joker{
@@ -341,6 +375,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -362,6 +399,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -423,6 +463,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -471,6 +514,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -492,6 +538,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -513,6 +562,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -534,6 +586,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -555,6 +610,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -616,6 +674,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -663,6 +724,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -684,6 +748,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -705,6 +772,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -726,6 +796,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -747,6 +820,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -768,6 +844,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -789,6 +868,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -810,6 +892,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -831,6 +916,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -852,6 +940,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -873,6 +964,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -894,6 +988,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -915,6 +1012,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -936,6 +1036,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -957,6 +1060,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 

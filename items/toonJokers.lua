@@ -11,6 +11,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -32,6 +35,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -53,6 +59,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -74,6 +83,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -95,6 +107,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -116,6 +131,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -137,6 +155,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -158,6 +179,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -179,6 +203,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -200,6 +227,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -221,6 +251,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -242,6 +275,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -263,6 +299,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -284,6 +323,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -305,6 +347,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -360,6 +405,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -480,12 +528,12 @@ SMODS.Joker{
             if (G.GAME.round % 2) == 0 then
                 return {
                     message = localize('k_dandy_misery_ex'),
-                    colour = G.C.BLACK
+                    colour = G.C.MULT
                 }
             else
                 return {
                     message = localize('k_dandy_joy_ex'),
-                    colour = G.C.WHITE
+                    colour = G.C.MULT
                 }
             end
         end
@@ -528,23 +576,22 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = 3,
     cost = 10,
-    config = { extra = {x_mult = 0.5} },
+    config = { extra = {} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
     discovered = true,
-    calculate = function(self,card,context)              --define calculate functions here
+    in_pool = function()
+        return false
+    end,
+    calculate = function(self,card,context)
         if context.joker_main and context.cardarea == G.jokers then
-            return {
-                x_mult = 1 + (card.ability.extra.x_mult * (G.GAME.current_round.hands_left + 1)),
-            }
         end
     end,
 
-    loc_vars = function(self, info_queue, card)          --defines variables to use in the UI. you can use #1# for example to show the chips variable
-        local x_mult = 1 + (card.ability.extra.x_mult * G.GAME.current_round.hands_left)
-        return { vars = {card.ability.extra.x_mult, x_mult}, key = self.key }
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
     end
 }
 
@@ -643,6 +690,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -670,6 +720,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 

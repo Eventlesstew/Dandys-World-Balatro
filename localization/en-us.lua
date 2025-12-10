@@ -50,18 +50,88 @@ return {
                     "{X:mult,C:white}X#1#{} Mult",
                 },
             },
-            j_dandy_fancyPurse = {
-                name = "Fancy Purse",
+            j_dandy_wrench = {
+                name = "Wrench",
                 text = {
-                    "{C:chips}+#1#{} Chips",
+                    "{X:mult,C:white}INCOMPLETE{}",
                 },
             },
-            j_dandy_brick = {
-                name = "Brick",
+            j_dandy_speedyshoes = {
+                name = "Speedy Shoes",
                 text = {
-                    "{X:mult,C:white}X#1#{} Mult",
-                    "{C:inactive,s:0.8}It's a brick, what",
-                    "{C:inactive,s:0.8}did you expect?"
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_speedometer = {
+                name = "Speedometer",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_thinkingcap = {
+                name = "Thinking Cap",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_alarm = {
+                name = "Alarm",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_thermos = {
+                name = "Thermos",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_pulltoy = {
+                name = "Pull Toy",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_poppack = {
+                name = "Pop Pack",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_megaphone = {
+                name = "Megaphone",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_cooler = {
+                name = "Cooler",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_cardboardarmor = {
+                name = "Cardboard 'Armor'",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_bluebandana = {
+                name = "Blue Bandana",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_paintbucket = {
+                name = "Paint Bucket",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_sweetcharm = {
+                name = "Sweet Charm",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
                 },
             },
             j_dandy_clownhorn = {
@@ -72,6 +142,50 @@ return {
                     "{C:inactive}#2#"
                 },
             },
+            j_dandy_pinkbow = {
+                name = "Pink Bow",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_brick = {
+                name = "Brick",
+                text = {
+                    "{X:mult,C:white}X#1#{} Mult",
+                    "{C:inactive,s:0.8}It's a brick, what",
+                    "{C:inactive,s:0.8}did you expect?"
+                },
+            },
+            j_dandy_featherduster = {
+                name = "Feather Duster",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_partypopper = {
+                name = "Party Popper",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_sparebulb = {
+                name = "Spare Bulb",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_gsiac = {
+                name = "Ghost Snakes in a Can",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_fishingrod = {
+                name = "Fishing Rod",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
             j_dandy_ribbonspool = {
                 name = "Ribbon Spool",
                 text = {
@@ -80,28 +194,106 @@ return {
                     "{C:inactive}#2#"
                 },
             },
-
-            j_dandy_toodles = {
-                name = "Toodles",
+            j_dandy_magnifyingglass = {
+                name = "Magnifying Glass",
                 text = {
-                    "Grants either {C:chips}+#1#{} Chips,",
-                    "{C:mult}+#2#{} Mult or {X:mult,C:white}X#3#{} Mult",
-                }
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
             },
-
-            j_dandy_shrimpo = {
-                name = "Shrimpo",
+            j_dandy_fancyPurse = {
+                name = "Fancy Purse",
                 text = {
-                    "{C:attention}Debuffs{} 1 random",
-                    "card in played hand",
-                }
+                    "{C:chips}+#1#{} Chips",
+                },
             },
-            j_dandy_cosmo = {
-                name = "Cosmo",
+            j_dandy_dogplush = {
+                name = "Dog Plush",
                 text = {
-                    "{X:mult,C:white}X#1#{} Mult for each",
-                    "hand remaining",
-                    "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)"
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_mimemakeup = {
+                name = "Mime Makeup",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_diary = {
+                name = "Diary",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_luckycoin = {
+                name = "Lucky Coin",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_vanitymirror = {
+                name = "Vanity Mirror",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_friendshipbracelet = {
+                name = "Friendship Bracelet",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_crayonset = {
+                name = "Crayon Set",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_bone = {
+                name = "Bone",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_starpillow = {
+                name = "Star Pillow",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_participationaward = {
+                name = "Participation Award",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_savorycharm = {
+                name = "Savory Charm",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_veeremote = {
+                name = "Vee's Remote",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_dandyplush = {
+                name = "Dandy Plush",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_trainwhistle = {
+                name = "Train Whistle",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_blushybat = {
+                name = "Blushy Bat",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
                 },
             },
 
@@ -113,7 +305,80 @@ return {
                     --[["Each card held in",
                     "hand scores {C:mult}+#1#{} Mult",]]
                 },
-                
+            },
+            j_dandy_boxten = {
+                name = "Boxten",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_brightney = {
+                name = "Brightney",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_brusha = {
+                name = "Brusha",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_connie = {
+                name = "Connie",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_cosmo = {
+                name = "Cosmo",
+                text = {
+                    "{X:mult,C:white}X#1#{} Mult for each",
+                    "hand remaining",
+                    "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)"
+                },
+            },
+            j_dandy_finn = {
+                name = "Finn",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_flutter = {
+                name = "Flutter",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_gigi = {
+                name = "Gigi",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_glisten = {
+                name = "Glisten",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_goob = {
+                name = "Goob",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_looey = {
+                name = "Looey",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_poppy = {
+                name = "Poppy",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
             },
             j_dandy_razzledazzle = {
                 name = "Razzle & Dazzle",
@@ -123,6 +388,50 @@ return {
                     "{X:mult,C:white}X#1#{} Mult on {C:attention}even",
                     "numbered rounds",
                     "{C:inactive}(Currently {B:2,V:1}#4##3#{C:inactive} Mult)"
+                },
+            },
+            j_dandy_rodger = {
+                name = "Rodger",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_scraps = {
+                name = "Scraps",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_shrimpo = {
+                name = "Shrimpo",
+                text = {
+                    "{C:attention}Debuffs{} 1 random",
+                    "card in played hand",
+                }
+            },
+            j_dandy_teagan = {
+                name = "Teagan",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_tisha = {
+                name = "Tisha",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_toodles = {
+                name = "Toodles",
+                text = {
+                    "Grants either {C:chips}+#1#{} Chips,",
+                    "{C:mult}+#2#{} Mult or {X:mult,C:white}X#3#{} Mult",
+                }
+            },
+            j_dandy_yatta = {
+                name = "Yatta",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
                 },
             },
             j_dandy_pebble = {
@@ -158,12 +467,97 @@ return {
                     
                 },
             },
+            j_dandy_dandy = {
+                name = "Dandy",
+                text = {
+                    "Create a {C:dark_edition}Negative{}",
+                    "{C:spectral}Spectral{} card when",
+                    "{C:attention}Blind{} is selected",
+                },
+            },
+            j_dandy_dyle = {
+                name = "Dyle",
+                text = {
+                    "Add {C:dark_edition}Foil{}, {C:dark_edition}Holographic{},",
+                    "or {C:dark_edition}Polychrome{} edition to",
+                    "all cards in first",
+                    "hand played"
+                },
+            },
+
+            j_dandy_eggradar = {
+                name = "Egg Radar",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_scrapbook = {
+                name = "Scrapbook",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_gfb = {
+                name = "Glazed Fondant Bag",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_whisperingflower = {
+                name = "Whispering Flower",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_eggson = {
+                name = "Eggson",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_flyte = {
+                name = "Flyte",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_cocoa = {
+                name = "Cocoa",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_bassie = {
+                name = "Bassie",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+
             j_dandy_BNAT = {
                 name = "Bone Needle & Thread",
                 text = {
                     "Becomes {C:attention}Ribecca{}, {C:attention}Soulvester{},",
                     "{C:attention}Eclipse{} or {C:attention}Gourdy{} when",
                     "{C:attention}Blind{} is defeated"
+                },
+            },
+            j_dandy_soulsword = {
+                name = "Soul Sword",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_mph = {
+                name = "Moon Pack Heirloom",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_memorylocket = {
+                name = "Memory Locket",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
                 },
             },
             j_dandy_ribecca = {
@@ -194,6 +588,18 @@ return {
                 },
             },
 
+            j_dandy_festivelights = {
+                name = "Festive Lights",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_pepperminticing = {
+                name = "Peppermint Icing",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
             j_dandy_coalTrinket = {
                 name = "Coal",
                 text = {
@@ -201,22 +607,35 @@ return {
                     "score",
                 }
             },
-
-            j_dandy_dandy = {
-                name = "Dandy",
+            j_dandy_toykit = {
+                name = "Toy Kit",
                 text = {
-                    "Create a {C:dark_edition}Negative{}",
-                    "{C:spectral}Spectral{} card when",
-                    "{C:attention}Blind{} is selected",
+                    "{X:mult,C:white}INCOMPLETE{}",
                 },
             },
-            j_dandy_dyle = {
-                name = "Dyle",
+
+            j_dandy_rudie = {
+                name = "Rudie",
                 text = {
-                    "Add {C:dark_edition}Foil{}, {C:dark_edition}Holographic{},",
-                    "or {C:dark_edition}Polychrome{} edition to",
-                    "all cards in first",
-                    "hand played"
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_ginger = {
+                name = "Ginger",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_coal = {
+                name = "Coal",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
+                },
+            },
+            j_dandy_bobette = {
+                name = "Bobette",
+                text = {
+                    "{X:mult,C:white}INCOMPLETE{}",
                 },
             },
         }

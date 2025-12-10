@@ -11,6 +11,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -32,6 +35,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -53,6 +59,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -74,6 +83,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -95,6 +107,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -116,6 +131,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -131,7 +149,7 @@ SMODS.Sound ({
 })
 
 SMODS.Joker{
-    key = 'bassie',
+    key = 'cocoa',
     atlas = 'dwJoker',
     pos = { x = 6, y = 7},
     soul_pos=nil,
@@ -143,6 +161,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -170,6 +191,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 

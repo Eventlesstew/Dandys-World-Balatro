@@ -5,7 +5,7 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = 2,
     cost = 5,
-    config = { extra = {} },
+    config = { extra = {jokers = {"j_dandy_ribecca", "j_dandy_soulvester", "j_dandy_eclipse", "j_dandy_gourdy"}} },
     blueprint_compat=false,
     eternal_compat=true,
     perishable_compat=true,
@@ -14,14 +14,15 @@ SMODS.Joker{
     
     calculate = function(self,card,context)
         if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
-            local jokers = {"j_dandy_ribecca", "j_dandy_soulvester", "j_dandy_eclipse", "j_dandy_gourdy"}
-            local chosen_joker = pseudorandom_element(jokers, "boneneedleandthread")
+            local chosen_joker = pseudorandom_element(card.ability.extra.jokers, "boneneedleandthread")
             SMODS.add_card{key = chosen_joker}
             SMODS.destroy_cards(card, nil, nil, true)
         end
     end,
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        return { vars = {
+            --card.ability.extra.jokers[1],
+        }, key = self.key }
     end
 }
 
@@ -38,6 +39,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -59,6 +63,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
@@ -80,6 +87,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self,card,context)
     end,
 
