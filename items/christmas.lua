@@ -199,3 +199,67 @@ SMODS.Joker{
         return { vars = {}, key = self.key }
     end
 }
+
+SMODS.Blind {
+    key = 'rudie',
+    atlas = 'dwBlind',
+    pos = {x = 0, y = 29},
+    unlocked = true,
+    discovered = true,     
+    dollars = 5,
+    mult = 2,
+    boss = {min = 1},
+    boss_colour = HEX("575757"),
+    ignore_showdown_check = true,
+    in_pool = function()
+        return false
+    end,
+}
+
+SMODS.Blind {
+    key = 'ginger',
+    atlas = 'dwBlind',
+    pos = {x = 0, y = 30},
+    unlocked = true,
+    discovered = true,     
+    dollars = 5,
+    mult = 2,
+    boss = {min = 1},
+    boss_colour = HEX("575757"),
+    ignore_showdown_check = true,
+    in_pool = function()
+        return false
+    end,
+}
+
+SMODS.Blind {
+    key = 'coal',
+    atlas = 'dwBlind',
+    pos = {x = 0, y = 31},
+    unlocked = true,
+    discovered = true,     
+    dollars = 5,
+    mult = 2,
+    boss = {min = 1},
+    boss_colour = HEX("575757"),
+    ignore_showdown_check = true,
+    in_pool = function()
+        return false
+    end,
+}
+
+SMODS.Blind {
+    key = 'bobette',
+    atlas = 'dwBlind',
+    pos = {x = 0, y = 32},
+    unlocked = true,
+    discovered = true,     
+    dollars = 5,
+    mult = 2,
+    boss = {min = 1},
+    boss_colour = HEX("575757"),
+    ignore_showdown_check = true,
+    in_pool = function()
+        return false
+    end,
+}

@@ -257,3 +257,67 @@ SMODS.Joker{
         return { vars = {card.ability.extra.chips, card.ability.extra.mult, card.ability.extra.x_mult}, key = self.key }
     end
 }
+
+SMODS.Blind {
+    key = 'ribecca',
+    atlas = 'dwBlind',
+    pos = {x = 0, y = 37},
+    unlocked = true,
+    discovered = true,     
+    dollars = 5,
+    mult = 2,
+    boss = {min = 1},
+    boss_colour = HEX("575757"),
+    ignore_showdown_check = true,
+    in_pool = function()
+        return false
+    end,
+}
+
+SMODS.Blind {
+    key = 'soulvester',
+    atlas = 'dwBlind',
+    pos = {x = 0, y = 38},
+    unlocked = true,
+    discovered = true,     
+    dollars = 5,
+    mult = 2,
+    boss = {min = 1},
+    boss_colour = HEX("575757"),
+    ignore_showdown_check = true,
+    in_pool = function()
+        return false
+    end,
+}
+
+SMODS.Blind {
+    key = 'eclipse',
+    atlas = 'dwBlind',
+    pos = {x = 0, y = 39},
+    unlocked = true,
+    discovered = true,     
+    dollars = 5,
+    mult = 2,
+    boss = {min = 1},
+    boss_colour = HEX("575757"),
+    ignore_showdown_check = true,
+    in_pool = function()
+        return false
+    end,
+}
+
+SMODS.Blind {
+    key = 'gourdy',
+    atlas = 'dwBlind',
+    pos = {x = 0, y = 3},
+    unlocked = true,
+    discovered = true,     
+    dollars = 5,
+    mult = 2,
+    boss = {min = 1},
+    boss_colour = HEX("575757"),
+    ignore_showdown_check = true,
+    in_pool = function()
+        return false
+    end,
+}
