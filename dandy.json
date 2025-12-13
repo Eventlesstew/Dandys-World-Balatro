@@ -1,7 +1,8 @@
 {
   "id": "dandys world",
   "name": "Dandy's World Balatro",
-  "display_name": "Dandys World",
+  "display_name": "Dandy's World",
+  "no_marquee": "true",
   "author": ["Eventlesstew"],
   "description": "A massive content mod featuring the Toons and Twisteds from Dandy's World!",
   "prefix": "dandy",

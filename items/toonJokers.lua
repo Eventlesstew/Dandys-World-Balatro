@@ -682,8 +682,8 @@ SMODS.Joker{
     atlas = 'dwJoker',
     pos = { x = 8, y = 6},
     soul_pos=nil,
-    rarity = 1,
-    cost = 2,
+    rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or (dandysworld.config.epic and 'dandy_epic') or 3,
+    cost = 10,
     config = { extra = {} },
     blueprint_compat=true,
     eternal_compat=true,
@@ -712,8 +712,8 @@ SMODS.Joker{
     atlas = 'dwJoker',
     pos = { x = 9, y = 6},
     soul_pos=nil,
-    rarity = 1,
-    cost = 2,
+    rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or (dandysworld.config.epic and 'dandy_epic') or 3,
+    cost = 10,
     config = { extra = {choice_mod = 1} },
     blueprint_compat=true,
     eternal_compat=true,
@@ -725,26 +725,12 @@ SMODS.Joker{
             G.GAME.modifiers.booster_choice_mod = 0
         end
         G.GAME.modifiers.booster_choice_mod = G.GAME.modifiers.booster_choice_mod + card.ability.extra.choice_mod
-
-        --[[
-        if not G.GAME.modifiers.booster_size_mod then
-            G.GAME.modifiers.booster_size_mod = 0
-        end
-        G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod + card.ability.extra.choice_mod
-        ]]
     end,
     remove_from_deck = function(self, card, from_debuff)
         if not G.GAME.modifiers.booster_choice_mod then
             G.GAME.modifiers.booster_choice_mod = 0
         end
         G.GAME.modifiers.booster_choice_mod = G.GAME.modifiers.booster_choice_mod - card.ability.extra.choice_mod
-
-        --[[
-        if not G.GAME.modifiers.booster_size_mod then
-            G.GAME.modifiers.booster_size_mod = 0
-        end
-        G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod - card.ability.extra.choice_mod
-        ]]
     end,
 
     loc_vars = function(self, info_queue, card)

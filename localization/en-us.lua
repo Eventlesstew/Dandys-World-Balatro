@@ -234,6 +234,7 @@ return {
                 name = "Dandy",
                 text = {
                     "1 Hand, 0 Discards,",
+                    "Double Hand Size",
                 },
             },
             bl_dandy_dyle = {
@@ -945,6 +946,9 @@ return {
             dw_cocoa_quote3 = "I'll just set this here for a moment!",
 
             dw_gourdy_ability = "Boo!",
+
+            ph_dw_stage2 = "Spare some, will ya?",
+            ph_dw_stage3 = "Don't Ignore Me!",
 
             k_dandy_inactive = "Inactive!",
             k_dandy_active = "Active!",
