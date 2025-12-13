@@ -2,6 +2,234 @@ return {
     descriptions = {
 
         Blind = {
+            bl_dandy_boxten = {
+                name = "Twisted Boxten",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_brusha = {
+                name = "Twisted Brusha",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_cosmo = {
+                name = "Twisted Cosmo",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_looey = {
+                name = "Twisted Looey",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_poppy = {
+                name = "Twisted Poppy",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_shrimpo = {
+                name = "Twisted Shrimpo",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_tisha = {
+                name = "Twisted Tisha",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_yatta = {
+                name = "Twisted Yatta",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_brightney = {
+                name = "Twisted Brightney",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_connie = {
+                name = "Twisted Connie",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_finn = {
+                name = "Twisted Finn",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_razzledazzle = {
+                name = "Twisted RnD",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_rodger = {
+                name = "Twisted Rodger",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_teagan = {
+                name = "Twisted Teagan",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_toodles = {
+                name = "Twisted Toodles",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_blot = {
+                name = "Twisted Blot",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_flutter = {
+                name = "Twisted Flutter",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_gigi = {
+                name = "Twisted Gigi",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_glisten = {
+                name = "Twisted Glisten",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_goob = {
+                name = "Twisted Goob",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_scraps = {
+                name = "Twisted Scraps",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_astro = {
+                name = "Astro's Dream",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_pebble = {
+                name = "Vicious Pebble",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_shelly = {
+                name = "Shelly's Decay",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_sprout = {
+                name = "Sprout's Catastrophe",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_vee = {
+                name = "Vee's Gameshow",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_eggson = {
+                name = "Twisted Eggson",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_flyte = {
+                name = "Twisted Flyte",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_cocoa = {
+                name = "Twisted Cocoa",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_bassie = {
+                name = "Bassie's Gardens",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_ribecca = {
+                name = "Twisted Ribecca",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_soulvester = {
+                name = "Twisted Soulvester",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_eclipse = {
+                name = "Twisted Eclipse",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_gourdy = {
+                name = "Forgotten Gourdy",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_rudie = {
+                name = "Twisted Rudie",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_ginger = {
+                name = "Twisted Ginger",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_coal = {
+                name = "Twisted Coal",
+                text = {
+                    "Incomplete"
+                },
+            },
+            bl_dandy_bobette = {
+                name = "Bobette's Workshop",
+                text = {
+                    "Incomplete"
+                },
+            },
             bl_dandy_dandy = {
                 name = "Dandy",
                 text = {
@@ -464,7 +692,9 @@ return {
             j_dandy_vee = {
                 name = "Vee",
                 text = {
-                    
+                    "Choose {C:attention}#1#{} extra",
+                    "item from all",
+                    "{C:attention}Booster Packs"
                 },
             },
             j_dandy_dandy = {
@@ -563,9 +793,9 @@ return {
             j_dandy_ribecca = {
                 name = "Ribecca",
                 text = {
-                    "Adds the rank of all",
-                    "{C:attention}Debuffed{} cards held in",
-                    "hand to Mult"
+                    "Adds {C:attention}double{} the rank of",
+                    "all {C:attention}Debuffed{} cards",
+                    "held in hand to Mult"
                 },
             },
             j_dandy_soulvester = {
@@ -591,13 +821,17 @@ return {
             j_dandy_festivelights = {
                 name = "Festive Lights",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "Becomes {C:attention}Rudie{}, {C:attention}Ginger{},",
+                    "{C:attention}Coal{} or {C:attention}Bobette{} when",
+                    "{C:attention}Blind{} is defeated"
                 },
             },
             j_dandy_pepperminticing = {
                 name = "Peppermint Icing",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "Played cards with an",
+                    "{C:attention}enhancement{} give",
+                    "{C:mult}+#1#{} Mult when scored",
                 },
             },
             j_dandy_coalTrinket = {
@@ -623,13 +857,17 @@ return {
             j_dandy_ginger = {
                 name = "Ginger",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{C:chips}+#1#{} Hands if {C:attention}Blind",
+                    "is selected with",
+                    "{C:money}$#2#{} or more",
                 },
             },
             j_dandy_coal = {
                 name = "Coal",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{C:green}#1# in #2#{} chance for each",
+                    "{C:attention}Stone{} card held in hand",
+                    "to create a {C:tarot}Tarot{} card",
                 },
             },
             j_dandy_bobette = {

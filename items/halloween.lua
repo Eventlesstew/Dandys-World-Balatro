@@ -7,14 +7,17 @@ SMODS.Joker{
     cost = 5,
     config = { extra = {jokers = {"j_dandy_ribecca", "j_dandy_soulvester", "j_dandy_eclipse", "j_dandy_gourdy"}} },
     blueprint_compat=false,
-    eternal_compat=true,
-    perishable_compat=true,
+    eternal_compat=false,
+    perishable_compat=false,
     unlocked = true,
     discovered = true,
     
     calculate = function(self,card,context)
+        --if context.type == 'store_joker_create' then
+
+        --end
         if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
-            local chosen_joker = pseudorandom_element(card.ability.extra.jokers, "boneneedleandthread")
+            local chosen_joker = pseudorandom_element(card.ability.extra.jokers, "dw_BNAT")
             SMODS.add_card{key = chosen_joker}
             SMODS.destroy_cards(card, nil, nil, true)
         end
@@ -116,7 +119,7 @@ SMODS.Joker{
         if context.individual and context.cardarea == G.hand and not context.end_of_round then
             if context.other_card.debuff then
                 return {
-                    mult = context.other_card.base.nominal
+                    mult = context.other_card.base.nominal * 2
                 }
             end
         end
@@ -309,7 +312,7 @@ SMODS.Blind {
 SMODS.Blind {
     key = 'gourdy',
     atlas = 'dwBlind',
-    pos = {x = 0, y = 3},
+    pos = {x = 0, y = 40},
     unlocked = true,
     discovered = true,     
     dollars = 5,

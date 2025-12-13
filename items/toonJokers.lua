@@ -714,19 +714,40 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = 1,
     cost = 2,
-    config = { extra = {} },
+    config = { extra = {choice_mod = 1} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
     discovered = true,
-    in_pool = function()
-        return false
+    add_to_deck = function(self, card, from_debuff)
+        if not G.GAME.modifiers.booster_choice_mod then
+            G.GAME.modifiers.booster_choice_mod = 0
+        end
+        G.GAME.modifiers.booster_choice_mod = G.GAME.modifiers.booster_choice_mod + card.ability.extra.choice_mod
+
+        --[[
+        if not G.GAME.modifiers.booster_size_mod then
+            G.GAME.modifiers.booster_size_mod = 0
+        end
+        G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod + card.ability.extra.choice_mod
+        ]]
     end,
-    calculate = function(self,card,context)
+    remove_from_deck = function(self, card, from_debuff)
+        if not G.GAME.modifiers.booster_choice_mod then
+            G.GAME.modifiers.booster_choice_mod = 0
+        end
+        G.GAME.modifiers.booster_choice_mod = G.GAME.modifiers.booster_choice_mod - card.ability.extra.choice_mod
+
+        --[[
+        if not G.GAME.modifiers.booster_size_mod then
+            G.GAME.modifiers.booster_size_mod = 0
+        end
+        G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod - card.ability.extra.choice_mod
+        ]]
     end,
 
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        return { vars = {card.ability.extra.choice_mod}, key = self.key }
     end
 }
