@@ -165,14 +165,14 @@ SMODS.Voucher {
     redeem = function(self, card)
         G.E_MANAGER:add_event(Event({
             func = function()
-                --G.FORCE_BOSS(card.ability.extra.blind)
+                G.FORCE_BOSS = card.ability.extra.blind
                 return true
             end
         }))
     end
 }
 
-SMODS.Tag {
+--[[SMODS.Tag {
     key = "timesup",
     pos = { x = 0, y = 2 },
     apply = function(self, tag, context)
@@ -202,7 +202,7 @@ SMODS.Tag {
             return true
         end
     end
-}
+}]]
 
 SMODS.Joker{
     key = "dyle",

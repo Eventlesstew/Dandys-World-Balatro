@@ -341,20 +341,23 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = 1,
     cost = 2,
-    config = { extra = {} },
+    config = { extra = {chips = 30} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
     discovered = true,
-    in_pool = function()
-        return false
-    end,
+
     calculate = function(self,card,context)
+         if context.joker_main then
+            return {
+                chips = card.ability.extra.chips * #G.jokers.cards
+            }
+        end
     end,
 
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        return { vars = {card.ability.extra.chips, card.ability.extra.chips * (G.jokers and #G.jokers.cards or 0)}, key = self.key }
     end
 }
 
@@ -574,24 +577,31 @@ SMODS.Joker{
     atlas = 'dwJoker',
     pos = { x = 5, y = 6},
     soul_pos=nil,
-    rarity = 3,
-    cost = 10,
-    config = { extra = {} },
+    rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or (dandysworld.config.epic and 'dandy_epic') or 3,
+    cost = ((next(SMODS.find_mod('Cryptid')) or dandysworld.config.epic) and 10) or 20,
+    config = { extra = {chips = 0, chip_mod = 20} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
     discovered = true,
-    in_pool = function()
-        return false
-    end,
     calculate = function(self,card,context)
+        if context.using_consumeable then
+            card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_mod
+            return {
+                message = localize('k_upgrade_ex'),
+                colour = G.C.CHIPS,
+            }
+        end
         if context.joker_main and context.cardarea == G.jokers then
+            return {
+                chips = card.ability.extra.chips
+            }
         end
     end,
 
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        return { vars = {card.ability.extra.chips, card.ability.extra.chip_mod}, key = self.key }
     end
 }
 
@@ -607,7 +617,7 @@ SMODS.Joker{
     pos = { x = 6, y = 6},
     soul_pos=nil,
     rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or (dandysworld.config.epic and 'dandy_epic') or 3,
-    cost = 10,
+    cost = ((next(SMODS.find_mod('Cryptid')) or dandysworld.config.epic) and 10) or 20,
     config = { extra = {} },
     blueprint_compat=true,
     eternal_compat=true,
@@ -644,7 +654,7 @@ SMODS.Joker{
     pos = { x = 7, y = 6},
     soul_pos=nil,
     rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or (dandysworld.config.epic and 'dandy_epic') or 3,
-    cost = 10,
+    cost = ((next(SMODS.find_mod('Cryptid')) or dandysworld.config.epic) and 10) or 20,
     config = { extra = {hand_mod = 1, dollars = 20} },
     blueprint_compat=true,
     eternal_compat=true,
@@ -683,21 +693,23 @@ SMODS.Joker{
     pos = { x = 8, y = 6},
     soul_pos=nil,
     rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or (dandysworld.config.epic and 'dandy_epic') or 3,
-    cost = 10,
-    config = { extra = {} },
+    cost = ((next(SMODS.find_mod('Cryptid')) or dandysworld.config.epic) and 10) or 20,
+    config = { extra = {x_mult = 2} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
     discovered = true,
-    in_pool = function()
-        return false
-    end,
     calculate = function(self,card,context)
+        if context.individual and context.cardarea == G.play and SMODS.has_enhancement(context.other_card, 'm_stone') then
+            return {
+                x_mult = card.ability.extra.x_mult
+            }
+        end
     end,
 
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        return { vars = {card.ability.extra.x_mult}, key = self.key }
     end
 }
 
@@ -713,8 +725,8 @@ SMODS.Joker{
     pos = { x = 9, y = 6},
     soul_pos=nil,
     rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or (dandysworld.config.epic and 'dandy_epic') or 3,
-    cost = 10,
-    config = { extra = {choice_mod = 1} },
+    cost = ((next(SMODS.find_mod('Cryptid')) or dandysworld.config.epic) and 10) or 20,
+    config = { extra = {choice_mod = 1, size_mod = 2} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
@@ -725,15 +737,35 @@ SMODS.Joker{
             G.GAME.modifiers.booster_choice_mod = 0
         end
         G.GAME.modifiers.booster_choice_mod = G.GAME.modifiers.booster_choice_mod + card.ability.extra.choice_mod
+
+        if not G.GAME.modifiers.booster_size_mod then
+            G.GAME.modifiers.booster_size_mod = 0
+        end
+        G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod + card.ability.extra.size_mod
     end,
     remove_from_deck = function(self, card, from_debuff)
         if not G.GAME.modifiers.booster_choice_mod then
             G.GAME.modifiers.booster_choice_mod = 0
+        else
+            G.GAME.modifiers.booster_choice_mod = G.GAME.modifiers.booster_choice_mod - card.ability.extra.choice_mod
         end
-        G.GAME.modifiers.booster_choice_mod = G.GAME.modifiers.booster_choice_mod - card.ability.extra.choice_mod
-    end,
 
+        if not G.GAME.modifiers.booster_size_mod then
+            G.GAME.modifiers.booster_size_mod = 0
+        else
+            G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod - card.ability.extra.size_mod
+        end
+    end,
+    calculate = function(self,card,context)
+        if context.open_booster then
+            return {
+                message = localize('dw_vee_ability'),
+                colour = G.C.GREEN,
+                sound = 'dandy_vee'
+            }
+        end
+    end,
     loc_vars = function(self, info_queue, card)
-        return { vars = {card.ability.extra.choice_mod}, key = self.key }
+        return { vars = {card.ability.extra.choice_mod, card.ability.extra.size_mod}, key = self.key }
     end
 }

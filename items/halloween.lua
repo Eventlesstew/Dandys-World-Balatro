@@ -197,7 +197,7 @@ SMODS.Joker{
     pos = { x = 7, y = 9},
     soul_pos=nil,
     rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or (dandysworld.config.epic and 'dandy_epic') or 3,
-    cost = 10,
+    cost = ((next(SMODS.find_mod('Cryptid')) or dandysworld.config.epic) and 10) or 20,
     config = { extra = {chips = 50, mult = 10, x_mult = 1.5} },
     blueprint_compat=true,
     eternal_compat=true,

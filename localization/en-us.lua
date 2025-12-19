@@ -647,7 +647,9 @@ return {
             j_dandy_tisha = {
                 name = "Tisha",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{C:chips}+#1#{} Chips for",
+                    "each {C:attention}Joker{} card",
+                    "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"
                 },
             },
             j_dandy_toodles = {
@@ -666,7 +668,9 @@ return {
             j_dandy_pebble = {
                 name = "Pebble",
                 text = {
-                    "BARK! BARK!"
+                    "Gains {C:chips}+#2#{} Chips when a",
+                    "{C:attention}consumable{} card is used",
+                    "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"
                 },
             },
             j_dandy_astro = {
@@ -687,15 +691,18 @@ return {
             j_dandy_shelly = {
                 name = "Shelly",
                 text = {
-                    
+                    "Played {C:attention}Stone Cards{}",
+                    "grant {X:mult,C:white}X#1#{} Mult when",
+                    "scored"
                 },
             },
             j_dandy_vee = {
                 name = "Vee",
                 text = {
-                    "Choose {C:attention}#1#{} extra",
-                    "item from all",
-                    "{C:attention}Booster Packs"
+                    "{C:attention}Booster Packs{} have",
+                    "{C:attention}#2#{} extra items and",
+                    "allows {C:attention}#1#{} more item",
+                    "to be chosen",
                 },
             },
             j_dandy_dandy = {
@@ -930,11 +937,8 @@ return {
             dw_shelly_quote2 = "Let's do this!",
             dw_shelly_quote3 = "Teamwork make the dream work!",
             dw_shelly_quote4 = "You can do this!",
-
-            dw_vee_quote1 = "Ahem... is it working?",
-            dw_vee_quote2 = "Is this thing on?",
-            dw_vee_quote3 = "Testing... Testing!",
-            dw_vee_quote4 = "Testing 1 2 3...",
+            
+            dw_vee_ability = "1 2 3!",
 
             dw_bobette_quote1 = "Nicely wrapped up for the Holidays!",
             dw_bobette_quote2 = "Packaged with care!",
