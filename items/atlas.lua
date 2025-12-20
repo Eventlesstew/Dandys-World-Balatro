@@ -20,6 +20,20 @@ SMODS.Rarity {
 }
 
 SMODS.Atlas({
+    key = 'dwTag',
+    path = 'tags.png',
+    px = 34,
+    py = 34,
+})
+
+SMODS.Atlas({
+    key = 'dwConsumable',
+    path = 'consumables.png',
+    px = 71,
+    py = 95,
+})
+
+SMODS.Atlas({
     key = 'dwJoker',
     path = "DandyJokers.png",
     px = 71,
@@ -34,3 +48,11 @@ SMODS.Atlas{
     px = 34,
     py = 34
 }
+
+local set_cost_ref = Card.set_cost
+function Card:set_cost()
+    set_cost_ref(self)
+    if self.cost_mod then
+        self.cost = self.cost * self.cost_mod
+    end
+end

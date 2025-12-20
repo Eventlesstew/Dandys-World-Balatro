@@ -258,6 +258,23 @@ return {
                     "when defeated",
                 },
             },
+            tag_dandy_epic = {
+                name = "Epic Tag",
+				text = {
+					"Shop has a half-price",
+					"{C:dandy_epic}Epic Joker",
+				},
+            },
+        },
+        Spectral = {
+            c_dandy_summoning = {
+                name = "Summoning",
+				text = {
+					"Create a random",
+					"{C:dandy_epic}Epic{} {C:joker}Joker{}, destroy",
+					"one random {C:joker}Joker{}",
+				},
+            },
         },
         Joker = {
             j_dandy_coinPurse = {
@@ -961,7 +978,17 @@ return {
             k_dandy_misery_ex = "Misery!",
 
             k_dandy_leader = "Leader",
-            k_dandy_epic = "Epic"
+            k_dandy_epic = "Epic",
+
+            dw_options_epicjokersTitle = "Epic Mains",
+            dw_options_epicjokers0 = "Disabled",
+            dw_options_epicjokers1 = "Enabled",
+            dw_options_epicjokers2 = "Enabled + Extras",
+            
+            dw_options_seasonal = 'Seasonal Content',
+            dw_options_easter = 'Easter',
+            dw_options_halloween = 'Halloween',
+            dw_options_christmas = 'Christmas',
         },
         labels = {
             dandy_leader = "Leader",

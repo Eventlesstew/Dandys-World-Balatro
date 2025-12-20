@@ -1,1 +1,1 @@
-return {["epic"]=true}
+return {["halloween"]=true,["christmas"]=true,["easter"]=true,["epic"]=3,}
