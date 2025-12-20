@@ -623,7 +623,9 @@ return {
             j_dandy_poppy = {
                 name = "Poppy",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{C:chips}+#2#{} Chips for each",
+                    "hand played this round",
+                    "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"
                 },
             },
             j_dandy_razzledazzle = {

@@ -5,20 +5,38 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = 1,
     cost = 2,
-    config = { extra = {} },
+    config = { extra = {chips = 0, chip_mod = 50} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
     discovered = true,
-    in_pool = function()
-        return false
-    end,
     calculate = function(self,card,context)
+        if not context.blueprint then
+            if context.before then
+                card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_mod
+                return {
+                    extra = {focus = card, message = localize('k_upgrade_ex')},
+                    colour = G.C.CHIPS
+                }
+            end
+            if context.end_of_round and context.game_over == false and context.main_eval then
+                card.ability.extra.chips = 0
+                return {
+                    extra = {focus = card, message = localize('k_reset')},
+                    colour = G.C.CHIPS
+                }
+            end
+        end
+        if context.joker_main and context.cardarea == G.jokers then
+            return {
+                chips = card.ability.extra.chips,
+            }
+        end
     end,
 
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        return { vars = {card.ability.extra.chips, card.ability.extra.chip_mod}, key = self.key }
     end
 }
 
