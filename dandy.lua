@@ -12,7 +12,6 @@ G.FUNCS.restart_game_smods = function(e)
 end
 
 G.FUNCS.epic_joker_config = function(option_node)
-    print(option_node.cycle_config.current_option)
     local value = option_node.cycle_config.current_option
     dandysworld.config_file.epic = value
     NFS.write(dandysworld.config_path, STR_PACK(dandysworld.config_file))
@@ -45,11 +44,8 @@ dandysworld.config_tab = function()
 
                 opt_callback = 'epic_joker_config'
             }),
-            simple_text_container('dw_options_seasonal', {
-                align = "tl",
-            }),
             create_toggle({
-                align = "tl",
+                align = 'tl',
                 label = localize('dw_options_easter'),
                 ref_table = dandysworld.config_file,
                 ref_value = "easter",
@@ -60,7 +56,7 @@ dandysworld.config_tab = function()
                 end
             }),
             create_toggle({
-                align = "tl",
+                align = 'tl',
                 label = localize('dw_options_halloween'),
                 ref_table = dandysworld.config_file,
                 ref_value = "halloween",
@@ -71,7 +67,7 @@ dandysworld.config_tab = function()
                 end
             }),
             create_toggle({
-                align = "tl",
+                align = 'tl',
                 label = localize('dw_options_christmas'),
                 ref_table = dandysworld.config_file,
                 ref_value = "christmas",
@@ -81,12 +77,12 @@ dandysworld.config_tab = function()
                     NFS.write(dandysworld.config_path, STR_PACK(dandysworld.config_file))
                 end
             }),
-			UIBox_button({
+            UIBox_button({
                 align = "tl",
                 label = { "Apply Changes" }, 
                 minw = 3.5,
                 button = 'restart_game_smods'
-			}),
+            }),
 		}
 	}
 end
@@ -112,3 +108,37 @@ if dandysworld.config_file.christmas then
 end
 
 assert(SMODS.load_file("items/lethals.lua"))()
+
+--[[
+    nodes={
+        {
+            n=G.UIT.C,
+            config={align = "cm", r = 0.1, colour = G.C.BLACK}, 
+            nodes={
+                {
+                    n=G.UIT.C, 
+                    config={
+                        align = "cm", 
+                        r = 0.1, 
+                        padding = 0.03, 
+                        minw = 0.4, minh = 0.4, 
+                        outline_colour = G.C.WHITE, outline = 1.2, 
+                        line_emboss = 0.5, 
+                        ref_table = dandysworld.config_file,
+                        ref_value = 'easter',
+                        colour = G.C.BLACK,
+                        button = 'easter_config', 
+                        button_dist = 0.2, 
+                        hover = true, 
+                        toggle_callback = 'easter_config', 
+                        func = 'toggle', 
+                        focus_args = {funnel_to = true}
+                    }, 
+                    nodes={
+                        {n=G.UIT.O, config={object = check}},
+                    }
+                },
+            }
+        }
+    }
+    ]]

@@ -291,7 +291,7 @@ SMODS.Blind {
     atlas = 'dwBlind',
     pos = {x = 0, y = 32},
     unlocked = true,
-    discovered = true,     
+    discovered = true,    
     dollars = 5,
     mult = 2,
     boss = {min = 1},

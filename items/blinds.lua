@@ -143,22 +143,6 @@ SMODS.Blind {
 }
 
 SMODS.Blind {
-    key = 'connie',
-    atlas = 'dwBlind',
-    pos = {x = 0, y = 12},
-    unlocked = true,
-    discovered = true,     
-    dollars = 5,
-    mult = 2,
-    boss = {min = 1},
-    boss_colour = HEX("575757"),
-    ignore_showdown_check = true,
-    in_pool = function()
-        return false
-    end,
-}
-
-SMODS.Blind {
     key = 'finn',
     atlas = 'dwBlind',
     pos = {x = 0, y = 13},
@@ -402,6 +386,22 @@ SMODS.Blind {
     key = 'vee',
     atlas = 'dwBlind',
     pos = {x = 0, y = 28},
+    unlocked = true,
+    discovered = true,     
+    dollars = 5,
+    mult = 2,
+    boss = {min = 1},
+    boss_colour = HEX("575757"),
+    ignore_showdown_check = true,
+    in_pool = function()
+        return false
+    end,
+}
+
+SMODS.Blind {
+    key = 'connie',
+    atlas = 'dwBlind',
+    pos = {x = 0, y = 12},
     unlocked = true,
     discovered = true,     
     dollars = 5,
