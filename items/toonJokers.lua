@@ -331,7 +331,7 @@ SMODS.Joker{
 SMODS.Joker{
     key = 'teagan',
     atlas = 'dwJoker',
-    pos = { x = 0, y = 6},
+    pos = { x = 1, y = 6},
     soul_pos=nil,
     rarity = 1,
     cost = 2,

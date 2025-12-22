@@ -287,7 +287,7 @@ return {
                 name = "Research Map",
                 text = {
                     "Earn {C:money}$#1#{} when",
-                    "{C:attention}Blind is skipped"
+                    "{C:attention}Blind{} is skipped"
                 },
             },
             j_dandy_machineManual = {
@@ -695,7 +695,7 @@ return {
             j_dandy_astro = {
                 name = "Astro",
                 text = {
-                    "Havles {C:attention}Blind{}",
+                    "Halves {C:attention}Blind{}",
                     "score",
                 },
             },

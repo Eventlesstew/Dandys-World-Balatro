@@ -50,7 +50,7 @@ SMODS.Joker{
     key = "dandy",
     atlas = 'dwJoker',
     pos = { x = 8, y = 7},
-    soul_pos=nil,
+    soul_pos={ x = 8, y = 8},
     rarity = 'dandy_leader',
     cost = 40,
     config = { extra = {} },
