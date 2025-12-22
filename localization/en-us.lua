@@ -276,6 +276,16 @@ return {
 				},
             },
         },
+        Voucher = {
+            v_dandy_timesup = {
+                name = "TIME'S UP",
+                text = {
+                    "Boss Blind becomes {C:red}Lethal",
+                    "Creates a powerful {C:attention}Joker{}",
+                    "when defeated",
+                },
+            },
+        },
         Joker = {
             j_dandy_coinPurse = {
                 name = "Coin Purse",
