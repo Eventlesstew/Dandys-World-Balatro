@@ -234,7 +234,7 @@ return {
                 name = "Dandy",
                 text = {
                     "1 Hand, 0 Discards,",
-                    "Double Hand Size",
+                    "+6 Hand Size",
                 },
             },
             bl_dandy_dyle = {
@@ -989,7 +989,7 @@ return {
             k_dandy_joy_ex = "Joy!",
             k_dandy_misery_ex = "Misery!",
 
-            k_dandy_leader = "Leader",
+            k_dandy_leader = "Lethal",
             k_dandy_epic = "Epic",
 
             dw_options_epicjokersTitle = "Epic Mains",
@@ -1003,7 +1003,7 @@ return {
             dw_options_christmas = 'Christmas',
         },
         labels = {
-            dandy_leader = "Leader",
+            dandy_leader = "Lethal",
             dandy_epic = "Epic",
         },
     }

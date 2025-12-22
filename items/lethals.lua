@@ -38,10 +38,10 @@ SMODS.Blind {
             G.GAME.blind.hands_sub = G.GAME.round_resets.hands - 1
             ease_hands_played(-G.GAME.blind.hands_sub)
 
-            G.hand:change_size(G.hand.config.card_limit)
+            G.hand:change_size(6)
         end
         if context.end_of_round and context.game_over == false and context.main_eval then
-            G.hand:change_size(-G.hand.config.card_limit)
+            G.hand:change_size(-6)
             SMODS.add_card{key = "j_dandy_dandy"}
             G.FORCE_BOSS = nil
         end
