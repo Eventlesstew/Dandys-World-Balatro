@@ -657,7 +657,9 @@ return {
             j_dandy_scraps = {
                 name = "Scraps",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "Earn {C:money}$#1#{} if a {C:attention}Lucky",
+                    "card successfully",
+                    "triggers",
                 },
             },
             j_dandy_shrimpo = {
@@ -670,7 +672,9 @@ return {
             j_dandy_teagan = {
                 name = "Teagan",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{C:mult}+#2#{} Discard for",
+                    "each {C:money}$#3#{} owned",
+                    "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Discards)"
                 },
             },
             j_dandy_tisha = {
