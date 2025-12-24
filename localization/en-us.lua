@@ -445,7 +445,7 @@ return {
             j_dandy_ribbonspool = {
                 name = "Ribbon Spool",
                 text = {
-                    "{X:mult,C:white}X#1#{} Mult on {C:attention}even",
+                    "{C:mult}+#1#{} Mult on {C:attention}even",
                     "numbered rounds",
                     "{C:inactive}#2#"
                 },
@@ -621,7 +621,9 @@ return {
             j_dandy_goob = {
                 name = "Goob",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "Adds 1 random {C:attention}Consumable",
+                    "card to your possession when",
+                    "opening any {C:attention}Booster Pack"
                 },
             },
             j_dandy_looey = {
@@ -651,7 +653,8 @@ return {
             j_dandy_rodger = {
                 name = "Rodger",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "Retriggers every",
+                    "{C:planet}Planet{} card",
                 },
             },
             j_dandy_scraps = {

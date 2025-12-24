@@ -159,24 +159,31 @@ SMODS.Joker{
     atlas = 'dwJoker',
     pos = { x = 8, y = 5},
     soul_pos=nil,
-    rarity = 1,
-    cost = 2,
+    rarity = 2,
+    cost = 7,
     config = { extra = {} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
     discovered = true,
-    in_pool = function()
-        return false
-    end,
-    calculate = function(self,card,context)
-    end,
 
     loc_vars = function(self, info_queue, card)
         return { vars = {}, key = self.key }
     end
 }
+
+local use_consumeable_ref = Card.use_consumeable
+function Card:use_consumeable(area, copier)
+    local g = use_consumeable_ref(self, area, copier)
+    if next(SMODS.find_card('j_dandy_rodger')) and (self.ability.set == 'Planet') then
+        for k, v in pairs(SMODS.find_card('j_dandy_rodger')) do
+            SMODS.calculate_effect({message = localize('k_again_ex'), message_card = v}, self)
+            use_consumeable_ref(self, area, copier)
+        end
+    end
+    return g
+end
 
 SMODS.Joker{
     key = "razzledazzle", 
@@ -391,10 +398,25 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
-    in_pool = function()
-        return false
-    end,
     calculate = function(self,card,context)
+        if context.open_booster then
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    if G.pack_cards and G.pack_cards.cards[1] then
+                        local consumeables = {}
+                        for k, v in pairs(G.pack_cards.cards) do
+                            if v.ability.consumeable then table.insert(consumeables, v) end
+                        end
+                        if next(consumeables) then
+                            local consumeable = pseudorandom_element(consumeables, 'dw_goob')
+                            SMODS.add_card({key = consumeable.config.center.key})
+                            SMODS.destroy_cards(consumeable)
+                        end
+                    end
+                    return true
+                end
+            }))
+        end
     end,
 
     loc_vars = function(self, info_queue, card)

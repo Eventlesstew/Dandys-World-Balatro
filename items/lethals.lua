@@ -189,6 +189,7 @@ SMODS.Voucher {
     end,
 }
 
+--[[
 SMODS.Tag {
     key = "timesup",
     pos = { x = 0, y = 0 },
@@ -220,6 +221,7 @@ SMODS.Tag {
         end
     end
 }
+    ]]
 
 SMODS.Joker{
     key = "dyle",

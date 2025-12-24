@@ -624,7 +624,7 @@ SMODS.Joker{
 SMODS.Joker{
     key = "ribbonspool", 
     atlas = 'dwJoker',
-    config = { extra = {x_mult = 2} },
+    config = { extra = {mult = 20} },
     pos = { x = 6, y = 2 },
     rarity = 1,
     cost = 5,
@@ -648,7 +648,7 @@ SMODS.Joker{
         if context.joker_main and context.cardarea == G.jokers then
             if (G.GAME.round % 2) == 0 then
                 return {
-                    x_mult = card.ability.extra.x_mult, 
+                    mult = card.ability.extra.mult, 
                     colour = G.C.MULT
                 }
             end
@@ -657,7 +657,7 @@ SMODS.Joker{
 
     loc_vars = function(self, info_queue, card)
         local active = ((G.GAME.round % 2) == 0 and "k_dandy_active") or "k_dandy_inactive"
-        return { vars = {card.ability.extra.x_mult, localize(active)}, key = self.key }
+        return { vars = {card.ability.extra.mult, localize(active)}, key = self.key }
     end
 }
 
