@@ -28,9 +28,6 @@ SMODS.Blind {
     mult = 2,
     boss = {min = 1},
     boss_colour = HEX("615852"),
-    in_pool = function()
-        return (G.GAME.current_round.twistedDandyOdds and G.GAME.current_round.twistedDandyOdds >= 2)
-    end,
     calculate = function(self, blind, context)
         if context.setting_blind then
             blind.discards_sub = G.GAME.current_round.discards_left

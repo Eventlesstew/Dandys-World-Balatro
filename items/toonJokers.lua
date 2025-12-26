@@ -518,7 +518,7 @@ SMODS.Joker{
     pos = { x = 2, y = 6},
     soul_pos=nil,
     rarity = 1,
-    cost = 2,
+    cost = 5,
     config = { extra = {chips = 30} },
     blueprint_compat=true,
     eternal_compat=true,
