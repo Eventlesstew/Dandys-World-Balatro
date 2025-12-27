@@ -629,7 +629,9 @@ return {
             j_dandy_looey = {
                 name = "Looey",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{X:mult,C:white}X#1#{} Mult for each",
+                    "hand size below {C:attention}#3#",
+                    "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)"
                 },
             },
             j_dandy_poppy = {
@@ -683,9 +685,8 @@ return {
             j_dandy_tisha = {
                 name = "Tisha",
                 text = {
-                    "{C:chips}+#1#{} Chips for",
-                    "each {C:attention}Joker{} card",
-                    "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"
+                    "All other {C:attention}Jokers{}",
+                    "score {C:chips}+#1#{} Chips",
                 },
             },
             j_dandy_toodles = {

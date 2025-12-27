@@ -429,22 +429,38 @@ SMODS.Joker{
     atlas = 'dwJoker',
     pos = { x = 5, y = 5},
     soul_pos=nil,
-    rarity = 1,
-    cost = 2,
-    config = { extra = {} },
+    rarity = 2,
+    cost = 6,
+    config = { extra = {x_mult = 1, hand_size = 8} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
     discovered = true,
-    in_pool = function()
-        return false
-    end,
     calculate = function(self,card,context)
+        if context.joker_main then
+            local x_mult_mod
+            if card.ability.extra.hand_size - G.hand.config.card_limit + 1 > 1 then
+                x_mult_mod = card.ability.extra.hand_size - G.hand.config.card_limit + 1
+            else
+                x_mult_mod = 1
+            end
+            
+            return {
+                x_mult = card.ability.extra.x_mult * x_mult_mod
+            }
+        end
     end,
 
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        local x_mult_mod
+        if G.hand and (card.ability.extra.hand_size - G.hand.config.card_limit + 1 > 1) then
+            x_mult_mod = card.ability.extra.hand_size - G.hand.config.card_limit + 1
+        else
+            x_mult_mod = 1
+        end
+        
+        return { vars = {card.ability.extra.x_mult, x_mult_mod, card.ability.extra.hand_size}, key = self.key }
     end
 }
 
@@ -519,7 +535,7 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = 1,
     cost = 5,
-    config = { extra = {chips = 30} },
+    config = { extra = {chips = 40} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
@@ -528,14 +544,26 @@ SMODS.Joker{
 
     calculate = function(self,card,context)
          if context.joker_main then
-            return {
-                chips = card.ability.extra.chips * #G.jokers.cards
+            local effects = {
+                {
+                    message = localize("k_clean_ex"),
+                    colour = G.C.CHIPS
+                }
             }
+            for _,v in ipairs(G.jokers.cards) do
+                if v ~= card then
+                    effects[#effects + 1] = {
+                        chips = card.ability.extra.chips,
+                        message_card = v
+                    }
+                end
+            end
+            return SMODS.merge_effects(effects)
         end
     end,
 
     loc_vars = function(self, info_queue, card)
-        return { vars = {card.ability.extra.chips, card.ability.extra.chips * (G.jokers and #G.jokers.cards or 0)}, key = self.key }
+        return { vars = {card.ability.extra.chips}, key = self.key }
     end
 }
 
