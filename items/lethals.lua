@@ -58,6 +58,9 @@ SMODS.Joker{
     perishable_compat=false,
     unlocked = true,
     discovered = true,
+    in_pool = function()
+        return false
+    end,
     calculate = function(self, card, context)
         if context.setting_blind and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
             G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
@@ -119,11 +122,16 @@ function SMODS.current_mod.calculate(self, context)
 
     if 
         context.end_of_round and context.game_over == false and context.main_eval and context.beat_boss and 
-        G.GAME.current_round.twistedDandyOdds >= 2 and 
-        (G.GAME.current_round.twistedDandyOdds >= 10 or SMODS.pseudorandom_probability(self, 'dw_twisted_dandy', G.GAME.current_round.twistedDandyOdds, G.GAME.current_round.twistedDandyChance))
+        G.GAME.current_round.twistedDandyOdds >= 2 
     then
-        G.FORCE_BOSS = 'bl_dandy_dandy'
-        G.FUNCS.reroll_boss()
+        local numerator = G.GAME.current_round.twistedDandyOdds + 3
+        local denominator = G.GAME.current_round.twistedDandyChance
+        if 
+            (numerator >= denominator) or (SMODS.pseudorandom_probability(self, 'dw_twisted_dandy', numerator, denominator))
+        then
+            G.FORCE_BOSS = 'bl_dandy_dandy'
+            G.FUNCS.reroll_boss()
+        end
     end
 end
 
