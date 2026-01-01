@@ -173,22 +173,10 @@ SMODS.Joker{
     end
 }
 
-local use_consumeable_ref = Card.use_consumeable
-function Card:use_consumeable(area, copier)
-    local g = use_consumeable_ref(self, area, copier)
-    if next(SMODS.find_card('j_dandy_rodger')) and (self.ability.set == 'Planet') then
-        for k, v in pairs(SMODS.find_card('j_dandy_rodger')) do
-            SMODS.calculate_effect({message = localize('k_again_ex'), message_card = v}, self)
-            use_consumeable_ref(self, area, copier)
-        end
-    end
-    return g
-end
-
 SMODS.Joker{
     key = "razzledazzle", 
     atlas = 'dwJoker',
-    config = { extra = {x_mult = 2, mult = 20} },
+    config = { extra = {mult = 7} },
     pos = { x = 7, y = 5 },
     soul_pos=nil,
     rarity = 2,
@@ -202,10 +190,11 @@ SMODS.Joker{
 
     calculate = function(self,card,context)
         if context.setting_blind and not context.blueprint then
-            if (G.GAME.round % 2) == 0 then
+            local evenRound = (G.GAME.round % 2) == 0
+            if evenRound then
                 return {
                     message = localize('k_dandy_misery_ex'),
-                    colour = G.C.MULT
+                    colour = G.C.CHIPS
                 }
             else
                 return {
@@ -214,16 +203,21 @@ SMODS.Joker{
                 }
             end
         end
-        if context.joker_main and context.cardarea == G.jokers then
+        if context.individual and context.cardarea == G.play then
+            local score = false
             if (G.GAME.round % 2) == 0 then
-                return {
-                    x_mult = card.ability.extra.x_mult, 
-                    colour = G.C.MULT
-                }
+                if (context.other_card:is_suit('Spades') or context.other_card:is_suit('Clubs')) then
+                    score = true
+                end
             else
+                if (context.other_card:is_suit('Hearts') or context.other_card:is_suit('Diamonds')) then
+                    score = true
+                end
+            end
+
+            if score then
                 return {
-                    mult = card.ability.extra.mult, 
-                    colour = G.C.MULT
+                    mult = card.ability.extra.mult
                 }
             end
         end
@@ -231,13 +225,48 @@ SMODS.Joker{
 
     loc_vars = function(self, info_queue, card)          --defines variables to use in the UI. you can use #1# for example to show the chips variable
         local evenRound = (G.GAME.round % 2) == 0
+        
+        local suit_t1
+        local suit_t2
+        local con_t
 
-        local currentVal = (evenRound and card.ability.extra.x_mult) or card.ability.extra.mult
-        local currentType = (evenRound and "X") or "+"
-        local currentCol = (evenRound and G.C.WHITE) or G.C.MULT
-        local currentBg = (evenRound and G.C.MULT) or G.C.WHITE
+        local suit_f1
+        local suit_f2
+        local con_f
 
-        return { vars = {card.ability.extra.x_mult, card.ability.extra.mult, currentVal, currentType, colours = {currentCol, currentBg}}, key = self.key }
+        if evenRound then
+            suit_t1 = 'Spades'
+            suit_t2 = 'Clubs'
+            suit_f1 = 'Hearts'
+            suit_f2 = 'Diamonds'
+            con_t = 'dw_rnd_even'
+            con_f = 'dw_rnd_odd'
+        else
+            suit_f1 = 'Spades'
+            suit_f2 = 'Clubs'
+            suit_t1 = 'Hearts'
+            suit_t2 = 'Diamonds'
+            con_t = 'dw_rnd_odd'
+            con_f = 'dw_rnd_even'
+        end
+
+        return { vars = {
+                localize(suit_t1, 'suits_singular'), 
+                localize(suit_t2, 'suits_singular'),
+                localize(suit_f1, 'suits_singular'),
+                localize(suit_f2, 'suits_singular'),
+                localize(con_t),
+                localize(con_f),
+                card.ability.extra.mult,  
+                colours = {
+                    G.C.SUITS[suit_t1], 
+                    G.C.SUITS[suit_t2],
+                    G.C.SUITS[suit_f1], 
+                    G.C.SUITS[suit_f2],
+                }
+            }, 
+            key = self.key
+        }
     end
 }
 
@@ -663,13 +692,41 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or ((dandysworld.config_file.epic ~= 1) and 'dandy_epic') or 3,
     cost = ((next(SMODS.find_mod('Cryptid')) or (dandysworld.config_file.epic ~= 1)) and 10) or 20,
-    config = { extra = {chips = 0, chip_mod = 20} },
+    config = { extra = {} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
     discovered = true,
     calculate = function(self,card,context)
+        if context.first_hand_drawn then
+            local quotes = {
+                "dw_pebble_quote1",
+                "dw_pebble_quote2",
+                "dw_pebble_quote3",
+                "dw_pebble_quote4",
+                "dw_pebble_quote5",
+                "dw_pebble_quote6",
+                "dw_pebble_quote7",
+            }
+            local quote = pseudorandom_element(quotes, 'dw_pebble_quote')
+
+            return {
+                message = localize(quote),
+                sound = "dandy_pebble",
+                colour = G.C.UI.TEXT_DARK,
+                func = (function()
+                    G.E_MANAGER:add_event(Event({
+                        func = (function()
+                            G.GAME.blind.chips = G.GAME.blind.chips / 2
+                            G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+                            return true
+                        end)
+                    }))
+                end)
+            }
+        end
+        --[[
         if context.using_consumeable then
             card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_mod
             return {
@@ -682,10 +739,11 @@ SMODS.Joker{
                 chips = card.ability.extra.chips
             }
         end
+        ]]
     end,
 
     loc_vars = function(self, info_queue, card)
-        return { vars = {card.ability.extra.chips, card.ability.extra.chip_mod}, key = self.key }
+        return { vars = {}, key = self.key }
     end
 }
 
@@ -702,29 +760,37 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or ((dandysworld.config_file.epic ~= 1) and 'dandy_epic') or 3,
     cost = ((next(SMODS.find_mod('Cryptid')) or (dandysworld.config_file.epic ~= 1)) and 10) or 20,
-    config = { extra = {} },
+    config = { extra = {repetitions = 2} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
     discovered = true,
-    calculate = function(self,card,context)
-        if context.first_hand_drawn then
-            G.GAME.blind.chips = G.GAME.blind.chips / 2
-            G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
-
-            return {
-                message = localize("dw_astro_ability"),
-                sound = "dandy_astro",
-                colour = G.C.CHIPS
-            }
-        end
-    end,
 
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        return { vars = {card.ability.extra.repetitions}, key = self.key }
     end
 }
+
+local use_consumeable_ref = Card.use_consumeable
+function Card:use_consumeable(area, copier)
+    local g = use_consumeable_ref(self, area, copier)
+    local rep = 'j_dandy_astro'
+    if next(SMODS.find_card(rep)) and (self.ability.set == 'Planet') then
+        for k, v in pairs(SMODS.find_card(rep)) do
+            for i = 1, (v.ability.extra.repetitions or 2) do
+                SMODS.calculate_effect({
+                    message = localize('k_again_ex'), 
+                    message_card = v,
+                    sound = "dandy_astro",
+                    colour = G.C.CHIPS,
+                }, self)
+                use_consumeable_ref(self, area, copier)
+            end
+        end
+    end
+    return g
+end
 
 SMODS.Sound ({
     key = 'sprout',

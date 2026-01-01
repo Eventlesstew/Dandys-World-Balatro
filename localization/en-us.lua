@@ -645,18 +645,17 @@ return {
             j_dandy_razzledazzle = {
                 name = "Razzle & Dazzle",
                 text = {
-                    "{C:mult}+#2#{} Mult on {C:attention}odd",
-                    "{}numbered rounds",
-                    "{X:mult,C:white}X#1#{} Mult on {C:attention}even",
-                    "numbered rounds",
-                    "{C:inactive}(Currently {B:2,V:1}#4##3#{C:inactive} Mult)"
+                    "Played {V:1}#1#{} and {V:2}#2#{}",
+                    "cards grant {C:mult}+#7#{} Mult on",
+                    "{C:attention}#5#{} numbered Rounds",
+                    "{C:inactive}({V:3}#3#{C:inactive} and {V:4}#4#{C:inactive} cards",
+                    "{C:inactive}on {C:attention}#6#{C:inactive} numbered rounds)",
                 },
             },
             j_dandy_rodger = {
                 name = "Rodger",
                 text = {
-                    "Retriggers every",
-                    "{C:planet}Planet{} card",
+                    "{X:mult,C:white}INCOMPLETE{}",
                 },
             },
             j_dandy_scraps = {
@@ -705,16 +704,15 @@ return {
             j_dandy_pebble = {
                 name = "Pebble",
                 text = {
-                    "Gains {C:chips}+#2#{} Chips when a",
-                    "{C:attention}consumable{} card is used",
-                    "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"
+                    "Halves {C:attention}Blind{}",
+                    "score",
                 },
             },
             j_dandy_astro = {
                 name = "Astro",
                 text = {
-                    "Halves {C:attention}Blind{}",
-                    "score",
+                    "Retriggers every {C:planet}Planet{}",
+                    "card {C:attention}#1#{} times",
                 },
             },
             j_dandy_sprout = {
@@ -763,7 +761,9 @@ return {
             j_dandy_eggradar = {
                 name = "Egg Radar",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "Becomes {C:attention}Eggson{}, {C:attention}Flyte{},",
+                    "{C:attention}Cocoa{} or {C:attention}Bassie{} when",
+                    "{C:attention}Blind{} is defeated"
                 },
             },
             j_dandy_scrapbook = {
@@ -924,12 +924,6 @@ return {
         }
     },
     misc = {
-
-            -- do note that when using messages such as: 
-            -- message = localize{type='variable',key='a_xmult',vars={current_xmult}},
-            -- that the key 'a_xmult' will use provided values from vars={} in that order to replace #1#, #2# etc... in the localization file.
-
-
         dictionary = {
             a_chips="+#1#",
             a_chips_minus="-#1#",
@@ -952,8 +946,8 @@ return {
 
             k_clean_ex = 'Clean!',
 
-            k_heat_ex="Heat!",
-            k_cool_ex="Cool!",
+            dw_rnd_odd = 'Odd',
+            dw_rnd_even = 'Even',
 
             dw_naughty_ex = "Naughty!",
             dw_shrimpo_ability = "I HATE YOU!",

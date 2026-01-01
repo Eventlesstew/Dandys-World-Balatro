@@ -5,20 +5,27 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = 1,
     cost = 2,
-    config = { extra = {} },
-    blueprint_compat=true,
-    eternal_compat=true,
-    perishable_compat=true,
+    config = { extra = {jokers = {"j_dandy_eggson", "j_dandy_flyte", "j_dandy_cocoa", "j_dandy_bassie"}} },
+    blueprint_compat=false,
+    eternal_compat=false,
+    perishable_compat=false,
     unlocked = true,
     discovered = true,
-    in_pool = function()
-        return false
-    end,
+    
     calculate = function(self,card,context)
-    end,
+        --if context.type == 'store_joker_create' then
 
+        --end
+        if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
+            local chosen_joker = pseudorandom_element(card.ability.extra.jokers, "dw_festivelights")
+            SMODS.add_card{key = chosen_joker}
+            SMODS.destroy_cards(card, nil, nil, true)
+        end
+    end,
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        return { vars = {
+            --card.ability.extra.jokers[1],
+        }, key = self.key }
     end
 }
 

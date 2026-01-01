@@ -453,7 +453,7 @@ SMODS.Joker{
 SMODS.Joker{
     key = 'pinkbow',
     atlas = 'dwJoker',
-    pos = { x = 7, y = 1},
+    pos = { x = 9, y = 1},
     soul_pos=nil,
     rarity = 1,
     cost = 2,
