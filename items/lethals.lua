@@ -113,7 +113,6 @@ end
 
 function SMODS.current_mod.calculate(self, context)
     if context.reroll_shop or context.buying_card then
-        print("Dandy Reset")
         G.GAME.current_round.twistedDandyOdds = -1
     end
     if context.ending_shop then

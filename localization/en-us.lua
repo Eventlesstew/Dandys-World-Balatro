@@ -77,7 +77,8 @@ return {
             bl_dandy_rodger = {
                 name = "Twisted Rodger",
                 text = {
-                    "Incomplete"
+                    "Cannot play a random",
+                    "poker hand. #1#"
                 },
             },
             bl_dandy_teagan = {
@@ -982,6 +983,8 @@ return {
 
             dw_gourdy_ability = "Boo!",
 
+            dw_rodger_attention = 'Pay attention!',
+
             ph_dw_stage2 = "Spare some, will ya?",
             ph_dw_stage3 = "Don't Ignore Me!",
 
@@ -991,6 +994,7 @@ return {
             k_dandy_joy_ex = "Joy!",
             k_dandy_misery_ex = "Misery!",
 
+            
             k_dandy_leader = "Lethal",
             k_dandy_epic = "Epic",
 

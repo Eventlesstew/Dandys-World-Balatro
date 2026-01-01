@@ -184,9 +184,37 @@ SMODS.Blind {
     mult = 2,
     boss = {min = 1},
     boss_colour = HEX("575757"),
-    ignore_showdown_check = true,
-    in_pool = function()
-        return false
+    calculate = function(self, blind, context)
+        if not blind.disabled then
+            if context.setting_blind or context.after then
+                local _poker_hands = {}
+                for handname, _ in pairs(G.GAME.hands) do
+                    if SMODS.is_poker_hand_visible(handname) and handname ~= blind.hand then
+                        _poker_hands[#_poker_hands + 1] = handname
+                    end
+                end
+                blind.hand = pseudorandom_element(_poker_hands, 'dandy_rodgerhand')
+            end
+            if context.debuff_hand then
+                if blind.hand and blind.hand == context.scoring_name then
+                    blind.triggered = true
+                    return {
+                        debuff = true
+                    }
+                end
+            end
+        end
+    end,
+    collection_loc_vars = function(self)
+        localize('dw_rodger_attention')
+        return {vars = {localize('dw_rodger_attention')}}
+    end,
+    loc_vars = function(self)
+        return {vars = {localize('dw_rodger_attention')}}
+    end,
+    get_loc_debuff_text = function(self)
+        return G.GAME.blind.loc_debuff_text ..
+            (G.GAME.blind.hand and ' [' .. localize(G.GAME.blind.hand, 'poker_hands') .. ']' or '')
     end,
 }
 
