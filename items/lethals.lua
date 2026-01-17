@@ -108,6 +108,11 @@ function SMODS.current_mod.reset_game_globals(run_start)
     if run_start then
         G.GAME.current_round.twistedDandyOdds = 0
         G.GAME.current_round.twistedDandyChance = 10
+
+        if G.FORCE_BOSS then
+            G.FORCE_BOSS = nil
+            G.FUNCS.reroll_boss()
+        end
     end
 end
 
