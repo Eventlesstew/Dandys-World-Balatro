@@ -292,7 +292,6 @@ SMODS.Blind {
     mult = 2,
     boss = {min = 1},
     boss_colour = HEX("575757"),
-    ignore_showdown_check = true,
     in_pool = function()
         return false
     end,
@@ -308,7 +307,6 @@ SMODS.Blind {
     mult = 2,
     boss = {min = 1},
     boss_colour = HEX("575757"),
-    ignore_showdown_check = true,
     in_pool = function()
         return false
     end,
@@ -324,7 +322,6 @@ SMODS.Blind {
     mult = 2,
     boss = {min = 1},
     boss_colour = HEX("575757"),
-    ignore_showdown_check = true,
     in_pool = function()
         return false
     end,
@@ -436,7 +433,6 @@ SMODS.Blind {
     mult = 2,
     boss = {min = 1},
     boss_colour = HEX("575757"),
-    ignore_showdown_check = true,
     in_pool = function()
         return false
     end,
