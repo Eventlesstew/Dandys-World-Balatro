@@ -997,11 +997,14 @@ return {
             
             k_dandy_leader = "Lethal",
             k_dandy_epic = "Epic",
+            
+            dw_options_experimentalTitle = "Experimental",
 
             dw_options_epicjokersTitle = "Epic Mains",
             dw_options_epicjokers0 = "Disabled",
             dw_options_epicjokers1 = "Enabled",
             dw_options_epicjokers2 = "Enabled + Extras",
+            dw_options_apply = "Apply Changes",
             
             dw_options_seasonal = 'Seasonal Content',
             dw_options_easter = 'Easter',
