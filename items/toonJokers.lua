@@ -167,7 +167,9 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = true,
     discovered = true,
-
+    in_pool = function()
+        return false
+    end,
     loc_vars = function(self, info_queue, card)
         return { vars = {}, key = self.key }
     end
