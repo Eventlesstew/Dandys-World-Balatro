@@ -573,6 +573,10 @@ return {
                 name = "Brightney",
                 text = {
                     "{X:mult,C:white}INCOMPLETE{}",
+                    "Gains {C:mult}+#1#{} Mult for",
+                    "each {C:attention}Face down{}",
+                    "card held in hand",
+                    "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
                 },
             },
             j_dandy_brusha = {
@@ -670,8 +674,9 @@ return {
             j_dandy_shrimpo = {
                 name = "Shrimpo",
                 text = {
-                    "{C:attention}Debuffs{} 1 random",
-                    "card in played hand",
+                    "{C:green}#1# in #2#{} chance to half",
+                    "the {C:attention}Blind{} requirement",
+                    "Doubles it otherwise"
                 }
             },
             j_dandy_teagan = {
@@ -693,7 +698,8 @@ return {
                 name = "Toodles",
                 text = {
                     "Grants either {C:chips}+#1#{} Chips,",
-                    "{C:mult}+#2#{} Mult or {X:mult,C:white}X#3#{} Mult",
+                    "{C:mult}+#2#{} Mult, {X:mult,C:white}X#3#{} Mult, or",
+                    "{C:attention}+#4#{} hand size"
                 }
             },
             j_dandy_yatta = {
@@ -706,7 +712,7 @@ return {
                 name = "Pebble",
                 text = {
                     "Halves {C:attention}Blind{}",
-                    "score",
+                    "requirement",
                 },
             },
             j_dandy_astro = {
@@ -884,7 +890,7 @@ return {
                 name = "Coal",
                 text = {
                     "Doubles {C:attention}Blind{}",
-                    "score",
+                    "requirement",
                 }
             },
             j_dandy_toykit = {
@@ -951,7 +957,9 @@ return {
             dw_rnd_even = 'Even',
 
             dw_naughty_ex = "Naughty!",
-            dw_shrimpo_ability = "I HATE YOU!",
+
+            dw_shrimpo_punch_ex = "Punch!",
+            dw_shrimpo_hate = "I HATE YOU!",
 
             dw_pebble_quote1 = "ARF!",
             dw_pebble_quote2 = "ARF ARF!",

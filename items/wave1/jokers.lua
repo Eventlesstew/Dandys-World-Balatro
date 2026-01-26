@@ -71,29 +71,36 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = 1,
     cost = 1,
-    config = { extra = {} },
+    config = { extra = {odds = 2} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
     discovered = true,
     calculate = function(self,card,context)
-        if context.before then
-            local scored_card = pseudorandom_element(context.scoring_hand, "dw_shrimpo")
-            G.E_MANAGER:add_event(Event({
-                func = function()
-                    scored_card:juice_up()
-                    scored_card:set_debuff(true)
-                    return true
-                end
-            }))
-            return {
-                message = localize('k_debuffed'),
-                colour = G.C.RED,
-                sound = "tarot2",
-            }
+        if context.first_hand_drawn then
+            if pseudorandom('dw_shrimpo', 1, card.ability.extra.odds) then
+                G.GAME.blind.chips = G.GAME.blind.chips * 2
+                G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+                return {
+                    message = localize('dw_shrimpo_punch_ex'),
+                    colour = G.C.FILTER
+                }
+            else
+                G.GAME.blind.chips = G.GAME.blind.chips * 0.5
+                G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+                return {
+                    message = localize('dw_shrimpo_hate'),
+                    colour = G.C.FILTER
+                }
+            end
         end
     end,
+
+    loc_vars = function(self, info_queue, card)
+        local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, 'dw_shrimpo')
+        return { vars = {numerator, denominator}, key = self.key }
+    end
 }
 
 SMODS.Joker{
@@ -101,9 +108,9 @@ SMODS.Joker{
     atlas = 'dwJoker',
     pos = {x = 3, y = 6},
     soul_pos=nil,
-    rarity = 1,
-    cost = 4,
-    config = { extra = {chips = 50, mult = 10, x_mult = 1.5} },
+    rarity = 2,
+    cost = 5,
+    config = { extra = {chips = 50, mult = 10, x_mult = 1.5, h_size = 1, h_size_mod = 0} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
@@ -111,22 +118,42 @@ SMODS.Joker{
     discovered = true,
     calculate = function(self,card,context)
         if context.joker_main then
-            local effectType = pseudorandom('dw_toodles', 1, 3)
-            local effect = {}
-            if effectType == 1 then
-                effect.x_mult = card.ability.extra.x_mult
-            elseif effectType == 2 then
-                effect.mult = card.ability.extra.mult
-            elseif effectType == 3 then
-                effect.chips = card.ability.extra.chips
-            end
+            local effectTable = {
+                {
+                    x_mult = card.ability.extra.x_mult
+                },
+                {
+                    mult = card.ability.extra.mult
+                },
+                {
+                    chips = card.ability.extra.chips
+                },
+                {
+                    func = function()
+                        G.hand:change_size(card.ability.extra.h_size)
+                        card.ability.extra.h_size_mod = card.ability.extra.h_size_mod + 1
+                    end,
+                    message = localize{type = 'variable',key = 'a_handsize',vars = {card.ability.extra.h_size}},
+                    colour = G.C.FILTER,
+                }
+            }
+            local effect = pseudorandom_element(effectTable, 'dw_toodles')
 
             return effect
         end
+
+        if context.end_of_round and context.game_over == false and context.main_eval then
+            G.hand:change_size(-card.ability.extra.h_size_mod)
+            card.ability.extra.h_size_mod = 0
+        end
+    end,
+
+    remove_from_deck = function(self, card, from_debuff)
+        G.hand:change_size(-card.ability.extra.h_size_mod)
     end,
 
     loc_vars = function(self, info_queue, card)
-        return { vars = {card.ability.extra.chips, card.ability.extra.mult, card.ability.extra.x_mult}, key = self.key }
+        return { vars = {card.ability.extra.chips, card.ability.extra.mult, card.ability.extra.x_mult, card.ability.extra.h_size}, key = self.key }
     end
 }
 
@@ -135,7 +162,7 @@ SMODS.Joker{
     atlas = 'dwJoker',
     pos = { x = 6, y = 4},
     soul_pos=nil,
-    rarity = 1,
+    rarity = 2,
     cost = 2,
     config = { extra = {} },
     blueprint_compat=true,

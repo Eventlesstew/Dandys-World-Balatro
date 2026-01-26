@@ -12,9 +12,8 @@ end
 
 -- TODO: Fix this not working
 G.FUNCS.epic_joker_config = function(option_node)
-    local value = option_node.cycle_config.current_option
-    dandysworld.config.epic = value
-    --NFS.write(dandysworld.config_path, STR_PACK(dandysworld.config))
+    dandysworld.config.epic = option_node.cycle_config.current_option
+    dandysworld:save_config()
 end
 
 dandysworld.config_tab = function()
@@ -29,7 +28,7 @@ dandysworld.config_tab = function()
 		},
 		nodes =  {
             {n = G.UIT.C, config = { align = "cl", minw = G.ROOM.T.w*0, padding = 0.04 }, nodes = {
-                create_option_cycle({ref_table = dandysworld.config, ref_value = "epic", callback = 'epic_joker_config', w = 4,
+                create_option_cycle({ref_table = dandysworld.config, ref_value = "epic", opt_callback = 'epic_joker_config', w = 4,
                     
                     current_option = dandysworld.config.epic,
                     label = localize('dw_options_epicjokersTitle'),
