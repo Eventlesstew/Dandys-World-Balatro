@@ -236,6 +236,12 @@ SMODS.Joker{
     discovered = true,
 
     calculate = function(self,card,context)
+        if context.other_joker then
+            return {
+                chips = card.ability.extra.chips
+            }
+        end
+        --[[
          if context.joker_main then
             local effects = {
                 {
@@ -252,7 +258,7 @@ SMODS.Joker{
                 end
             end
             return SMODS.merge_effects(effects)
-        end
+        end]]
     end,
 
     loc_vars = function(self, info_queue, card)

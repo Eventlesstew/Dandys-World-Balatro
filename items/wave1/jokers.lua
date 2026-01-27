@@ -47,20 +47,17 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = 1,
     cost = 2,
-    config = { extra = {} },
+    config = { extra = {dollars = 1} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
     discovered = true,
-    in_pool = function()
-        return false
+    calc_dollar_bonus = function(self, card)
+        return card.ability.extra.dollars * #G.jokers.cards
     end,
-    calculate = function(self,card,context)
-    end,
-
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        return { vars = {card.ability.extra.dollars, card.ability.extra.dollars * (G.jokers and #G.jokers.cards or 0)}, key = self.key }
     end
 }
 
@@ -164,20 +161,29 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = 2,
     cost = 2,
-    config = { extra = {} },
+    config = { extra = {mult = 0, mult_mod = 2} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
     discovered = true,
-    in_pool = function()
-        return false
-    end,
     calculate = function(self,card,context)
+        if context.joker_main then
+            mult = card.ability.extra.mult
+        end
+        if context.individual and context.cardarea == G.hand and not context.end_of_round then
+            if context.other_card.facing == 'back' then
+                card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_mod
+                return {
+                    message = localize('k_upgrade_ex'),
+                    colour = G.C.MULT,
+                }
+            end
+        end
     end,
 
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        return { vars = {card.ability.extra.mult_mod, card.ability.extra.mult}, key = self.key }
     end
 }
 
@@ -187,18 +193,48 @@ SMODS.Joker{
     pos = { x = 8, y = 5},
     soul_pos=nil,
     rarity = 2,
-    cost = 7,
-    config = { extra = {} },
+    cost = 5,
+    config = { extra = {poker_hand = 'High Card'} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
     discovered = true,
-    in_pool = function()
-        return false
+    calculate = function(self,card,context)
+        if context.before and context.scoring_name == card.ability.extra.poker_hand then
+            return {
+                level_up = true,
+                message = localize('k_level_up_ex')
+            }
+        end
+
+        if not context.blueprint then
+            if context.end_of_round and context.game_over == false and context.main_eval then
+                local _poker_hands = {}
+                for handname, _ in pairs(G.GAME.hands) do
+                    if SMODS.is_poker_hand_visible(handname) and handname ~= card.ability.extra.poker_hand then
+                        _poker_hands[#_poker_hands + 1] = handname
+                    end
+                end
+                card.ability.extra.poker_hand = pseudorandom_element(_poker_hands, 'gl_anjellyze')
+                return {
+                    message = localize('k_reset')
+                }
+            end
+        end
     end,
+    set_ability = function(self, card, initial, delay_sprites)
+        local _poker_hands = {}
+        for handname, _ in pairs(G.GAME.hands) do
+            if SMODS.is_poker_hand_visible(handname) and handname ~= card.ability.extra.poker_hand then
+                _poker_hands[#_poker_hands + 1] = handname
+            end
+        end
+        card.ability.extra.poker_hand = pseudorandom_element(_poker_hands, 'gl_anjellyze')
+    end,
+
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        return {vars = {localize(card.ability.extra.poker_hand, 'poker_hands')}, key = self.key }
     end
 }
 

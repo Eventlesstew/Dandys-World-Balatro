@@ -73,9 +73,33 @@ SMODS.Blind {
     boss = {min = 1},
     boss_colour = HEX("575757"),
     ignore_showdown_check = true,
-    in_pool = function()
-        return false
+    calculate = function(self, blind, context)
+        if not blind.disabled then
+            if context.after then
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'immediate',
+                    func = function()
+                        for _,v in ipairs(G.hand.cards) do
+                            if v.facing ~= 'back' then
+                                v:flip()
+                            end
+                        end
+                        return true
+                    end,
+                }))
+            end
+        end
     end,
+    disable = function(self)
+        for i = 1, #G.hand.cards do
+            if G.hand.cards[i].facing == 'back' then
+                G.hand.cards[i]:flip()
+            end
+        end
+        for _, playing_card in pairs(G.playing_cards) do
+            playing_card.ability.wheel_flipped = nil
+        end
+    end
 }
 
 SMODS.Blind {

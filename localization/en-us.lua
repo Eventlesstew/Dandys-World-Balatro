@@ -53,7 +53,8 @@ return {
             bl_dandy_brightney = {
                 name = "Twisted Brightney",
                 text = {
-                    "Incomplete"
+                    "Flips all cards in hand",
+                    "after each hand played"
                 },
             },
             bl_dandy_connie = {
@@ -566,13 +567,15 @@ return {
             j_dandy_boxten = {
                 name = "Boxten",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{C:money}$#1#{} for each",
+                    "{C:attention}Joker{} card at",
+                    "end of round",
+                    "{C:inactive}(Currently {C:money}$#2#{C:inactive})"
                 },
             },
             j_dandy_brightney = {
                 name = "Brightney",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
                     "Gains {C:mult}+#1#{} Mult for",
                     "each {C:attention}Face down{}",
                     "card held in hand",
@@ -654,13 +657,17 @@ return {
                     "cards grant {C:mult}+#7#{} Mult on",
                     "{C:attention}#5#{} numbered Rounds",
                     "{C:inactive}({V:3}#3#{C:inactive} and {V:4}#4#{C:inactive} cards",
-                    "{C:inactive}on {C:attention}#6#{C:inactive} numbered rounds)",
+                    "{C:inactive}grant {C:mult}+#7#{C:inactive} Mult on",
+                    "{C:attention}#6#{C:inactive} numbered rounds)",
                 },
             },
             j_dandy_rodger = {
                 name = "Rodger",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "Upgrades poker hand",
+                    "if it is a {C:attention}#1#{}",
+                    "poker hand changes at",
+                    "end of round"
                 },
             },
             j_dandy_scraps = {
