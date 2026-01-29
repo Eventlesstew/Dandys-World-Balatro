@@ -77,15 +77,25 @@ SMODS.Joker{
     calculate = function(self,card,context)
         if context.first_hand_drawn then
             if pseudorandom('dw_shrimpo', 1, card.ability.extra.odds) then
-                G.GAME.blind.chips = G.GAME.blind.chips * 2
-                G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        G.GAME.blind.chips = G.GAME.blind.chips * 2
+                        G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+                        return true
+                    end
+                }))
                 return {
                     message = localize('dw_shrimpo_punch_ex'),
                     colour = G.C.FILTER
                 }
             else
-                G.GAME.blind.chips = G.GAME.blind.chips * 0.5
-                G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        G.GAME.blind.chips = G.GAME.blind.chips * 0.5
+                        G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+                        return true
+                    end
+                }))
                 return {
                     message = localize('dw_shrimpo_hate'),
                     colour = G.C.FILTER
@@ -160,7 +170,7 @@ SMODS.Joker{
     pos = { x = 6, y = 4},
     soul_pos=nil,
     rarity = 2,
-    cost = 2,
+    cost = 6,
     config = { extra = {mult = 0, mult_mod = 2} },
     blueprint_compat=true,
     eternal_compat=true,
@@ -335,8 +345,6 @@ SMODS.Joker{
     end
 }
 
--- GOOB
--- Bug: Goob ignores the consumable limit
 SMODS.Joker{
     key = 'goob',
     atlas = 'dwJoker',
@@ -351,7 +359,7 @@ SMODS.Joker{
     unlocked = true,
     discovered = true,
     calculate = function(self,card,context)
-        if context.open_booster then
+        if context.open_booster and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
             G.E_MANAGER:add_event(Event({
                 func = function()
                     if G.pack_cards and G.pack_cards.cards[1] then
@@ -413,8 +421,8 @@ SMODS.Joker{
     atlas = 'dwJoker',
     pos = { x = 5, y = 6},
     soul_pos=nil,
-    rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or ((dandysworld.config.epic ~= 1) and 'dandy_epic') or 3,
-    cost = ((next(SMODS.find_mod('Cryptid')) or (dandysworld.config.epic ~= 1)) and 10) or 20,
+    rarity = 'dandy_epic',
+    cost = 20,
     config = { extra = {} },
     blueprint_compat=true,
     eternal_compat=true,
@@ -434,19 +442,17 @@ SMODS.Joker{
             }
             local quote = pseudorandom_element(quotes, 'dw_pebble_quote')
 
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    G.GAME.blind.chips = G.GAME.blind.chips * 0.5
+                    G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+                    return true
+                end
+            }))
             return {
                 message = localize(quote),
                 sound = "dandy_pebble",
                 colour = G.C.UI.TEXT_DARK,
-                func = (function()
-                    G.E_MANAGER:add_event(Event({
-                        func = (function()
-                            G.GAME.blind.chips = G.GAME.blind.chips / 2
-                            G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
-                            return true
-                        end)
-                    }))
-                end)
             }
         end
         --[[
@@ -481,8 +487,8 @@ SMODS.Joker{
     atlas = 'dwJoker',
     pos = { x = 6, y = 6},
     soul_pos=nil,
-    rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or ((dandysworld.config.epic ~= 1) and 'dandy_epic') or 3,
-    cost = ((next(SMODS.find_mod('Cryptid')) or (dandysworld.config.epic ~= 1)) and 10) or 20,
+    rarity = 'dandy_epic',
+    cost = 20,
     config = { extra = {repetitions = 2} },
     blueprint_compat=true,
     eternal_compat=true,
@@ -526,8 +532,8 @@ SMODS.Joker{
     atlas = 'dwJoker',
     pos = { x = 9, y = 6},
     soul_pos=nil,
-    rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or ((dandysworld.config.epic ~= 1) and 'dandy_epic') or 3,
-    cost = ((next(SMODS.find_mod('Cryptid')) or (dandysworld.config.epic ~= 1)) and 10) or 20,
+    rarity = 'dandy_epic',
+    cost = 20,
     config = { extra = {choice_mod = 1, size_mod = 2} },
     blueprint_compat=true,
     eternal_compat=true,

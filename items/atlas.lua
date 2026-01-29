@@ -1,21 +1,36 @@
+SMODS.Gradient {
+    key = 'main_gradient',
+    colours = {
+        HEX('fd5f55'),
+        HEX('fda200'),
+        HEX('ffd61d'),
+        HEX('91e461'),
+        HEX('009cfd'),
+        HEX('8a71e1'),
+    },
+    cycle = 30
+}
+
 SMODS.Rarity{
 	key = "epic",
 	loc_txt = {},
-	badge_colour = HEX("ef0098"),
+	badge_colour = SMODS.Gradients["dandy_main_gradient"],
 	default_weight = 0.003,
 	pools = { ["Joker"] = true },
-	get_weight = function()
-        if SMODS.find_mod("Cryptid") or (not dandysworld.config.epic) then
-            return 0
-        else
-            return 0.003
-        end
-    end,
+}
+
+SMODS.Gradient {
+    key = 'lethal_gradient',
+    colours = {
+        HEX('F46464'),
+        HEX('C01F1F')
+    },
+    cycle = 6
 }
 
 SMODS.Rarity {
     key = 'leader',
-    badge_colour = HEX("E44F4F"),
+    badge_colour = SMODS.Gradients["dandy_lethal_gradient"],
     default_weight = 0
 }
 

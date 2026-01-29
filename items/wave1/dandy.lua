@@ -7,15 +7,6 @@ SMODS.Sound {
     end,
 }
 
-SMODS.Atlas{
-    key = 'dwBlindLethal',
-    path = "lethalBlinds.png",
-    atlas_table = 'ANIMATION_ATLAS',
-    frames = 16,
-    px = 34 * 2,
-    py = 34 * 2
-}
-
 SMODS.Blind {
     key = 'dandy',
     atlas = 'dwBlind',
@@ -53,7 +44,7 @@ SMODS.Joker{
     soul_pos={ x = 8, y = 8},
     rarity = 'dandy_leader',
     cost = 40,
-    config = { extra = {} },
+    config = { extra = {chips = 0, chip_mod = 50} },
     blueprint_compat=false,
     eternal_compat=false,
     perishable_compat=false,
@@ -63,6 +54,21 @@ SMODS.Joker{
         return false
     end,
     calculate = function(self, card, context)
+        if context.end_of_round and context.game_over == false and context.main_eval then
+            if G.GAME.current_round.hands_left > 0 then
+                card.ability.extra.chips = card.ability.extra.chips + (card.ability.extra.chip_mod * G.GAME.current_round.hands_left)
+                return {
+                    message = localize('k_upgrade_ex'),
+                    colour = G.C.CHIPS
+                }
+            end
+        end
+        if context.joker_main then
+            return {
+                chips = card.ability.extra.chips
+            }
+        end
+        --[[
         if context.setting_blind and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
             G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
             G.E_MANAGER:add_event(Event({
@@ -84,11 +90,11 @@ SMODS.Joker{
                 end)
             }))
             return nil, true -- This is for Joker retrigger purposes
-        end
+        end]]
     end,
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue + 1] = { key = 'e_negative_consumable', set = 'Edition', config = { extra = 1 } }
-        return { vars = {}, key = self.key }
+        --info_queue[#info_queue + 1] = { key = 'e_negative_consumable', set = 'Edition', config = { extra = 1 } }
+        return { vars = {card.ability.extra.chips, card.ability.extra.chip_mod}, key = self.key }
     end
 }
 
@@ -110,7 +116,7 @@ function SMODS.current_mod.reset_game_globals(run_start)
         G.GAME.current_round.twistedDandyOdds = 0
         G.GAME.current_round.twistedDandyChance = 10
 
-        if G.FORCE_BOSS then
+        if G.FORCE_BOSS == 'bl_dandy_dandy' then
             G.FORCE_BOSS = nil
             G.FUNCS.reroll_boss()
         end

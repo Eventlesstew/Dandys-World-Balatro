@@ -757,9 +757,10 @@ return {
             j_dandy_dandy = {
                 name = "Dandy",
                 text = {
-                    "Create a {C:dark_edition}Negative{}",
-                    "{C:spectral}Spectral{} card when",
-                    "{C:attention}Blind{} is selected",
+                    "Gains {C:chips}+#2#{} Chips for",
+                    "each hand remaining",
+                    "at end of round",
+                    "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)",
                 },
             },
             j_dandy_dyle = {
@@ -1011,7 +1012,7 @@ return {
 
             
             k_dandy_leader = "Lethal",
-            k_dandy_epic = "Epic",
+            k_dandy_epic = "Main",
             
             dw_options_experimentalTitle = "Experimental",
 
