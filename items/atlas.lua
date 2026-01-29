@@ -8,7 +8,7 @@ SMODS.Gradient {
         HEX('009cfd'),
         HEX('8a71e1'),
     },
-    cycle = 30
+    cycle = 15
 }
 
 SMODS.Rarity{
