@@ -28,16 +28,6 @@ dandysworld.config_tab = function()
 		},
 		nodes =  {
             {n = G.UIT.C, config = { align = "cl", minw = G.ROOM.T.w*0, padding = 0.04 }, nodes = {
-                create_option_cycle({ref_table = dandysworld.config, ref_value = "epic", opt_callback = 'epic_joker_config', w = 4,
-                    
-                    current_option = dandysworld.config.epic,
-                    label = localize('dw_options_epicjokersTitle'),
-                    options = {
-                        localize('dw_options_epicjokers0'),
-                        localize('dw_options_epicjokers1'),
-                        localize('dw_options_epicjokers2'),
-                    },
-                }),
                 UIBox_button({label = {localize('dw_options_apply')}, minw = 3.5, button = 'restart_game_smods'}),
             }},
 		}
@@ -48,7 +38,7 @@ dandysworld.extra_tabs = function()
 --local vertical_tabs = {}
 	return {
         {label = localize('dw_options_experimentalTitle'), tab_definition_function = function()
-            return {n=G.UIT.ROOT, config = {padding = 0.0, colour = G.C.BLACK}, nodes = {
+            return {n=G.UIT.ROOT, config = {colour = G.C.BLACK, align = "cl", minw = G.ROOM.T.w*0, padding = 0.04 }, nodes = {
                 {n = G.UIT.C, config = { align = "cl", minw = G.ROOM.T.w*0, padding = 0.04 }, nodes = {
                     create_toggle({label = localize('dw_options_easter'), ref_table = dandysworld.config, ref_value = "easter", callback = function() dandysworld:save_config() end}),
                     create_toggle({label = localize('dw_options_halloween'), ref_table = dandysworld.config, ref_value = "halloween", callback = function() dandysworld:save_config() end}),
@@ -65,7 +55,7 @@ assert(SMODS.load_file("items/atlas.lua"))()
 assert(SMODS.load_file("items/wave1/jokers.lua"))()
 assert(SMODS.load_file("items/wave1/blinds.lua"))()
 
-if config.epic == 3 and (not next(SMODS.find_mod('Cryptid'))) then
+if config.epic == 3 then
     assert(SMODS.load_file("items/epic_extras.lua"))()
 end
 

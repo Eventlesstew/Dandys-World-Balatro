@@ -261,10 +261,10 @@ return {
                 },
             },
             tag_dandy_epic = {
-                name = "Epic Tag",
+                name = "Ticket Tag",
 				text = {
 					"Shop has a half-price",
-					"{C:dandy_epic}Epic Joker",
+					"{C:dandy_epic}Main Joker",
 				},
             },
         },

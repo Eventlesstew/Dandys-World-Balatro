@@ -24,6 +24,7 @@ SMODS.Tag {
     end
 }
 
+--[[
 SMODS.Consumable {
     set = "Spectral",
 	key = "summoning",
@@ -86,4 +87,4 @@ SMODS.Consumable {
 	force_use = function(self, card, area)
 		self:use(card, area)
 	end,
-}
+}]]
