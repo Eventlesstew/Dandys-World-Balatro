@@ -14,7 +14,7 @@ SMODS.Tag {
             card.states.visible = false
             tag:yep('+', G.C.GREEN, function()
                 card:start_materialize()
-                card.cost_mod = 0.5
+                --card.cost_mod = 0.5
                 card:set_cost()
                 return true
             end)

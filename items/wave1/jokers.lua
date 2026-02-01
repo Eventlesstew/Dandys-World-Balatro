@@ -490,7 +490,7 @@ SMODS.Joker{
     rarity = 'dandy_epic',
     cost = 20,
     config = { extra = {repetitions = 2} },
-    blueprint_compat=true,
+    blueprint_compat=false,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,

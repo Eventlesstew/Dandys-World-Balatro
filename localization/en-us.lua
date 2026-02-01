@@ -91,7 +91,8 @@ return {
             bl_dandy_toodles = {
                 name = "Twisted Toodles",
                 text = {
-                    "Incomplete"
+                    "Start with half",
+                    "of your hands"
                 },
             },
             bl_dandy_blot = {
@@ -233,14 +234,14 @@ return {
                 },
             },
             bl_dandy_dandy = {
-                name = "Dandy",
+                name = "Dandicus Dancifer",
                 text = {
                     "1 Hand, 0 Discards,",
                     "+6 Hand Size",
                 },
             },
             bl_dandy_dyle = {
-                name = "Dyle",
+                name = "Dyle Timesly",
                 text = {
                     "Extremely Large Blind",
                 },
@@ -263,7 +264,7 @@ return {
             tag_dandy_epic = {
                 name = "Ticket Tag",
 				text = {
-					"Shop has a half-price",
+					"Shop has a",
 					"{C:dandy_epic}Main Joker",
 				},
             },

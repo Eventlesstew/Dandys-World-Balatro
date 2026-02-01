@@ -32,7 +32,6 @@ SMODS.Blind {
         if context.end_of_round and context.game_over == false and context.main_eval then
             G.hand:change_size(-6)
             SMODS.add_card{key = "j_dandy_dandy"}
-            G.FORCE_BOSS = nil
         end
     end,
 }
@@ -45,7 +44,7 @@ SMODS.Joker{
     rarity = 'dandy_leader',
     cost = 40,
     config = { extra = {chips = 0, chip_mod = 50} },
-    blueprint_compat=false,
+    blueprint_compat=true,
     eternal_compat=false,
     perishable_compat=false,
     unlocked = true,
@@ -54,9 +53,9 @@ SMODS.Joker{
         return false
     end,
     calculate = function(self, card, context)
-        if context.end_of_round and context.game_over == false and context.main_eval then
-            if G.GAME.current_round.hands_left > 0 then
-                card.ability.extra.chips = card.ability.extra.chips + (card.ability.extra.chip_mod * G.GAME.current_round.hands_left)
+        if not context.blueprint then
+            if context.reroll_shop or context.buying_card then
+                card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_mod
                 return {
                     message = localize('k_upgrade_ex'),
                     colour = G.C.CHIPS
@@ -111,21 +110,22 @@ function localize(args, misc_cat)
     return ret
 end
 
+
+-- Resets Dandy's Variables back
 function SMODS.current_mod.reset_game_globals(run_start)
     if run_start then
         G.GAME.current_round.twistedDandyOdds = 0
         G.GAME.current_round.twistedDandyChance = 10
-
-        if G.FORCE_BOSS == 'bl_dandy_dandy' then
-            G.FORCE_BOSS = nil
-            G.FUNCS.reroll_boss()
-        end
     end
 end
+
 
 function SMODS.current_mod.calculate(self, context)
     if context.reroll_shop or context.buying_card then
         G.GAME.current_round.twistedDandyOdds = -1
+        if G.GAME.blind.key == 'bl_dandy_dandy' then
+            G.FUNCS.reroll_boss()
+        end
     end
     if context.ending_shop then
         G.GAME.current_round.twistedDandyOdds = G.GAME.current_round.twistedDandyOdds + 1
@@ -140,8 +140,8 @@ function SMODS.current_mod.calculate(self, context)
         if 
             (numerator >= denominator) or (SMODS.pseudorandom_probability(self, 'dw_twisted_dandy', numerator, denominator))
         then
-            G.FORCE_BOSS = 'bl_dandy_dandy'
-            G.FUNCS.reroll_boss()
+            print("Twisted Dandy Spawned")
+            G.GAME.perscribed_bosses[G.GAME.round_resets.ante + 1] = 'bl_dandy_dandy'
         end
     end
 end
