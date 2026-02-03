@@ -123,7 +123,7 @@ end
 function SMODS.current_mod.calculate(self, context)
     if context.reroll_shop or context.buying_card then
         G.GAME.current_round.twistedDandyOdds = -1
-        if G.GAME.blind.key == 'bl_dandy_dandy' then
+        if G.GAME.round_resets.blind_choices.Boss.key == 'bl_dandy_dandy' then
             G.FUNCS.reroll_boss()
         end
     end
@@ -144,4 +144,13 @@ function SMODS.current_mod.calculate(self, context)
             G.GAME.perscribed_bosses[G.GAME.round_resets.ante + 1] = 'bl_dandy_dandy'
         end
     end
+end
+
+local use_card_ref = G.FUNCS.use_card
+G.FUNCS.use_card = function()
+    local result = use_card_ref()
+    if card.ability.set == 'Booster' and card.area == G.shop_booster then
+        
+    end
+    return result
 end
