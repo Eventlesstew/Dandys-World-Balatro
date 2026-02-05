@@ -1,3 +1,13 @@
+-- Mod Icon
+SMODS.Atlas {
+    key = "modicon",
+    path = "icon.png",
+    px = 32,
+    py = 32
+}
+
+
+-- Main Rarity Gradient
 SMODS.Gradient {
     key = 'main_gradient',
     colours = {

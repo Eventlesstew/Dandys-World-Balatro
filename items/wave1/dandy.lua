@@ -7,6 +7,15 @@ SMODS.Sound {
     end,
 }
 
+SMODS.Gradient {
+    key = 'boss_gradient',
+    colours = {
+        HEX('ff6969'),
+        HEX('801414')
+    },
+    cycle = 10
+}
+
 SMODS.Blind {
     key = 'dandy',
     atlas = 'dwBlind',
@@ -16,7 +25,7 @@ SMODS.Blind {
     dollars = 0,
     mult = 2,
     boss = {min = 1},
-    boss_colour = HEX("615852"),
+    boss_colour = SMODS.Gradients["dandy_boss_gradient"],
     in_pool = function()
         return false
     end,
@@ -146,6 +155,7 @@ function SMODS.current_mod.calculate(self, context)
     end
 end
 
+--[[
 local use_card_ref = G.FUNCS.use_card
 G.FUNCS.use_card = function()
     local result = use_card_ref()
@@ -153,4 +163,4 @@ G.FUNCS.use_card = function()
         
     end
     return result
-end
+end]]
