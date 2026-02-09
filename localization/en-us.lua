@@ -132,7 +132,7 @@ return {
                 },
             },
             bl_dandy_astro = {
-                name = "Astro's Dream",
+                name = "Astro's Nightmare",
                 text = {
                     "Incomplete"
                 },
@@ -140,11 +140,12 @@ return {
             bl_dandy_pebble = {
                 name = "Vicious Pebble",
                 text = {
-                    "Incomplete"
+                    "Base Chips and",
+                    "Mult set to 1"
                 },
             },
             bl_dandy_shelly = {
-                name = "Shelly's Decay",
+                name = "Forgotten Fossillian",
                 text = {
                     "Incomplete"
                 },
@@ -568,10 +569,15 @@ return {
             j_dandy_boxten = {
                 name = "Boxten",
                 text = {
+                    "Played {C:attention}face{} cards",
+                    "give {C:mult}+#1#{} Mult",
+                    "when scored",
+                    --[[
                     "{C:money}$#1#{} for each",
                     "{C:attention}Joker{} card at",
                     "end of round",
                     "{C:inactive}(Currently {C:money}$#2#{C:inactive})"
+                    ]]
                 },
             },
             j_dandy_brightney = {
@@ -579,7 +585,7 @@ return {
                 text = {
                     "Gains {C:mult}+#1#{} Mult for",
                     "each {C:attention}Face down{}",
-                    "card held in hand",
+                    "card played",
                     "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
                 },
             },
@@ -634,6 +640,11 @@ return {
                     "card to your possession when",
                     "opening any {C:attention}Booster Pack"
                 },
+                unlock = {
+                    "Play a 5 card hand",
+                    "that contains only",
+                    "{C:attention,E:1}Mult{} cards",
+                },
             },
             j_dandy_looey = {
                 name = "Looey",
@@ -677,6 +688,11 @@ return {
                     "Earn {C:money}$#1#{} if a {C:attention}Lucky",
                     "card successfully",
                     "triggers",
+                },
+                unlock = {
+                    "Play a 5 card hand",
+                    "that contains only",
+                    "{C:attention,E:1}Lucky{} cards",
                 },
             },
             j_dandy_shrimpo = {
@@ -722,6 +738,10 @@ return {
                     "Halves {C:attention}Blind{}",
                     "requirement",
                 },
+                unlock = {
+                    "Discover through",
+                    "the {C:attention}Main Tag"
+                },
             },
             j_dandy_astro = {
                 name = "Astro",
@@ -729,6 +749,11 @@ return {
                     "Retriggers every {C:planet}Planet{}",
                     "card {C:attention}#1#{} times",
                 },
+                unlock = {
+                    "Skip 3 shops in",
+                    "a row without",
+                    "buying anything"
+                }
             },
             j_dandy_sprout = {
                 name = "Sprout",
@@ -762,6 +787,9 @@ return {
                     "each hand remaining",
                     "at end of round",
                     "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)",
+                },
+                unlock = {
+                    "Defeat {C:attention}#1#",
                 },
             },
             j_dandy_dyle = {
@@ -1015,6 +1043,7 @@ return {
             k_dandy_leader = "Lethal",
             k_dandy_epic = "Main",
             
+            dw_undiscovered = '?????',
             dw_options_experimentalTitle = "Experimental",
 
             dw_options_epicjokersTitle = "Epic Mains",

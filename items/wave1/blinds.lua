@@ -224,12 +224,18 @@ SMODS.Blind {
     discovered = true,     
     dollars = 5,
     mult = 2,
-    boss = {min = 1},
+    boss = {showdown = true},
     boss_colour = HEX("575757"),
-    ignore_showdown_check = true,
-    in_pool = function()
-        return false
-    end,
+    calculate = function(self, blind, context)
+        if not blind.disabled then
+            if context.modify_hand then
+                blind.triggered = true -- This won't trigger Matador in this context due to a Vanilla bug (a workaround is setting it in context.debuff_hand)
+                hand_chips = 1
+                mult = 1
+                update_hand_text({ sound = 'chips2', modded = true }, { chips = hand_chips, mult = mult })
+            end
+        end
+    end
 }
 
 SMODS.Blind {

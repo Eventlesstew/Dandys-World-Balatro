@@ -47,18 +47,29 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = 1,
     cost = 2,
-    config = { extra = {dollars = 1} },
+    config = { extra = {mult = 3} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
     discovered = true,
+    calculate = function(self,card,context)
+        if context.individual and context.cardarea == G.play and context.other_card:is_face() then
+            return {
+                mult = card.ability.extra.mult
+            }
+        end
+    end,
+    loc_vars = function(self, info_queue, card)
+        return { vars = {card.ability.extra.mult}, key = self.key }
+    end
+    --[[
     calc_dollar_bonus = function(self, card)
         return card.ability.extra.dollars * #G.jokers.cards
     end,
     loc_vars = function(self, info_queue, card)
         return { vars = {card.ability.extra.dollars, card.ability.extra.dollars * (G.jokers and #G.jokers.cards or 0)}, key = self.key }
-    end
+    end]]
 }
 
 SMODS.Joker{
@@ -181,7 +192,7 @@ SMODS.Joker{
         if context.joker_main then
             mult = card.ability.extra.mult
         end
-        if context.individual and context.cardarea == G.hand and not context.end_of_round then
+        if context.individual and context.cardarea == G.play and not context.end_of_round then -- Not sure if this would work
             if context.other_card.facing == 'back' then
                 card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_mod
                 return {
@@ -356,8 +367,6 @@ SMODS.Joker{
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
     calculate = function(self,card,context)
         if context.open_booster and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
             G.E_MANAGER:add_event(Event({
@@ -378,9 +387,19 @@ SMODS.Joker{
             }))
         end
     end,
-
-    loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+    check_for_unlock = function(self, args)
+        if args.type == 'hand_contents' then
+            local tally = 0
+            for j = 1, #args.cards do
+                if SMODS.has_enhancement(args.cards[j], 'm_mult') then
+                    tally = tally + 1
+                    if tally == 5 then
+                        return true
+                    end
+                end
+            end
+        end
+        return false
     end
 }
 
@@ -395,8 +414,6 @@ SMODS.Joker{
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
     calculate = function(self,card,context)
         if context.individual and context.cardarea == G.play and context.other_card.lucky_trigger then
             return {
@@ -404,10 +421,31 @@ SMODS.Joker{
             }
         end
     end,
-
+    in_pool = function(self, args) --equivalent to `enhancement_gate = 'm_gold'`
+        for _, playing_card in ipairs(G.playing_cards or {}) do
+            if SMODS.has_enhancement(playing_card, 'm_lucky') then
+                return true
+            end
+        end
+        return false
+    end,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_lucky
         return { vars = {card.ability.extra.dollars}, key = self.key }
+    end,
+    check_for_unlock = function(self, args)
+        if args.type == 'hand_contents' then
+            local tally = 0
+            for j = 1, #args.cards do
+                if SMODS.has_enhancement(args.cards[j], 'm_lucky') then
+                    tally = tally + 1
+                    if tally == 5 then
+                        return true
+                    end
+                end
+            end
+        end
+        return false
     end
 }
 
@@ -427,8 +465,6 @@ SMODS.Joker{
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
     calculate = function(self,card,context)
         if context.first_hand_drawn then
             local quotes = {
@@ -470,10 +506,11 @@ SMODS.Joker{
         end
         ]]
     end,
-
-    loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
-    end
+    check_for_unlock = function(self, args)
+        if args.type == 'dw_pebble' then
+            return true 
+        end
+    end,
 }
 
 SMODS.Sound ({
@@ -493,12 +530,15 @@ SMODS.Joker{
     blueprint_compat=false,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
 
     loc_vars = function(self, info_queue, card)
         return { vars = {card.ability.extra.repetitions}, key = self.key }
-    end
+    end,
+    check_for_unlock = function(self, args)
+        if args.type == 'dw_astro' then
+            return true 
+        end
+    end,
 }
 
 local use_consumeable_ref = Card.use_consumeable

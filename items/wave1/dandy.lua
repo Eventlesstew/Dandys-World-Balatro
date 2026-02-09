@@ -41,6 +41,7 @@ SMODS.Blind {
         if context.end_of_round and context.game_over == false and context.main_eval then
             G.hand:change_size(-6)
             SMODS.add_card{key = "j_dandy_dandy"}
+            check_for_unlock{type = 'dw_dandy'}
         end
     end,
 }
@@ -103,6 +104,20 @@ SMODS.Joker{
     loc_vars = function(self, info_queue, card)
         --info_queue[#info_queue + 1] = { key = 'e_negative_consumable', set = 'Edition', config = { extra = 1 } }
         return { vars = {card.ability.extra.chips, card.ability.extra.chip_mod}, key = self.key }
+    end,
+    check_for_unlock = function(self, args)
+        if args.type == 'dw_dandy' then
+            return true 
+        end
+    end,
+    locked_loc_vars = function(self, info_queue, card)
+        local text
+        if G.P_CENTERS.bl_dandy_dandy.discovered then
+            text = G.P_CENTERS.bl_dandy_dandy.loc_txt.name
+        else
+            text = localize('dw_undiscovered')
+        end
+        return {vars = {text}}
     end
 }
 
@@ -142,8 +157,9 @@ function SMODS.current_mod.calculate(self, context)
 
     if 
         context.end_of_round and context.game_over == false and context.main_eval and context.beat_boss and 
-        G.GAME.current_round.twistedDandyOdds >= 2 
+        G.GAME.current_round.twistedDandyOdds >= 3
     then
+        check_for_unlock{type = 'dw_astro'}
         local numerator = G.GAME.current_round.twistedDandyOdds + 3
         local denominator = G.GAME.current_round.twistedDandyChance
         if 
@@ -151,6 +167,7 @@ function SMODS.current_mod.calculate(self, context)
         then
             print("Twisted Dandy Spawned")
             G.GAME.perscribed_bosses[G.GAME.round_resets.ante + 1] = 'bl_dandy_dandy'
+            G.FUNCS.reroll_boss()
         end
     end
 end
