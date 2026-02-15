@@ -579,6 +579,10 @@ return {
                     "{C:inactive}(Currently {C:money}$#2#{C:inactive})"
                     ]]
                 },
+                unlock = {
+                    "Own more than {C:attention}#1#{}",
+                    "{C:attention}Jokers{} in one run"
+                },
             },
             j_dandy_brightney = {
                 name = "Brightney",
@@ -641,7 +645,7 @@ return {
                     "opening any {C:attention}Booster Pack"
                 },
                 unlock = {
-                    "Play a 5 card hand",
+                    "Play a #1# card hand",
                     "that contains only",
                     "{C:attention,E:1}Mult{} cards",
                 },
@@ -661,6 +665,10 @@ return {
                     "hand played this round",
                     "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"
                 },
+                unlock = {
+                    "Defeat a {C:attention}Blind{}",
+                    "with {C:attention}0{} hands left"
+                }
             },
             j_dandy_razzledazzle = {
                 name = "Razzle & Dazzle",
@@ -690,7 +698,7 @@ return {
                     "triggers",
                 },
                 unlock = {
-                    "Play a 5 card hand",
+                    "Play a #1# card hand",
                     "that contains only",
                     "{C:attention,E:1}Lucky{} cards",
                 },
@@ -701,7 +709,11 @@ return {
                     "{C:green}#1# in #2#{} chance to half",
                     "the {C:attention}Blind{} requirement",
                     "Doubles it otherwise"
-                }
+                },
+                unlock = {
+                    "{C:attention}Destroy{} a",
+                    "playing card"
+                },
             },
             j_dandy_teagan = {
                 name = "Teagan",

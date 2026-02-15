@@ -106,9 +106,7 @@ SMODS.Joker{
         return { vars = {card.ability.extra.chips, card.ability.extra.chip_mod}, key = self.key }
     end,
     check_for_unlock = function(self, args)
-        if args.type == 'dw_dandy' then
-            return true 
-        end
+        return args.type == 'dw_dandy'
     end,
     locked_loc_vars = function(self, info_queue, card)
         local text
@@ -144,6 +142,7 @@ function SMODS.current_mod.reset_game_globals(run_start)
 end
 
 
+-- TODO: Move this to a game global function.
 function SMODS.current_mod.calculate(self, context)
     if context.reroll_shop or context.buying_card then
         G.GAME.current_round.twistedDandyOdds = -1
@@ -169,6 +168,10 @@ function SMODS.current_mod.calculate(self, context)
             G.GAME.perscribed_bosses[G.GAME.round_resets.ante + 1] = 'bl_dandy_dandy'
             G.FUNCS.reroll_boss()
         end
+    end
+    
+    if context.remove_playing_cards then
+        check_for_unlock{type = 'dw_shrimpo'}
     end
 end
 

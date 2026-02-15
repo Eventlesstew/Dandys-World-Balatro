@@ -37,7 +37,10 @@ SMODS.Joker{
 
     loc_vars = function(self, info_queue, card)
         return { vars = {card.ability.extra.chips, card.ability.extra.chip_mod}, key = self.key }
-    end
+    end,
+    check_for_unlock = function(self, args)
+        return args.type == 'round_win' and G.GAME.current_round.hands_left == 0
+    end,
 }
 
 SMODS.Joker{
@@ -51,8 +54,7 @@ SMODS.Joker{
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
+    unlocked = false,
     calculate = function(self,card,context)
         if context.individual and context.cardarea == G.play and context.other_card:is_face() then
             return {
@@ -62,6 +64,14 @@ SMODS.Joker{
     end,
     loc_vars = function(self, info_queue, card)
         return { vars = {card.ability.extra.mult}, key = self.key }
+    end,
+    check_for_unlock = function(self, args)
+        if args.type == 'modify_jokers' and G.jokers then
+            return #G.jokers.cards > 5
+        end
+    end,
+    locked_loc_vars = function(self, info_queue, card)
+        return {vars = {5}}
     end
     --[[
     calc_dollar_bonus = function(self, card)
@@ -118,7 +128,10 @@ SMODS.Joker{
     loc_vars = function(self, info_queue, card)
         local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, 'dw_shrimpo')
         return { vars = {numerator, denominator}, key = self.key }
-    end
+    end,
+    check_for_unlock = function(self, args)
+        return args.type == 'dw_shrimpo'
+    end,
 }
 
 SMODS.Joker{
@@ -367,6 +380,7 @@ SMODS.Joker{
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
+    unlocked = false,
     calculate = function(self,card,context)
         if context.open_booster and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
             G.E_MANAGER:add_event(Event({
@@ -400,6 +414,9 @@ SMODS.Joker{
             end
         end
         return false
+    end,
+    locked_loc_vars = function(self, info_queue, card)
+        return {vars = {5}}
     end
 }
 
@@ -414,6 +431,7 @@ SMODS.Joker{
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
+    unlocked = false,
     calculate = function(self,card,context)
         if context.individual and context.cardarea == G.play and context.other_card.lucky_trigger then
             return {
@@ -446,6 +464,9 @@ SMODS.Joker{
             end
         end
         return false
+    end,
+    locked_loc_vars = function(self, info_queue, card)
+        return {vars = {5}}
     end
 }
 
@@ -465,6 +486,7 @@ SMODS.Joker{
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
+    unlocked = false,
     calculate = function(self,card,context)
         if context.first_hand_drawn then
             local quotes = {
@@ -507,9 +529,7 @@ SMODS.Joker{
         ]]
     end,
     check_for_unlock = function(self, args)
-        if args.type == 'dw_pebble' then
-            return true 
-        end
+        return args.type == 'dw_pebble'
     end,
 }
 
@@ -530,14 +550,12 @@ SMODS.Joker{
     blueprint_compat=false,
     eternal_compat=true,
     perishable_compat=true,
-
+    unlocked = false,
     loc_vars = function(self, info_queue, card)
         return { vars = {card.ability.extra.repetitions}, key = self.key }
     end,
     check_for_unlock = function(self, args)
-        if args.type == 'dw_astro' then
-            return true 
-        end
+        return args.type == 'dw_astro'
     end,
 }
 
