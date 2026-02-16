@@ -269,7 +269,13 @@ SMODS.Joker{
 
     loc_vars = function(self, info_queue, card)
         return {vars = {localize(card.ability.extra.poker_hand, 'poker_hands')}, key = self.key }
-    end
+    end,
+    check_for_unlock = function(self, args) -- equivalent to `unlock_condition = { type = 'discover_amount', tarot_count = 22 }`
+        return args.type == 'discover_amount' and #G.P_CENTER_POOLS.Blind >= 30
+    end,
+    locked_loc_vars = function(self, info_queue, card)
+        return { vars = { 30 } }
+    end,
 }
 
 SMODS.Joker{
@@ -366,7 +372,38 @@ SMODS.Joker{
             }, 
             key = self.key
         }
-    end
+    end,
+
+    check_for_unlock = function(self, args)
+        if args.type == 'hand_contents' and #args.cards == 5 then
+            local oddvalid = true
+            local evenvalid = true
+            for j = 1, #args.cards do
+                local rank = args.cards[j]:get_id()
+                local oddresult = false
+                local evenresult = false
+                if rank <= 10 and rank >= 0 then
+                    if rank % 2 == 1 then
+                        oddresult = true
+                    else
+                        evenresult = true
+                    end
+                elseif rank == 14 then
+                    oddresult = true
+                end
+
+                if oddvalid then
+                    oddvalid = oddresult
+                end
+                if evenvalid then
+                    evenvalid = evenresult
+                end
+            end
+
+            return oddvalid or evenvalid
+        end
+        return false
+    end,
 }
 
 SMODS.Joker{

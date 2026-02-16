@@ -680,6 +680,15 @@ return {
                     "{C:inactive}cards grant {C:mult}+#7#{C:inactive} Mult on",
                     "{C:attention}#6#{C:inactive} numbered rounds)",
                 },
+                unlock = {
+                    "Play a 5 card hand",
+                    "containing only",
+                    "Odd numbered ranks",
+                    "{C:inactive}(A, 3, 5, 7, 9)",
+                    "or Even numbered ranks",
+                    "{C:inactive}(2, 4, 6, 8, 10)",
+                },
+
             },
             j_dandy_rodger = {
                 name = "Rodger",
@@ -688,6 +697,10 @@ return {
                     "if it is a {C:attention}#1#{}",
                     "poker hand changes at",
                     "end of round"
+                },
+                unlock = {
+                    "Discover {C:attention}#1#",
+                    "{C:attention}Boss Blinds"
                 },
             },
             j_dandy_scraps = {
