@@ -19,9 +19,7 @@ SMODS.Gradient {
 SMODS.Blind {
     key = 'dandy',
     atlas = 'dwBlind',
-    pos = {x = 0, y = 0},
-    unlocked = true,
-    discovered = true,     
+    pos = {x = 0, y = 0},  
     dollars = 0,
     mult = 2,
     boss = {min = 1},
