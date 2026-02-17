@@ -17,7 +17,7 @@ function SMODS.current_mod.calculate(self, context)
 
         -- If you buy something while Dandy is there, he goes away.
         if G.GAME.round_resets.blind_choices.Boss.key == 'bl_dandy_dandy' then
-            G.GAME.perscribed_bosses[G.GAME.round_resets.ante + 1] = nil
+            G.GAME.perscribed_bosses[G.GAME.round_resets.ante] = nil
             G.FUNCS.reroll_boss()
         end
     end
@@ -39,7 +39,7 @@ function SMODS.current_mod.calculate(self, context)
                 SMODS.pseudorandom_probability(self, 'dw_twisted_dandy', numerator, denominator))
             then
                 print("Twisted Dandy Spawned")
-                G.GAME.perscribed_bosses[G.GAME.round_resets.ante + 1] = 'bl_dandy_dandy'
+                G.GAME.perscribed_bosses[G.GAME.round_resets.ante] = 'bl_dandy_dandy'
                 G.FUNCS.reroll_boss()
             end
         end

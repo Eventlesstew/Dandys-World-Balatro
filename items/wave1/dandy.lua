@@ -42,6 +42,9 @@ SMODS.Blind {
             check_for_unlock{type = 'dw_dandy'}
         end
     end,
+    defeat = function(self)
+        G.GAME.current_round.dw_shopSkipCount = 0
+    end
 }
 
 SMODS.Joker{
