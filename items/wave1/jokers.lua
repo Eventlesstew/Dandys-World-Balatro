@@ -185,7 +185,13 @@ SMODS.Joker{
 
     loc_vars = function(self, info_queue, card)
         return { vars = {card.ability.extra.chips, card.ability.extra.mult, card.ability.extra.x_mult, card.ability.extra.h_size}, key = self.key }
-    end
+    end,
+    check_for_unlock = function(self, args)
+        return args.type == 'dw_toodles'
+    end,
+    locked_loc_vars = function(self, info_queue, card)
+        return {vars = {1000}}
+    end,
 }
 
 SMODS.Joker{
@@ -199,8 +205,7 @@ SMODS.Joker{
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
+    unlocked = false,
     calculate = function(self,card,context)
         if context.joker_main then
             mult = card.ability.extra.mult
@@ -218,7 +223,24 @@ SMODS.Joker{
 
     loc_vars = function(self, info_queue, card)
         return { vars = {card.ability.extra.mult_mod, card.ability.extra.mult}, key = self.key }
-    end
+    end,
+    check_for_unlock = function(self, args)
+        if args.type == 'hand_contents' then
+            local tally = 0
+            for j = 1, #args.cards do
+                if args.cards[j].facing == 'back' then
+                    tally = tally + 1
+                    if tally == 5 then
+                        return true
+                    end
+                end
+            end
+        end
+        return false
+    end,
+    locked_loc_vars = function(self, info_queue, card)
+        return {vars = {5}}
+    end,
 }
 
 SMODS.Joker{

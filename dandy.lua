@@ -52,12 +52,10 @@ end
 
 -- Jokers
 assert(SMODS.load_file("items/atlas.lua"))()
+assert(SMODS.load_file("items/game_globals.lua"))()
 assert(SMODS.load_file("items/wave1/jokers.lua"))()
 assert(SMODS.load_file("items/wave1/blinds.lua"))()
-
-if config.epic == 3 then
-    assert(SMODS.load_file("items/epic_extras.lua"))()
-end
+assert(SMODS.load_file("items/epic_extras.lua"))()
 
 if config.easter == true then
     assert(SMODS.load_file("items/easter/jokers.lua"))()

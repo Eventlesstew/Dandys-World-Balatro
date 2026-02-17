@@ -122,65 +122,16 @@ SMODS.Joker{
 local localize_ref = localize
 function localize(args, misc_cat)
     if args == "ph_improve_run" then
-        if G.GAME.current_round.twistedDandyOdds >= 2 then
+        if G.GAME.round_resets.blind_choices.Boss.key == 'bl_dandy_dandy' then
+            args = 'ph_dw_stage4'
+        elseif G.GAME.current_round.dw_shopSkipCount >= 3 then
             args = "ph_dw_stage3"
-        elseif G.GAME.current_round.twistedDandyOdds >= 1 then
+        elseif G.GAME.current_round.dw_shopSkipCount == 2 then
             args = "ph_dw_stage2"
+        elseif G.GAME.current_round.dw_shopSkipCount == 1 then
+            args = "ph_dw_stage1"
         end
     end
     local ret = localize_ref(args, misc_cat)
     return ret
 end
-
-
--- Resets Dandy's Variables back
-function SMODS.current_mod.reset_game_globals(run_start)
-    if run_start then
-        G.GAME.current_round.twistedDandyOdds = 0
-        G.GAME.current_round.twistedDandyChance = 10
-    end
-end
-
-
--- TODO: Move this to a game global function.
-function SMODS.current_mod.calculate(self, context)
-    if context.reroll_shop or context.buying_card then
-        G.GAME.current_round.twistedDandyOdds = -1
-        if G.GAME.round_resets.blind_choices.Boss.key == 'bl_dandy_dandy' then
-            G.FUNCS.reroll_boss()
-        end
-    end
-    if context.ending_shop then
-        G.GAME.current_round.twistedDandyOdds = G.GAME.current_round.twistedDandyOdds + 1
-    end
-
-    if 
-        context.end_of_round and context.game_over == false and context.main_eval and context.beat_boss and 
-        G.GAME.current_round.twistedDandyOdds >= 3
-    then
-        check_for_unlock{type = 'dw_astro'}
-        local numerator = G.GAME.current_round.twistedDandyOdds + 3
-        local denominator = G.GAME.current_round.twistedDandyChance
-        if 
-            (numerator >= denominator) or (SMODS.pseudorandom_probability(self, 'dw_twisted_dandy', numerator, denominator))
-        then
-            print("Twisted Dandy Spawned")
-            G.GAME.perscribed_bosses[G.GAME.round_resets.ante + 1] = 'bl_dandy_dandy'
-            G.FUNCS.reroll_boss()
-        end
-    end
-    
-    if context.remove_playing_cards then
-        check_for_unlock{type = 'dw_shrimpo'}
-    end
-end
-
---[[
-local use_card_ref = G.FUNCS.use_card
-G.FUNCS.use_card = function()
-    local result = use_card_ref()
-    if card.ability.set == 'Booster' and card.area == G.shop_booster then
-        
-    end
-    return result
-end]]

@@ -592,6 +592,11 @@ return {
                     "card played",
                     "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
                 },
+                unlock = {
+                    "Play a #1# card hand",
+                    "containing only cards",
+                    "that are face down",
+                },
             },
             j_dandy_brusha = {
                 name = "Brusha",
@@ -749,6 +754,10 @@ return {
                     "Grants either {C:chips}+#1#{} Chips,",
                     "{C:mult}+#2#{} Mult, {X:mult,C:white}X#3#{} Mult, or",
                     "{C:attention}+#4#{} hand size"
+                },
+                unlock = {
+                    "Gain over {C:mult}#1#{} Mult",
+                    "in one hand"
                 }
             },
             j_dandy_yatta = {
@@ -804,6 +813,10 @@ return {
                     "allows {C:attention}#1#{} more item",
                     "to be chosen",
                 },
+                unlock = {
+                    "Skip a {C:attention}Mega",
+                    "{C:attention}Spectral Pack",
+                }
             },
             j_dandy_dandy = {
                 name = "Dandy",
@@ -1055,8 +1068,10 @@ return {
 
             dw_rodger_attention = 'Pay attention!',
 
-            ph_dw_stage2 = "Spare some, will ya?",
-            ph_dw_stage3 = "Don't Ignore Me!",
+            ph_dw_stage1 = "Spare some, will ya?",
+            ph_dw_stage2 = "Don't Ignore Me!",
+            ph_dw_stage3 = "Be that way...",
+            ph_dw_stage4 = "...",
 
             k_dandy_inactive = "Inactive!",
             k_dandy_active = "Active!",
