@@ -65,8 +65,9 @@ end
 
 -- This resets the shop skip count when a Booster is bought.
 local use_card_ref = G.FUNCS.use_card
-G.FUNCS.use_card = function()
-    local result = use_card_ref()
+G.FUNCS.use_card = function(e, mute, nosave)
+    local result = use_card_ref(e, mute, nosave)
+    local card = e.config.ref_table
     if card.ability.set == 'Booster' and card.area == G.shop_booster then
         SMODS.calculate_context({
             dw_buying_booster = true,
