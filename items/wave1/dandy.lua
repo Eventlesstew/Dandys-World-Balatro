@@ -57,8 +57,7 @@ SMODS.Joker{
     blueprint_compat=true,
     eternal_compat=false,
     perishable_compat=false,
-    unlocked = true,
-    discovered = true,
+    unlocked = false,
     in_pool = function()
         return false
     end,

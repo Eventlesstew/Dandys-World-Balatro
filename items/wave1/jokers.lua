@@ -9,8 +9,7 @@ SMODS.Joker{
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
+    unlocked = false,
     calculate = function(self,card,context)
         if not context.blueprint then
             if context.before then
@@ -93,8 +92,7 @@ SMODS.Joker{
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
+    unlocked = false,
     calculate = function(self,card,context)
         if context.first_hand_drawn then
             if pseudorandom('dw_shrimpo', 1, card.ability.extra.odds) then
@@ -145,8 +143,7 @@ SMODS.Joker{
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
+    unlocked = false,
     calculate = function(self,card,context)
         if context.joker_main then
             local effectTable = {
@@ -254,8 +251,7 @@ SMODS.Joker{
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
+    unlocked = false,
     calculate = function(self,card,context)
         if context.before and context.scoring_name == card.ability.extra.poker_hand then
             return {
@@ -311,8 +307,7 @@ SMODS.Joker{
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true, 
+    unlocked = false,
     effect=nil,
 
     calculate = function(self,card,context)
