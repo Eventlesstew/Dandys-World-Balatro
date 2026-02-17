@@ -1084,6 +1084,7 @@ return {
             k_dandy_epic = "Main",
             
             dw_undiscovered = '?????',
+            dw_twisted_dandy = 'Twisted Dandy',
             dw_options_experimentalTitle = "Experimental",
 
             dw_options_epicjokersTitle = "Epic Mains",

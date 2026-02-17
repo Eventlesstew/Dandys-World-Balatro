@@ -107,8 +107,8 @@ SMODS.Joker{
     end,
     locked_loc_vars = function(self, info_queue, card)
         local text
-        if G.P_BLINDS.bl_dandy_dandy then
-            text = G.P_BLINDS.bl_dandy_dandy.loc_txt.name
+        if G.P_BLINDS.bl_dandy_dandy.discovered then
+            text = localize('dw_t_dandy')
         else
             text = localize('dw_undiscovered')
         end
