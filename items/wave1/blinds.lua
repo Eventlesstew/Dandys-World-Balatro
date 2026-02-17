@@ -2,8 +2,8 @@ SMODS.Blind {
     key = 'poppy',
     atlas = 'dwBlind',
     pos = {x = 0, y = 7},
-    unlocked = true,
-    discovered = true,     
+    
+         
     dollars = 5,
     mult = 2,
     boss = {min = 1},
@@ -18,8 +18,8 @@ SMODS.Blind {
     key = 'boxten',
     atlas = 'dwBlind',
     pos = {x = 0, y = 3},
-    unlocked = true,
-    discovered = true,     
+    
+         
     dollars = 5,
     mult = 2,
     boss = {min = 1},
@@ -34,8 +34,8 @@ SMODS.Blind {
     key = 'shrimpo',
     atlas = 'dwBlind',
     pos = {x = 0, y = 8},
-    unlocked = true,
-    discovered = true,     
+    
+         
     dollars = 5,
     mult = 2,
     boss = {min = 1},
@@ -50,8 +50,8 @@ SMODS.Blind {
     key = 'toodles',
     atlas = 'dwBlind',
     pos = {x = 0, y = 17},
-    unlocked = true,
-    discovered = true,     
+    
+         
     dollars = 5,
     mult = 2,
     boss = {min = 1},
@@ -73,8 +73,8 @@ SMODS.Blind {
     key = 'brightney',
     atlas = 'dwBlind',
     pos = {x = 0, y = 11},
-    unlocked = true,
-    discovered = true,     
+    
+         
     dollars = 5,
     mult = 2,
     boss = {min = 1},
@@ -113,8 +113,8 @@ SMODS.Blind {
     key = 'rodger',
     atlas = 'dwBlind',
     pos = {x = 0, y = 15},
-    unlocked = true,
-    discovered = true,     
+    
+         
     dollars = 5,
     mult = 2,
     boss = {min = 1},
@@ -157,8 +157,8 @@ SMODS.Blind {
     key = 'razzledazzle',
     atlas = 'dwBlind',
     pos = {x = 0, y = 14},
-    unlocked = true,
-    discovered = true,     
+    
+         
     dollars = 5,
     mult = 2,
     boss = {min = 1},
@@ -173,8 +173,8 @@ SMODS.Blind {
     key = 'goob',
     atlas = 'dwBlind',
     pos = {x = 0, y = 22},
-    unlocked = true,
-    discovered = true,     
+    
+         
     dollars = 5,
     mult = 2,
     boss = {min = 1},
@@ -188,8 +188,8 @@ SMODS.Blind {
     key = 'scraps',
     atlas = 'dwBlind',
     pos = {x = 0, y = 23},
-    unlocked = true,
-    discovered = true,     
+    
+         
     dollars = 5,
     mult = 2,
     boss = {min = 1},
@@ -204,8 +204,8 @@ SMODS.Blind {
     key = 'astro',
     atlas = 'dwBlind',
     pos = {x = 0, y = 24},
-    unlocked = true,
-    discovered = true,     
+    
+         
     dollars = 5,
     mult = 2,
     boss = {min = 1},
@@ -220,8 +220,8 @@ SMODS.Blind {
     key = 'pebble',
     atlas = 'dwBlind',
     pos = {x = 0, y = 25},
-    unlocked = true,
-    discovered = true,     
+    
+         
     dollars = 5,
     mult = 2,
     boss = {showdown = true},
@@ -242,8 +242,8 @@ SMODS.Blind {
     key = 'vee',
     atlas = 'dwBlind',
     pos = {x = 0, y = 28},
-    unlocked = true,
-    discovered = true,     
+    
+         
     dollars = 5,
     mult = 2,
     boss = {min = 1},

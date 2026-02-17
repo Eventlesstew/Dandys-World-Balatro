@@ -650,8 +650,7 @@ SMODS.Joker{
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
+    unlocked = false,
     add_to_deck = function(self, card, from_debuff)
         if not G.GAME.modifiers.booster_choice_mod then
             G.GAME.modifiers.booster_choice_mod = 0
