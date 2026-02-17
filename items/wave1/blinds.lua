@@ -18,8 +18,6 @@ SMODS.Blind {
     key = 'boxten',
     atlas = 'dwBlind',
     pos = {x = 0, y = 3},
-    
-         
     dollars = 5,
     mult = 2,
     boss = {min = 1},
