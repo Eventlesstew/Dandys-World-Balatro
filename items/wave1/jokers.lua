@@ -288,12 +288,21 @@ SMODS.Joker{
     loc_vars = function(self, info_queue, card)
         return {vars = {localize(card.ability.extra.poker_hand, 'poker_hands')}, key = self.key }
     end,
-    check_for_unlock = function(self, args) -- equivalent to `unlock_condition = { type = 'discover_amount', tarot_count = 22 }`
-        return args.type == 'discover_amount' and #G.P_BLINDS >= 30
-    end,
     locked_loc_vars = function(self, info_queue, card)
-        return { vars = { 30 } }
+        return { vars = { 40 } }
     end,
+    check_for_unlock = function(self, args)
+        if args.type == 'blind_discoveries' then
+            local discovered_blinds = 0
+            for k, v in pairs(G.P_BLINDS) do
+                if v.discovered then
+                    discovered_blinds = discovered_blinds + 1
+                end
+            end
+            return discovered_blinds >= 40
+        end
+        return false
+    end
 }
 
 SMODS.Joker{
