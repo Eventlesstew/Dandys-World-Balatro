@@ -58,7 +58,7 @@ function SMODS.current_mod.calculate(self, context)
     end
 
     -- Unlocks Vee
-    if context.skipping_booster and context.booster.key == 'spectral_mega_1' then
+    if context.skipping_booster and context.booster.key == 'p_spectral_mega' then
         check_for_unlock{type = 'dw_vee'}
     end
 end

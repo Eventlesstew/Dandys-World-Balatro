@@ -143,21 +143,6 @@ SMODS.Blind {
 }
 
 SMODS.Blind {
-    key = 'gigi',
-    atlas = 'dwBlind',
-    pos = {x = 0, y = 20},
-    unlocked = true,
-    discovered = true,     
-    dollars = 5,
-    mult = 2,
-    boss = {min = 1},
-    boss_colour = HEX("575757"),
-    in_pool = function()
-        return false
-    end,
-}
-
-SMODS.Blind {
     key = 'glisten',
     atlas = 'dwBlind',
     pos = {x = 0, y = 21},

@@ -4,8 +4,8 @@ SMODS.Joker{
     pos = { x = 6, y = 5},
     soul_pos=nil,
     rarity = 1,
-    cost = 2,
-    config = { extra = {chips = 0, chip_mod = 30} },
+    cost = 4,
+    config = { extra = {chips = 0, chip_mod = 25} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
@@ -48,28 +48,22 @@ SMODS.Joker{
     pos = { x = 5, y = 4},
     soul_pos=nil,
     rarity = 1,
-    cost = 2,
-    config = { extra = {mult = 5, mult_mod = 5} },
+    cost = 4,
+    config = { extra = {mult = 3} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = false,
     calculate = function(self,card,context)
         if context.joker_main then
-            local tally = 0
-            for _,v in context.full_hand do
-                if v:is_face() then
-                    tally = tally + 1
-                end
-            end
 
             return {
-                mult = card.ability.extra.mult + (card.ability.extra.mult_mod * tally)
+                mult = card.ability.extra.mult * #context.full_hand
             }
         end
     end,
     loc_vars = function(self, info_queue, card)
-        return { vars = {card.ability.extra.mult, card.ability.extra.mult_mod}, key = self.key }
+        return {vars = {card.ability.extra.mult}}
     end,
     check_for_unlock = function(self, args)
         if args.type == 'hand_contents' then
@@ -455,6 +449,55 @@ SMODS.Joker{
 }
 
 SMODS.Joker{
+    key = 'gigi',
+    atlas = 'dwJoker',
+    pos = { x = 2, y = 5},
+    soul_pos=nil,
+    rarity = 3,
+    cost = 8,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = false,
+
+    in_pool = function()
+        return false
+    end,
+    calculate = function(self,card,context)
+        if context.setting_blind then
+            local booster = SMODS.create_card { set = 'Booster', area = G.play }
+            booster.T.x = G.play.T.x + G.play.T.w / 2 - G.CARD_W * 1.27 / 2
+            booster.T.y = G.play.T.y + G.play.T.h / 2 - G.CARD_H * 1.27 / 2
+            booster.T.w = G.CARD_W * 1.27
+            booster.T.h = G.CARD_H * 1.27
+            booster.cost = 0
+            booster.from_tag = true
+            G.FUNCS.use_card({ config = { ref_table = booster } })
+            booster:start_materialize()
+            G.CONTROLLER.locks[lock] = nil
+        end
+    end,
+    check_for_unlock = function(self, args)
+        --[[
+        if args.type == 'booster_discoveries' then
+            local discovered_blinds = 0
+            for k, v in pairs(G.P_BLINDS) do
+                if v.discovered then
+                    discovered_blinds = discovered_blinds + 1
+                end
+            end
+            return discovered_blinds >= 40
+        end]]
+        return false
+    end,
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}, key = self.key }
+    end
+}
+
+SMODS.Joker{
     key = 'goob',
     atlas = 'dwJoker',
     pos = { x = 4, y = 5},
@@ -717,5 +760,8 @@ SMODS.Joker{
     end,
     loc_vars = function(self, info_queue, card)
         return { vars = {card.ability.extra.choice_mod, card.ability.extra.size_mod}, key = self.key }
-    end
+    end,
+    check_for_unlock = function(self, args)
+        return args.type == 'dw_vee'
+    end,
 }

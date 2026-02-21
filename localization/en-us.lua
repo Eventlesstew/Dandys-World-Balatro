@@ -569,10 +569,8 @@ return {
             j_dandy_boxten = {
                 name = "Boxten",
                 text = {
-                    "{C:red}+#1#{} Mult",
-                    "Grants an extra {C:red}+#2#{} Mult",
-                    "for each {C:attention}face{} card in",
-                    "played hand"
+                    "{C:red}+#1#{} Mult for each",
+                    "card in played hand",
                     --[[
                     "{C:money}$#1#{} for each",
                     "{C:attention}Joker{} card at",
