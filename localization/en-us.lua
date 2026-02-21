@@ -569,9 +569,10 @@ return {
             j_dandy_boxten = {
                 name = "Boxten",
                 text = {
-                    "Played {C:attention}face{} cards",
-                    "give {C:mult}+#1#{} Mult",
-                    "when scored",
+                    "{C:red}+#1#{} Mult",
+                    "Grants an extra {C:red}+#2#{} Mult",
+                    "for each {C:attention}face{} card in",
+                    "played hand"
                     --[[
                     "{C:money}$#1#{} for each",
                     "{C:attention}Joker{} card at",
@@ -580,9 +581,15 @@ return {
                     ]]
                 },
                 unlock = {
+                    "Play a #1# card hand",
+                    "that contains only",
+                    "{C:attention}face{} cards",
+                },
+                --[[
+                unlock = {
                     "Own more than {C:attention}#1#{}",
                     "{C:attention}Jokers{} in one run"
-                },
+                },]]
             },
             j_dandy_brightney = {
                 name = "Brightney",

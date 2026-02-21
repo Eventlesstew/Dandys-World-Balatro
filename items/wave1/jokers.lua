@@ -5,7 +5,7 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = 1,
     cost = 2,
-    config = { extra = {chips = 0, chip_mod = 50} },
+    config = { extra = {chips = 0, chip_mod = 30} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
@@ -49,26 +49,48 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = 1,
     cost = 2,
-    config = { extra = {mult = 3} },
+    config = { extra = {mult = 5, mult_mod = 5} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = false,
     calculate = function(self,card,context)
-        if context.individual and context.cardarea == G.play and context.other_card:is_face() then
+        if context.joker_main then
+            local tally = 0
+            for _,v in context.full_hand do
+                if v:is_face() then
+                    tally = tally + 1
+                end
+            end
+
             return {
-                mult = card.ability.extra.mult
+                mult = card.ability.extra.mult + (card.ability.extra.mult_mod * tally)
             }
         end
     end,
     loc_vars = function(self, info_queue, card)
-        return { vars = {card.ability.extra.mult}, key = self.key }
+        return { vars = {card.ability.extra.mult, card.ability.extra.mult_mod}, key = self.key }
     end,
+    check_for_unlock = function(self, args)
+        if args.type == 'hand_contents' then
+            local tally = 0
+            for j = 1, #args.cards do
+                if args.cards[j]:is_face() then
+                    tally = tally + 1
+                    if tally == 5 then
+                        return true
+                    end
+                end
+            end
+        end
+        return false
+    end,
+    --[[
     check_for_unlock = function(self, args)
         if args.type == 'modify_jokers' and G.jokers then
             return #G.jokers.cards > 5
         end
-    end,
+    end,]]
     locked_loc_vars = function(self, info_queue, card)
         return {vars = {5}}
     end
