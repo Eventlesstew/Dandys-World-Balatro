@@ -44,22 +44,44 @@ function SMODS.current_mod.calculate(self, context)
             end
         end
     end
+
+    -- JOKER UNLOCKS
     
-    -- Unlocks Shrimpo
-    if context.remove_playing_cards then
-        check_for_unlock{type = 'dw_shrimpo'}
+    -- Shrimpo
+    if G.P_LOCKED.j_dandy_shrimpo then
+        if context.remove_playing_cards then
+            check_for_unlock{type = 'dw_shrimpo'}
+        end
     end
 
-    -- Unlocks Toodles
-    if context.final_scoring_step then
-        if mult > 1000 then
+    -- Toodles
+    if G.P_LOCKED.j_dandy_toodles then
+        if context.final_scoring_step and mult > 1000 then
             check_for_unlock{type = 'dw_toodles'}
         end
     end
 
-    -- Unlocks Vee
-    if context.skipping_booster and context.booster.key == 'p_spectral_mega' then
-        check_for_unlock{type = 'dw_vee'}
+    -- Brightney
+    if G.P_LOCKED.j_dandy_brightney then
+        if context.press_play then
+            local count = 0
+            for _,v in ipairs(context.full_hand) do
+                if v.facing == 'back' then
+                    count = count + 1
+                end
+            end
+            
+            if count == 5 then
+                check_for_unlock{type = 'dw_brightney'}
+            end
+        end
+    end
+
+    -- Vee
+    if G.P_LOCKED.j_dandy_vee then
+        if context.skipping_booster and context.booster.key == 'p_spectral_mega' then
+            check_for_unlock{type = 'dw_vee'}
+        end
     end
 end
 

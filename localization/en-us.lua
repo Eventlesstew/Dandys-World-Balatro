@@ -638,8 +638,13 @@ return {
             j_dandy_gigi = {
                 name = "Gigi",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "Adds a random Planet, Tarot or Spectral card",
+                    "to deck when Blind is selected"
                 },
+                unlock = {
+                    "Discover every",
+                    "Spectral card"
+                }
             },
             j_dandy_glisten = {
                 name = "Glisten",

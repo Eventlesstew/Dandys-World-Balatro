@@ -56,7 +56,6 @@ SMODS.Joker{
     unlocked = false,
     calculate = function(self,card,context)
         if context.joker_main then
-
             return {
                 mult = card.ability.extra.mult * #context.full_hand
             }
@@ -214,7 +213,7 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = 2,
     cost = 6,
-    config = { extra = {mult = 0, mult_mod = 2} },
+    config = { extra = {mult = 0, mult_mod = 3, target_cards = {}} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
@@ -223,13 +222,34 @@ SMODS.Joker{
         if context.joker_main then
             mult = card.ability.extra.mult
         end
-        if context.individual and context.cardarea == G.play and not context.end_of_round then -- Not sure if this would work
-            if context.other_card.facing == 'back' then
-                card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_mod
-                return {
-                    message = localize('k_upgrade_ex'),
-                    colour = G.C.MULT,
-                }
+        if not context.blueprint then
+            if context.press_play then
+                card.ability.extra.target_cards = {}
+                for _,v in ipairs(context.full_hand) do
+                    if v.facing == 'back' then
+                        card.ability.extra.target_cards[#card.ability.extra.target_cards+1] = v
+                    end
+                end
+            end
+            if context.individual and context.cardarea == G.play and not context.end_of_round then -- Not sure if this would work
+                local valid = false
+                for _,v in ipairs(card.ability.extra.target_cards) do
+                    if context.other_card == v then
+                        valid = true
+                        break
+                    end
+                end
+                
+                if valid then
+                    card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_mod
+                    return {
+                        message = localize('k_upgrade_ex'),
+                        colour = G.C.MULT,
+                    }
+                end
+            end
+            if context.after then
+                card.ability.extra.target_cards = {}
             end
         end
     end,
@@ -238,18 +258,7 @@ SMODS.Joker{
         return { vars = {card.ability.extra.mult_mod, card.ability.extra.mult}, key = self.key }
     end,
     check_for_unlock = function(self, args)
-        if args.type == 'hand_contents' then
-            local tally = 0
-            for j = 1, #args.cards do
-                if args.cards[j].facing == 'back' then
-                    tally = tally + 1
-                    if tally == 5 then
-                        return true
-                    end
-                end
-            end
-        end
-        return false
+        return args.type == 'dw_brightney'
     end,
     locked_loc_vars = function(self, info_queue, card)
         return {vars = {5}}
@@ -284,7 +293,7 @@ SMODS.Joker{
                         _poker_hands[#_poker_hands + 1] = handname
                     end
                 end
-                card.ability.extra.poker_hand = pseudorandom_element(_poker_hands, 'gl_anjellyze')
+                card.ability.extra.poker_hand = pseudorandom_element(_poker_hands, 'dw_rodger')
                 return {
                     message = localize('k_reset')
                 }
@@ -298,7 +307,7 @@ SMODS.Joker{
                 _poker_hands[#_poker_hands + 1] = handname
             end
         end
-        card.ability.extra.poker_hand = pseudorandom_element(_poker_hands, 'gl_anjellyze')
+        card.ability.extra.poker_hand = pseudorandom_element(_poker_hands, 'dw_rodger')
     end,
 
     loc_vars = function(self, info_queue, card)
@@ -461,40 +470,48 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = false,
 
-    in_pool = function()
-        return false
-    end,
     calculate = function(self,card,context)
-        if context.setting_blind then
-            local booster = SMODS.create_card { set = 'Booster', area = G.play }
-            booster.T.x = G.play.T.x + G.play.T.w / 2 - G.CARD_W * 1.27 / 2
-            booster.T.y = G.play.T.y + G.play.T.h / 2 - G.CARD_H * 1.27 / 2
-            booster.T.w = G.CARD_W * 1.27
-            booster.T.h = G.CARD_H * 1.27
-            booster.cost = 0
-            booster.from_tag = true
-            G.FUNCS.use_card({ config = { ref_table = booster } })
-            booster:start_materialize()
-            G.CONTROLLER.locks[lock] = nil
+        if context.setting_blind and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+            G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+            G.E_MANAGER:add_event(Event({
+                func = (function()
+                    local consumableTypes = {'Tarot', 'Planet', 'Spectral'}
+                    local consumableType = pseudorandom_element(types, 'dw_gigi')
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            SMODS.add_card {
+                                set = type,
+                                key_append = 'dandy_gigi' -- Optional, useful for manipulating the random seed and checking the source of the creation in `in_pool`.
+                            }
+                            G.GAME.consumeable_buffer = 0
+                            return true
+                        end
+                    }))
+
+                    local effectmessage
+                    local effectcolour
+                    if consumableType == 'Planet' then
+                        effectmessage = localize('k_plus_planet')
+                        effectcolour = G.C.SECONDARY_SET.Planet
+                    elseif consumableType == 'Tarot' then
+                        effectmessage = localize('k_plus_tarot')
+                        effectcolour = G.C.PURPLE
+                    elseif consumableType == 'spectral' then
+                        effectmessage = localize('k_plus_spectral')
+                        effectcolour = G.C.SECONDARY_SET.Spectral
+                    end
+                    
+                    SMODS.calculate_effect({ message = effectmessage, colour = effectcolour },
+                        context.blueprint_card or card)
+                    return true
+                end)
+            }))
+            return nil, true -- This is for Joker retrigger purposes
         end
     end,
-    check_for_unlock = function(self, args)
-        --[[
-        if args.type == 'booster_discoveries' then
-            local discovered_blinds = 0
-            for k, v in pairs(G.P_BLINDS) do
-                if v.discovered then
-                    discovered_blinds = discovered_blinds + 1
-                end
-            end
-            return discovered_blinds >= 40
-        end]]
-        return false
+    check_for_unlock = function(self, args) -- equivalent to `unlock_condition = { type = 'discover_amount', tarot_count = 22 }`
+        return args.type == 'discover_amount' and #G.P_CENTER_POOLS.Spectral <= args.spectral_count
     end,
-
-    loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
-    end
 }
 
 SMODS.Joker{
