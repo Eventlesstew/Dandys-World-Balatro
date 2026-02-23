@@ -533,7 +533,7 @@ SMODS.Joker{
         end
     end,
     check_for_unlock = function(self, args) -- equivalent to `unlock_condition = { type = 'discover_amount', spectral_count = 18 }`
-        return args.type == 'discover_amount' and #G.P_CENTER_POOLS.Spectral <= args.spectral_count
+        return args.type == 'discover_amount' and #G.P_CENTER_POOLS.Spectral <= 18
     end,
 }
 
