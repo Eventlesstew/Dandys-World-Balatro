@@ -13,39 +13,32 @@ SMODS.Tag {
             end
 
             local card
-            local valid = false
-            if G.P_LOCKED['j_dandy_pebble'] then -- Checks if Pebble is locked, guarantees spawn if yes.
+            if G.P_LOCKED.j_dandy_pebble then -- Checks if Pebble is locked, guarantees spawn if yes.
+                check_for_unlock{type = 'dw_pebble'}
                 card = SMODS.create_card {
                     key = 'j_dandy_pebble',
                     area = context.area,
                     key_append = "dw_epic"
                 }
-                check_for_unlock{type = 'dw_pebble'}
-                valid = true
-            elseif #G.P_JOKER_RARITY_POOLS['dandy_epic'] > mains_in_posession[1] then
+            else
                 card = SMODS.create_card {
                     set = "Joker",
                     rarity = "dandy_epic",
                     area = context.area,
                     key_append = "dw_epic"
                 }
-                valid = true
             end
 
-            if valid then
-                create_shop_card_ui(card, 'Joker', context.area)
-                card.states.visible = false
-                tag:yep('+', G.C.GREEN, function()
-                    card:start_materialize()
-                    --card.cost_mod = 0.5
-                    card:set_cost()
-                    return true
-                end)
-                tag.triggered = true
-                return card
-            else
-                tag:nope()
-            end
+            create_shop_card_ui(card, 'Joker', context.area)
+            card.states.visible = false
+            tag:yep('+', G.C.GREEN, function()
+                card:start_materialize()
+                --card.cost_mod = 0.5
+                card:set_cost()
+                return true
+            end)
+            tag.triggered = true
+            return card
         end
     end
 }

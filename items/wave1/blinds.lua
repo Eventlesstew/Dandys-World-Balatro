@@ -52,7 +52,7 @@ SMODS.Blind {
          
     dollars = 5,
     mult = 2,
-    boss = {min = 1},
+    boss = {min = 4},
     boss_colour = HEX("c6e0eb"),
     calculate = function(self, blind, context)
         if not blind.disabled then
@@ -75,7 +75,7 @@ SMODS.Blind {
          
     dollars = 5,
     mult = 2,
-    boss = {min = 1},
+    boss = {min = 3},
     boss_colour = HEX("575757"),
     ignore_showdown_check = true,
     calculate = function(self, blind, context)
@@ -115,7 +115,7 @@ SMODS.Blind {
          
     dollars = 5,
     mult = 2,
-    boss = {min = 1},
+    boss = {min = 3},
     boss_colour = HEX("575757"),
     calculate = function(self, blind, context)
         if not blind.disabled then
@@ -155,6 +155,22 @@ SMODS.Blind {
     key = 'razzledazzle',
     atlas = 'dwBlind',
     pos = {x = 0, y = 14},
+    
+         
+    dollars = 5,
+    mult = 2,
+    boss = {min = 1},
+    boss_colour = HEX("575757"),
+    ignore_showdown_check = true,
+    in_pool = function()
+        return false
+    end,
+}
+
+SMODS.Blind {
+    key = 'squirm',
+    atlas = 'dwBlind',
+    pos = {x = 0, y = 41},
     
          
     dollars = 5,

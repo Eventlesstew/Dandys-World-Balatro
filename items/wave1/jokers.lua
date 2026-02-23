@@ -458,6 +458,29 @@ SMODS.Joker{
 }
 
 SMODS.Joker{
+    key = 'squirm',
+    atlas = 'dwJoker',
+    pos = { x = 2, y = 5},
+    soul_pos=nil,
+    rarity = 3,
+    cost = 8,
+    config = { extra = {} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=true,
+    unlocked = false,
+
+    in_pool = function()
+        return false
+    end,
+    calculate = function(self,card,context)
+    end,
+    check_for_unlock = function(self, args) -- equivalent to `unlock_condition = { type = 'discover_amount', spectral_count = 18 }`
+        return false
+    end,
+}
+
+SMODS.Joker{
     key = 'gigi',
     atlas = 'dwJoker',
     pos = { x = 2, y = 5},
@@ -509,7 +532,7 @@ SMODS.Joker{
             return nil, true -- This is for Joker retrigger purposes
         end
     end,
-    check_for_unlock = function(self, args) -- equivalent to `unlock_condition = { type = 'discover_amount', tarot_count = 22 }`
+    check_for_unlock = function(self, args) -- equivalent to `unlock_condition = { type = 'discover_amount', spectral_count = 18 }`
         return args.type == 'discover_amount' and #G.P_CENTER_POOLS.Spectral <= args.spectral_count
     end,
 }

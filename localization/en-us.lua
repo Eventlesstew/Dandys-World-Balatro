@@ -131,6 +131,12 @@ return {
                     "Incomplete"
                 },
             },
+            bl_dandy_squirm = {
+                name = "Twisted Squirm",
+                text = {
+                    "Incomplete"
+                }
+            },
             bl_dandy_astro = {
                 name = "Astro's Nightmare",
                 text = {
@@ -638,8 +644,9 @@ return {
             j_dandy_gigi = {
                 name = "Gigi",
                 text = {
-                    "Adds a random Planet, Tarot or Spectral card",
-                    "to deck when Blind is selected"
+                    "Create a {C:planet}Planet{}, {C:tarot}Tarot{} or {C:spectral}Spectral{}",
+                    "card when {C:attention}Blind{} is selected",
+                    "{C:inactive}(Must have room)",
                 },
                 unlock = {
                     "Discover every",
@@ -742,6 +749,12 @@ return {
                     "{C:attention}Destroy{} a",
                     "playing card"
                 },
+            },
+            j_dandy_squirm = {
+                name = "Squirm",
+                text = {
+                    "UNKNOWN"
+                }
             },
             j_dandy_teagan = {
                 name = "Teagan",
