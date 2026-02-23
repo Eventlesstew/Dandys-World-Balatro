@@ -460,7 +460,7 @@ SMODS.Joker{
 SMODS.Joker{
     key = 'squirm',
     atlas = 'dwJoker',
-    pos = { x = 2, y = 5},
+    pos = { x = 9, y = 8},
     soul_pos=nil,
     rarity = 3,
     cost = 8,
