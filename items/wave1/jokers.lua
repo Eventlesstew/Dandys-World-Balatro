@@ -225,7 +225,7 @@ SMODS.Joker{
         if not context.blueprint then
             if context.press_play then
                 card.ability.extra.target_cards = {}
-                for _,v in ipairs(context.full_hand) do
+                for _,v in ipairs(G.hand.cards) do
                     if v.facing == 'back' then
                         card.ability.extra.target_cards[#card.ability.extra.target_cards+1] = v
                     end
