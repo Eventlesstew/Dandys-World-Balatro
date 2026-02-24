@@ -189,23 +189,21 @@ SMODS.Joker{
     key = 'bassie',
     atlas = 'dwJoker',
     pos = { x = 7, y = 7},
-    soul_pos=nil,
-    rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or ((dandysworld.config.epic ~= 1) and 'dandy_epic') or 3,
-    cost = ((next(SMODS.find_mod('Cryptid')) or (dandysworld.config.epic ~= 1)) and 10) or 20,
-    config = { extra = {} },
-    blueprint_compat=true,
+    rarity = 'dandy_epic',
+    cost = 20,
+    config = { extra = {slots = 2} },
+    blueprint_compat=false,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = true,
-    discovered = true,
-    in_pool = function()
-        return false
+    add_to_deck = function(self, card, from_debuff) 
+        G.consumeables.config.card_limit = G.consumeables.config.card_limit + card.ability.extra.slots
     end,
-    calculate = function(self,card,context)
+    remove_from_deck = function(self, card, from_debuff)
+        G.consumeables.config.card_limit = G.consumeables.config.card_limit - card.ability.extra.slots
     end,
-
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        return { vars = {card.ability.extra.slots}, key = self.key }
     end
 }
 

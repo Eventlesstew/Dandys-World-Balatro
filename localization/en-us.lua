@@ -911,7 +911,7 @@ return {
             j_dandy_bassie = {
                 name = "Bassie",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{C:attention}+#1#{} consumable slots",
                 },
             },
 
