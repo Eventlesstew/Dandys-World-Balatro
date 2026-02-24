@@ -7,15 +7,6 @@ SMODS.Sound {
     end,
 }
 
-SMODS.Gradient {
-    key = 'boss_gradient',
-    colours = {
-        HEX('ff6969'),
-        HEX('801414')
-    },
-    cycle = 10
-}
-
 SMODS.Blind {
     key = 'dandy',
     atlas = 'dwBlind',
@@ -23,7 +14,7 @@ SMODS.Blind {
     dollars = 0,
     mult = 2,
     boss = {min = 1},
-    boss_colour = SMODS.Gradients["dandy_boss_gradient"],
+    boss_colour = HEX('801414'),
     in_pool = function()
         return false
     end,

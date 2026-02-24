@@ -35,7 +35,8 @@ return {
             bl_dandy_shrimpo = {
                 name = "Twisted Shrimpo",
                 text = {
-                    "Incomplete"
+                    "One random card",
+                    "played is debuffed",
                 },
             },
             bl_dandy_tisha = {

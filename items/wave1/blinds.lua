@@ -1,3 +1,24 @@
+function shakeBlind(self)
+    G.E_MANAGER:add_event(Event({
+        trigger = 'immediate',
+        func = (function()
+            SMODS.juice_up_blind()
+            G.E_MANAGER:add_event(Event({
+                trigger = 'after',
+                delay = 0.06 * G.SETTINGS.GAMESPEED,
+                blockable = false,
+                blocking = false,
+                func = function()
+                    play_sound('tarot2', 0.76, 0.4)
+                    return true
+                end
+            }))
+            play_sound('tarot2', 1, 0.4)
+            return true
+        end)
+    }))
+end
+
 SMODS.Blind {
     key = 'poppy',
     atlas = 'dwBlind',
@@ -7,8 +28,7 @@ SMODS.Blind {
     dollars = 5,
     mult = 2,
     boss = {min = 1},
-    boss_colour = HEX("575757"),
-    ignore_showdown_check = true,
+    boss_colour = HEX("31b1cd"),
     in_pool = function()
         return false
     end,
@@ -21,8 +41,7 @@ SMODS.Blind {
     dollars = 5,
     mult = 2,
     boss = {min = 1},
-    boss_colour = HEX("575757"),
-    ignore_showdown_check = true,
+    boss_colour = HEX("a84dbe"),
     in_pool = function()
         return false
     end,
@@ -36,11 +55,31 @@ SMODS.Blind {
          
     dollars = 5,
     mult = 2,
-    boss = {min = 1},
-    boss_colour = HEX("575757"),
-    ignore_showdown_check = true,
-    in_pool = function()
-        return false
+    boss = {min = 2},
+    boss_colour = HEX("e48986"),
+    calculate = function(self, blind, context)
+        if not blind.disabled then
+            if context.debuff_card and context.debuff_card.dw_shrimpo_debuff then
+                return {
+                    debuff = true
+                }
+            end
+            if context.debuff_hand and not context.check then
+                local target_card = pseudorandom_element(context.scoring_hand, 'dw_twisted_shrimpo')
+                if target_card then
+                    target_card.dw_shrimpo_debuff = true
+                    SMODS.recalc_debuff(target_card)
+                    shakeBlind()
+                end
+            end
+
+            if context.hand_drawn or (context.end_of_round and context.game_over == false and context.main_eval) then
+                for _, other_card in ipairs(G.playing_cards) do
+                    other_card.dw_shrimpo_debuff = nil
+                    SMODS.recalc_debuff(other_card)
+                end
+            end
+        end
     end,
 }
 
@@ -76,7 +115,7 @@ SMODS.Blind {
     dollars = 5,
     mult = 2,
     boss = {min = 3},
-    boss_colour = HEX("575757"),
+    boss_colour = HEX("ad216c"),
     ignore_showdown_check = true,
     calculate = function(self, blind, context)
         if not blind.disabled then
@@ -116,7 +155,7 @@ SMODS.Blind {
     dollars = 5,
     mult = 2,
     boss = {min = 3},
-    boss_colour = HEX("575757"),
+    boss_colour = HEX("9792dd"),
     calculate = function(self, blind, context)
         if not blind.disabled then
             if context.setting_blind or context.after then
@@ -159,11 +198,38 @@ SMODS.Blind {
          
     dollars = 5,
     mult = 2,
-    boss = {min = 1},
-    boss_colour = HEX("575757"),
-    ignore_showdown_check = true,
-    in_pool = function()
-        return false
+    boss = {min = 3},
+    boss_colour = HEX("ac3232"),
+    calculate = function(self, blind, context)
+        if context.debuff_card then
+            if 
+                (blind.mode == 'dazzle' and (context.debuff_card:is_suit('Spades') or context.debuff_card:is_suit('Clubs'))) or
+                (blind.mode == 'razzle' and (context.debuff_card:is_suit('Hearts') or context.debuff_card:is_suit('Diamonds')))
+            then
+                return {
+                    debuff = true
+                }
+            end
+        end
+        if context.setting_blind then
+            blind.mode = 'dazzle'
+        end
+        if context.after then
+            blind.prepped = true
+        end
+        if context.hand_drawn and blind.prepped then
+            if blind.mode == 'dazzle' then
+                blind.mode = 'razzle'
+            else
+                blind.mode = 'dazzle'
+            end
+            blind.prepped = nil
+
+            for _,v in ipairs(G.playing_cards) do
+                SMODS.recalc_debuff(v)
+            end
+            shakeBlind()
+        end
     end,
 }
 
@@ -192,7 +258,7 @@ SMODS.Blind {
     dollars = 5,
     mult = 2,
     boss = {min = 1},
-    boss_colour = HEX("575757"),
+    boss_colour = HEX("abf3fb"),
     in_pool = function()
         return false
     end,
@@ -207,7 +273,7 @@ SMODS.Blind {
     dollars = 5,
     mult = 2,
     boss = {min = 1},
-    boss_colour = HEX("575757"),
+    boss_colour = HEX("5f80eb"),
     in_pool = function()
         return false
     end,
@@ -222,7 +288,7 @@ SMODS.Blind {
     dollars = 5,
     mult = 2,
     boss = {min = 1},
-    boss_colour = HEX("575757"),
+    boss_colour = HEX("cfb595"),
     ignore_showdown_check = true,
     in_pool = function()
         return false
