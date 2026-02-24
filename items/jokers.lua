@@ -1,3 +1,50 @@
+-- Main Rarity Gradient
+SMODS.Gradient {
+    key = 'main_gradient',
+    colours = {
+        HEX('fd5f55'),
+        HEX('fda200'),
+        HEX('ffd61d'),
+        HEX('91e461'),
+        HEX('009cfd'),
+        HEX('8a71e1'),
+    },
+    cycle = 15
+}
+
+-- Main Rarity
+SMODS.Rarity{
+	key = "epic",
+	loc_txt = {},
+	badge_colour = SMODS.Gradients["dandy_main_gradient"],
+	default_weight = 0.003,
+	pools = { ["Joker"] = true },
+}
+
+-- Lethal Rarity Gradient
+SMODS.Gradient {
+    key = 'lethal_gradient',
+    colours = {
+        HEX('F46464'),
+        HEX('C01F1F')
+    },
+    cycle = 6
+}
+
+-- Lethal Rarity
+SMODS.Rarity {
+    key = 'leader',
+    badge_colour = SMODS.Gradients["dandy_lethal_gradient"],
+    default_weight = 0
+}
+
+SMODS.Atlas({
+    key = 'dwJoker',
+    path = "DandyJokers.png",
+    px = 71,
+    py = 95
+})
+
 SMODS.Joker{
     key = 'poppy',
     atlas = 'dwJoker',
@@ -219,9 +266,6 @@ SMODS.Joker{
     perishable_compat=true,
     unlocked = false,
     calculate = function(self,card,context)
-        if context.joker_main then
-            mult = card.ability.extra.mult
-        end
         if not context.blueprint then
             if context.press_play then
                 card.ability.extra.target_cards = {}
@@ -251,6 +295,11 @@ SMODS.Joker{
             if context.after then
                 card.ability.extra.target_cards = {}
             end
+        end
+        if context.joker_main then
+            return {
+                mult = card.ability.extra.mult
+            }
         end
     end,
 
@@ -804,4 +853,80 @@ SMODS.Joker{
     check_for_unlock = function(self, args)
         return args.type == 'dw_vee'
     end,
+}
+
+SMODS.Joker{
+    key = "dandy",
+    atlas = 'dwJoker',
+    pos = { x = 8, y = 7},
+    soul_pos={ x = 8, y = 8},
+    rarity = (dandysworld.config.dwBlinds and 'dandy_leader') or 4,
+    cost = 40,
+    config = { extra = {chips = 0, chip_mod = 50} },
+    blueprint_compat=true,
+    eternal_compat=true,
+    perishable_compat=false,
+    unlocked = false,
+    in_pool = function()
+        return false
+    end,
+    calculate = function(self, card, context)
+        if not context.blueprint then
+            if context.reroll_shop or context.buying_card then
+                card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_mod
+                return {
+                    message = localize('k_upgrade_ex'),
+                    colour = G.C.CHIPS
+                }
+            end
+        end
+        if context.joker_main then
+            return {
+                chips = card.ability.extra.chips
+            }
+        end
+        --[[
+        if context.setting_blind and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+            G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+            G.E_MANAGER:add_event(Event({
+                func = (function()
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            SMODS.add_card {
+                                set = 'Spectral',
+                                key_append = 'dandy_dandy',
+                                edition = 'e_negative',
+                            }
+                            G.GAME.consumeable_buffer = 0
+                            return true
+                        end
+                    }))
+                    SMODS.calculate_effect({ message = localize('k_plus_spectral'), colour = G.C.SECONDARY_SET.Spectral},
+                        context.blueprint_card or card)
+                    return true
+                end)
+            }))
+            return nil, true -- This is for Joker retrigger purposes
+        end]]
+    end,
+    loc_vars = function(self, info_queue, card)
+        --info_queue[#info_queue + 1] = { key = 'e_negative_consumable', set = 'Edition', config = { extra = 1 } }
+        return { vars = {card.ability.extra.chips, card.ability.extra.chip_mod}, key = self.key }
+    end,
+    check_for_unlock = function(self, args)
+        return args.type == 'dw_dandy'
+    end,
+    locked_loc_vars = function(self, info_queue, card)
+        local text
+        if dandysworld.config.dwBlinds then
+            if G.P_BLINDS.bl_dandy_dandy.discovered then
+                text = localize('dw_dandyUnlock_discovered')
+            else
+                text = localize('dw_dandyUnlock_undiscovered')
+            end
+        else
+            text = localize('dw_dandyUnlock_legendary')
+        end
+        return {vars = {text}}
+    end
 }

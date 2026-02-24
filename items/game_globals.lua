@@ -1,3 +1,11 @@
+-- Mod Icon
+SMODS.Atlas {
+    key = "modicon",
+    path = "icon.png",
+    px = 32,
+    py = 32
+}
+
 function SMODS.current_mod.reset_game_globals(run_start)
     -- Resets Dandy's Variables back
     if run_start then
@@ -26,61 +34,61 @@ function SMODS.current_mod.calculate(self, context)
         G.GAME.current_round.dw_shopSkipCount = G.GAME.current_round.dw_shopSkipCount + 1
         print(G.GAME.current_round.dw_shopSkipCount)
 
-        -- Unlocks Astro
-        if 
-            G.GAME.current_round.dw_shopSkipCount >= G.GAME.current_round.dw_dandy_threshold
-        then
+        if G.GAME.current_round.dw_shopSkipCount >= G.GAME.current_round.dw_dandy_threshold then
             check_for_unlock{type = 'dw_astro'} -- Unlocks Astro
 
-            local numerator = G.GAME.current_round.dw_shopSkipCount - G.GAME.current_round.dw_dandy_threshold + G.GAME.current_round.dw_dandy_baseNumerator
-            local denominator = G.GAME.current_round.dw_dandy_denominator
-            if 
-                (numerator >= denominator or 
-                SMODS.pseudorandom_probability(self, 'dw_twisted_dandy', numerator, denominator))
-            then
-                print("Twisted Dandy Spawned")
-                G.GAME.perscribed_bosses[G.GAME.round_resets.ante] = 'bl_dandy_dandy'
-                G.FUNCS.reroll_boss()
+            if dandysworld.config.dwBlinds then
+                local numerator = G.GAME.current_round.dw_shopSkipCount - G.GAME.current_round.dw_dandy_threshold + G.GAME.current_round.dw_dandy_baseNumerator
+                local denominator = G.GAME.current_round.dw_dandy_denominator
+                if 
+                    (numerator >= denominator or 
+                    SMODS.pseudorandom_probability(self, 'dw_twisted_dandy', numerator, denominator))
+                then
+                    print("Twisted Dandy Spawned")
+                    G.GAME.perscribed_bosses[G.GAME.round_resets.ante] = 'bl_dandy_dandy'
+                    G.FUNCS.reroll_boss()
+                end
             end
         end
     end
 
     -- JOKER UNLOCKS
-    
-    -- Shrimpo
-    if G.P_LOCKED.j_dandy_shrimpo then
-        if context.remove_playing_cards then
-            check_for_unlock{type = 'dw_shrimpo'}
+    if dandysworld.config.dwJokers then
+        -- Shrimpo
+        if not G.P_CENTERS.j_dandy_shrimpo.unlocked then
+            if context.remove_playing_cards then
+                check_for_unlock{type = 'dw_shrimpo'}
+            end
         end
-    end
 
-    -- Toodles
-    if G.P_LOCKED.j_dandy_toodles then
-        if context.final_scoring_step and mult > 1000 then
-            check_for_unlock{type = 'dw_toodles'}
+        -- Toodles
+        if not G.P_CENTERS.j_dandy_toodles.unlocked then
+            if context.final_scoring_step and mult > 1000 then
+                check_for_unlock{type = 'dw_toodles'}
+            end
         end
-    end
 
-    -- Brightney
-    if G.P_LOCKED.j_dandy_brightney then
-        if context.press_play then
-            local count = 0
-            for _,v in ipairs(context.full_hand) do
-                if v.facing == 'back' then
-                    count = count + 1
+        -- Brightney
+        if not G.P_CENTERS.j_dandy_brightney.unlocked then
+            if context.press_play then
+                local count = 0
+                for _,v in ipairs(G.hand.highlighted) do
+                    if v.facing == 'back' then
+                        count = count + 1
+                    end
+                end
+                
+                if count == 5 then
+                    check_for_unlock{type = 'dw_brightney'}
                 end
             end
-            
-            if count == 5 then
-                check_for_unlock{type = 'dw_brightney'}
-            end
         end
-    end
 
-    -- Vee
-    if G.P_LOCKED.j_dandy_vee then
-        if context.skipping_booster and context.booster.key == 'p_spectral_mega' then
-            check_for_unlock{type = 'dw_vee'}
+        -- Vee
+        if not G.P_CENTERS.j_dandy_vee.unlocked then
+            if context.skipping_booster and context.booster.key == 'p_spectral_mega_1' then
+                check_for_unlock{type = 'dw_vee'}
+            end
         end
     end
 end

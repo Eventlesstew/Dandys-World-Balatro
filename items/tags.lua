@@ -1,3 +1,10 @@
+SMODS.Atlas({
+    key = 'dwTag',
+    path = 'tags.png',
+    px = 34,
+    py = 34,
+})
+
 SMODS.Tag {
     key = "epic",
     atlas = "dwTag",
@@ -13,7 +20,7 @@ SMODS.Tag {
             end
 
             local card
-            if G.P_LOCKED.j_dandy_pebble then -- Checks if Pebble is locked, guarantees spawn if yes.
+            if not G.P_CENTERS.j_dandy_pebble.unlocked then -- Checks if Pebble is locked, guarantees spawn if yes.
                 check_for_unlock{type = 'dw_pebble'}
                 card = SMODS.create_card {
                     key = 'j_dandy_pebble',

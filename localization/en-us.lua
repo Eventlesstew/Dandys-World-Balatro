@@ -851,7 +851,7 @@ return {
                     "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)",
                 },
                 unlock = {
-                    "Defeat {C:attention}#1#",
+                    "",
                 },
             },
             j_dandy_dyle = {
@@ -1107,16 +1107,19 @@ return {
             k_dandy_leader = "Lethal",
             k_dandy_epic = "Main",
             
-            dw_undiscovered = '?????',
-            dw_twisted_dandy = 'Twisted Dandy',
+            dw_dandyUnlock_undiscovered = 'Defeat {C:red,E:1}?????',
+            dw_dandyUnlock_discovered = 'Defeat {C:red,E:1}Twisted Dandy',
+            dw_dandyUnlock_legendary = "{E:1,s:1.3}?????",
+
+            dw_options_jokers = 'Jokers',
+            dw_options_blinds = 'Boss Blinds',
+
             dw_options_experimentalTitle = "Experimental",
 
-            dw_options_epicjokersTitle = "Epic Mains",
-            dw_options_epicjokers0 = "Disabled",
-            dw_options_epicjokers1 = "Enabled",
-            dw_options_epicjokers2 = "Enabled + Extras",
             dw_options_apply = "Apply Changes",
             
+            dw_options_upcoming = 'Upcoming Content',
+
             dw_options_seasonal = 'Seasonal Content',
             dw_options_easter = 'Easter',
             dw_options_halloween = 'Halloween',
