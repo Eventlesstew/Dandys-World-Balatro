@@ -363,17 +363,29 @@ SMODS.Joker{
         return {vars = {localize(card.ability.extra.poker_hand, 'poker_hands')}, key = self.key }
     end,
     locked_loc_vars = function(self, info_queue, card)
-        return { vars = { 40 } }
+        local threshold = 0
+        for k, v in pairs(G.P_BLINDS) do
+            threshold = threshold + 1
+        end
+        if threshold > 50 then
+            threshold = 50
+        end
+        return { vars = {threshold} }
     end,
     check_for_unlock = function(self, args)
         if args.type == 'blind_discoveries' then
             local discovered_blinds = 0
+            local threshold = 0
             for k, v in pairs(G.P_BLINDS) do
+                threshold = threshold + 1
                 if v.discovered then
                     discovered_blinds = discovered_blinds + 1
                 end
             end
-            return discovered_blinds >= 40
+            if threshold > 50 then
+                threshold = 50
+            end
+            return discovered_blinds >= threshold
         end
         return false
     end
@@ -581,8 +593,21 @@ SMODS.Joker{
             return nil, true -- This is for Joker retrigger purposes
         end
     end,
-    check_for_unlock = function(self, args) -- equivalent to `unlock_condition = { type = 'discover_amount', spectral_count = 18 }`
-        return args.type == 'discover_amount' and #G.P_CENTER_POOLS.Spectral <= 18
+    check_for_unlock = function(self, args)
+        if args.type == 'discover_amount' then
+            local threshold = 0
+            local count = 0
+            for _,v in pairs(G.P_CENTERS) do
+                if v.set == 'Spectral' then
+                    threshold = threshold + 1
+                    if v.discovered then
+                        count = count + 1
+                    end
+                end
+            end
+            return count >= threshold
+        end
+        return false
     end,
 }
 
@@ -774,6 +799,9 @@ SMODS.Joker{
     check_for_unlock = function(self, args)
         return args.type == 'dw_astro'
     end,
+    locked_loc_vars = function(self, info_queue, card)
+        return { vars = {3}}
+    end,
 }
 
 local use_consumeable_ref = Card.use_consumeable
@@ -917,16 +945,12 @@ SMODS.Joker{
         return args.type == 'dw_dandy'
     end,
     locked_loc_vars = function(self, info_queue, card)
-        local text
         if dandysworld.config.dwBlinds then
             if G.P_BLINDS.bl_dandy_dandy.discovered then
-                text = localize('dw_dandyUnlock_discovered')
+                return {key = 'j_dandy_dandy_discovered'}
             else
-                text = localize('dw_dandyUnlock_undiscovered')
+                return {key = 'j_dandy_dandy_undiscovered'}
             end
-        else
-            text = localize('dw_dandyUnlock_legendary')
         end
-        return {vars = {text}}
     end
 }
