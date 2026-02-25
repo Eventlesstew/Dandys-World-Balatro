@@ -808,7 +808,7 @@ return {
                     "card {C:attention}#1#{} times",
                 },
                 unlock = {
-                    "Skip 3 shops in",
+                    "Skip {C:attention}#1#{} shops in",
                     "a row without",
                     "buying anything"
                 }
@@ -851,7 +851,17 @@ return {
                     "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)",
                 },
                 unlock = {
-                    "",
+                    "{E:1,s:1.3}?????",
+                },
+            },
+            j_dandy_dandy_undiscovered = {
+                unlock = {
+                    'Defeat {C:red,E:1}?????',
+                },
+            },
+            j_dandy_dandy_discovered = {
+                unlock = {
+                    'Defeat {C:red,E:1}Twisted Dandy',
                 },
             },
             j_dandy_dyle = {
