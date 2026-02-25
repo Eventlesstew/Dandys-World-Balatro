@@ -788,18 +788,50 @@ SMODS.Joker{
     atlas = 'dwJoker',
     pos = { x = 2, y = 3},
     soul_pos=nil,
-    rarity = 1,
-    cost = 2,
+    rarity = 2,
+    cost = 5,
     config = { extra = {} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
-    in_pool = function()
-        return false
-    end,
     calculate = function(self,card,context)
+        if context.setting_blind and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+            G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+            G.E_MANAGER:add_event(Event({
+                func = (function()
+                    local consumableTypes = {'Tarot', 'Planet', 'Spectral'}
+                    local consumableType = pseudorandom_element(types, 'dw_gigi')
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            SMODS.add_card {
+                                set = type,
+                                key_append = 'dandy_gigi' -- Optional, useful for manipulating the random seed and checking the source of the creation in `in_pool`.
+                            }
+                            G.GAME.consumeable_buffer = 0
+                            return true
+                        end
+                    }))
+
+                    local effectmessage
+                    local effectcolour
+                    if consumableType == 'Planet' then
+                        effectmessage = localize('k_plus_planet')
+                        effectcolour = G.C.SECONDARY_SET.Planet
+                    elseif consumableType == 'Tarot' then
+                        effectmessage = localize('k_plus_tarot')
+                        effectcolour = G.C.PURPLE
+                    elseif consumableType == 'spectral' then
+                        effectmessage = localize('k_plus_spectral')
+                        effectcolour = G.C.SECONDARY_SET.Spectral
+                    end
+                    
+                    SMODS.calculate_effect({ message = effectmessage, colour = effectcolour },
+                        context.blueprint_card or card)
+                    return true
+                end)
+            }))
+            return nil, true -- This is for Joker retrigger purposes
+        end
     end,
 
     loc_vars = function(self, info_queue, card)

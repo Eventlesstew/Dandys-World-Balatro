@@ -494,7 +494,9 @@ return {
             j_dandy_luckycoin = {
                 name = "Lucky Coin",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "Create a {C:planet}Planet{}, {C:tarot}Tarot{} or {C:spectral}Spectral{}",
+                    "card when {C:attention}Blind{} is selected",
+                    "{C:inactive}(Must have room)",
                 },
             },
             j_dandy_vanitymirror = {
@@ -621,6 +623,10 @@ return {
                 text = {
                     "{X:mult,C:white}INCOMPLETE{}",
                 },
+                unlock = {
+                    "Discover every",
+                    "Spectral card"
+                }
             },
             j_dandy_cosmo = {
                 name = "Cosmo",
@@ -645,13 +651,12 @@ return {
             j_dandy_gigi = {
                 name = "Gigi",
                 text = {
-                    "Create a {C:planet}Planet{}, {C:tarot}Tarot{} or {C:spectral}Spectral{}",
-                    "card when {C:attention}Blind{} is selected",
-                    "{C:inactive}(Must have room)",
+                    "Create a {C:attention}Standard{}, {C:attention}Charm{},",
+                    "{C:attention}Meteor{}, {C:attention}Buffoon{} or {C:attention}Ethereal{}",
+                    "{C:attention}Tag{} when {C:attention}Blind{} is defeated",
                 },
                 unlock = {
-                    "Discover every",
-                    "Spectral card"
+                    "Discover every Tag",
                 }
             },
             j_dandy_glisten = {

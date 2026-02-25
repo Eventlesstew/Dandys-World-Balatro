@@ -29,20 +29,34 @@ SMODS.Joker{
     atlas = 'dwJoker',
     pos = { x = 8, y = 4},
     soul_pos=nil,
-    rarity = 1,
-    cost = 2,
+    rarity = 2,
+    cost = 8,
     config = { extra = {} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
+    unlocked = false,
     in_pool = function()
         return false
     end,
     calculate = function(self,card,context)
     end,
-
+    check_for_unlock = function(self, args)
+        if args.type == 'discover_amount' then
+            local threshold = 0
+            local count = 0
+            for _,v in pairs(G.P_CENTERS) do
+                if v.set == 'Spectral' then
+                    threshold = threshold + 1
+                    if v.discovered then
+                        count = count + 1
+                    end
+                end
+            end
+            return count >= threshold
+        end
+        return false
+    end,
     loc_vars = function(self, info_queue, card)
         return { vars = {}, key = self.key }
     end
