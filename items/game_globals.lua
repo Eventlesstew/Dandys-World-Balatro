@@ -16,7 +16,6 @@ function SMODS.current_mod.reset_game_globals(run_start)
     end
 end
 
--- TODO: Move this to a game global function.
 function SMODS.current_mod.calculate(self, context)
     if context.reroll_shop or context.buying_card or context.dw_buying_booster then
         -- This is set to -1 so when you exit the shop, it increments back to 0.
