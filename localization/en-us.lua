@@ -352,19 +352,23 @@ return {
             j_dandy_thermos = {
                 name = "Thermos",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "Sell this card to",
+                    "create {C:attention}#1#{} free",
+                    "{C:attention}Uncommon Tags",
                 },
             },
             j_dandy_pulltoy = {
                 name = "Pull Toy",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{X:mult,C:white}X#1#{} Mult on {C:attention}first",
+                    "{C:attention}hand{} of round",
                 },
             },
             j_dandy_poppack = {
                 name = "Pop Pack",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{C:red}+#1#{} discards",
+                    "{C:chips}-#2#{} hand",
                 },
             },
             j_dandy_megaphone = {
@@ -376,13 +380,17 @@ return {
             j_dandy_cooler = {
                 name = "Cooler",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "Sell this card to",
+                    "create a free",
+                    "{C:attention}Rare Tag",
                 },
             },
             j_dandy_cardboardarmor = {
                 name = "Cardboard 'Armor'",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "Prevents Death during",
+                    "a {C:attention}Boss Blind{}",
+                    "{C:red,E:2}self destructs{}",
                 },
             },
             j_dandy_bluebandana = {
@@ -444,7 +452,8 @@ return {
             j_dandy_sparebulb = {
                 name = "Spare Bulb",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{C:red}Rare{} Jokers",
+                    "each give {C:chips}+#1#{} Chips",
                 },
             },
             j_dandy_gsiac = {
@@ -470,7 +479,9 @@ return {
             j_dandy_magnifyingglass = {
                 name = "Magnifying Glass",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{C:green}#1# in #2#{} chance to",
+                    "upgrade last played",
+                    "{C:attention}Poker hand{} of round"
                 },
             },
             j_dandy_fancyPurse = {
@@ -525,9 +536,10 @@ return {
                 },
             },
             j_dandy_bone = {
-                name = "Bone",
+                name = "Pebble's Bone",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{C:chips}Common{} Jokers",
+                    "each give {C:mult}+#1#{} Mult",
                 },
             },
             j_dandy_starpillow = {
@@ -1075,6 +1087,8 @@ return {
             k_dollar = '$',
 
             k_clean_ex = 'Clean!',
+
+            dw_cardboard_armor = 'Saved by Cardboard Armor',
 
             dw_rnd_odd = 'Odd',
             dw_rnd_even = 'Even',

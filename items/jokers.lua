@@ -149,7 +149,7 @@ SMODS.Joker{
     pos = { x = 0, y = 6},
     soul_pos=nil,
     rarity = 1,
-    cost = 1,
+    cost = 4,
     config = { extra = {odds = 2} },
     blueprint_compat=true,
     eternal_compat=true,
@@ -157,7 +157,7 @@ SMODS.Joker{
     unlocked = false,
     calculate = function(self,card,context)
         if context.first_hand_drawn then
-            if pseudorandom('dw_shrimpo', 1, card.ability.extra.odds) then
+            if SMODS.pseudorandom_probability(card, 'dw_shrimpo', 1, card.ability.extra.odds) then
                 G.E_MANAGER:add_event(Event({
                     func = function()
                         G.GAME.blind.chips = G.GAME.blind.chips * 2
@@ -218,7 +218,9 @@ SMODS.Joker{
                 {
                     chips = card.ability.extra.chips
                 },
-                {
+            }
+            if not context.blueprint then
+                effectTable[#effectTable + 1] = {
                     func = function()
                         G.hand:change_size(card.ability.extra.h_size)
                         card.ability.extra.h_size_mod = card.ability.extra.h_size_mod + 1
@@ -226,13 +228,13 @@ SMODS.Joker{
                     message = localize{type = 'variable',key = 'a_handsize',vars = {card.ability.extra.h_size}},
                     colour = G.C.FILTER,
                 }
-            }
+            end
             local effect = pseudorandom_element(effectTable, 'dw_toodles')
 
             return effect
         end
 
-        if context.end_of_round and context.game_over == false and context.main_eval then
+        if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
             G.hand:change_size(-card.ability.extra.h_size_mod)
             card.ability.extra.h_size_mod = 0
         end
@@ -259,11 +261,11 @@ SMODS.Joker{
     pos = { x = 6, y = 4},
     soul_pos=nil,
     rarity = 2,
-    cost = 6,
+    cost = 5,
     config = { extra = {mult = 0, mult_mod = 3, target_cards = {}} },
     blueprint_compat=true,
     eternal_compat=true,
-    perishable_compat=true,
+    perishable_compat=false,
     unlocked = false,
     calculate = function(self,card,context)
         if not context.blueprint then
@@ -398,12 +400,11 @@ SMODS.Joker{
     pos = { x = 7, y = 5 },
     soul_pos=nil,
     rarity = 2,
-    cost = 6,
+    cost = 7,
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = false,
-    effect=nil,
 
     calculate = function(self,card,context)
         if context.setting_blind and not context.blueprint then
@@ -523,7 +524,7 @@ SMODS.Joker{
     atlas = 'dwJoker',
     pos = { x = 9, y = 8},
     soul_pos=nil,
-    rarity = 3,
+    rarity = 2,
     cost = 8,
     config = { extra = {} },
     blueprint_compat=true,
@@ -601,6 +602,7 @@ SMODS.Joker{
     end,
 }
 
+-- TODO - Test what happens if multiple Goobs are present
 SMODS.Joker{
     key = 'goob',
     atlas = 'dwJoker',
@@ -828,7 +830,7 @@ SMODS.Joker{
     rarity = 'dandy_epic',
     cost = 20,
     config = { extra = {choice_mod = 1, size_mod = 2} },
-    blueprint_compat=true,
+    blueprint_compat=false,
     eternal_compat=true,
     perishable_compat=true,
     unlocked = false,
