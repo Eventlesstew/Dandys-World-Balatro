@@ -338,13 +338,15 @@ return {
             j_dandy_thinkingcap = {
                 name = "Thinking Cap",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{C:attention}+#1#{} hand size",
+                    "{C:red}-#2#{} discards"
                 },
             },
             j_dandy_alarm = {
                 name = "Alarm",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{X:mult,C:white}X#1#{} Mult during a",
+                    "a {C:attention}Boss Blind{}"
                 },
             },
             j_dandy_thermos = {
@@ -386,7 +388,8 @@ return {
             j_dandy_bluebandana = {
                 name = "Blue Bandana",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{C:chips}+#1#{} Chips for each",
+                    "card in played hand",
                 },
             },
             j_dandy_paintbucket = {
@@ -412,12 +415,15 @@ return {
             j_dandy_pinkbow = {
                 name = "Pink Bow",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{C:mult}+#2#{} Mult for each",
+                    "hand played this round",
+                    "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)"
                 },
             },
             j_dandy_brick = {
                 name = "Brick",
                 text = {
+                    "{C:chips}+#2#{} Hands",
                     "{X:mult,C:white}X#1#{} Mult",
                     "{C:inactive,s:0.8}It's a brick, what",
                     "{C:inactive,s:0.8}did you expect?"
@@ -476,7 +482,8 @@ return {
             j_dandy_dogplush = {
                 name = "Dog Plush",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{C:chips}+#1#{} Chips",
+                    "{C:mult}+#2#{} Mult"
                 },
             },
             j_dandy_mimemakeup = {
@@ -544,7 +551,9 @@ return {
             j_dandy_veeremote = {
                 name = "Vee's Remote",
                 text = {
-                    "{X:mult,C:white}INCOMPLETE{}",
+                    "{X:mult,C:white}X#1#{} Mult during a",
+                    "{C:attention}Small Blind{} or a",
+                    "{C:attention}Big Blind{}"
                 },
             },
             j_dandy_dandyplush = {
@@ -578,7 +587,7 @@ return {
             j_dandy_boxten = {
                 name = "Boxten",
                 text = {
-                    "{C:red}+#1#{} Mult for each",
+                    "{C:mult}+#1#{} Mult for each",
                     "card in played hand",
                     --[[
                     "{C:money}$#1#{} for each",
@@ -803,7 +812,7 @@ return {
                 },
                 unlock = {
                     "Discover through",
-                    "the {C:attention}Main Tag"
+                    "the {C:attention}Ticket Tag"
                 },
             },
             j_dandy_astro = {

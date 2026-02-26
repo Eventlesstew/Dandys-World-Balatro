@@ -55,24 +55,24 @@ end
 
 -- Jokers
 assert(SMODS.load_file("items/game_globals.lua"))()
-if config.dwJokers == true then
+if config.dwJokers then
     assert(SMODS.load_file("items/jokers.lua"))()
 end
-if config.dwBlinds == true then
+if config.dwBlinds then
     assert(SMODS.load_file("items/blinds.lua"))()
 end
 assert(SMODS.load_file("items/tags.lua"))()
 
-if config.upcoming == true then
+if config.upcoming then
     assert(SMODS.load_file("items/experimental/jokers.lua"))()
 end
-if config.easter == true then
+if config.easter then
     assert(SMODS.load_file("items/easter/jokers.lua"))()
 end
-if config.halloween == true then
+if config.halloween then
     assert(SMODS.load_file("items/halloween/jokers.lua"))()
 end
-if config.christmas == true then
+if config.christmas then
     assert(SMODS.load_file("items/christmas/jokers.lua"))()
 end
 

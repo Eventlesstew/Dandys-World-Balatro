@@ -153,22 +153,23 @@ SMODS.Joker{
     atlas = 'dwJoker',
     pos = { x = 7, y = 0},
     soul_pos=nil,
-    rarity = 1,
-    cost = 2,
-    config = { extra = {} },
+    rarity = 2,
+    cost = 6,
+    config = { extra = {h_size = 3, discards = -2} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
-    in_pool = function()
-        return false
+    grasslanders_edward_compat = false,
+    add_to_deck = function(self, card, from_debuff)
+        G.GAME.round_resets.discards = G.GAME.round_resets.discards + card.ability.extra.discards
+        G.hand:change_size(card.ability.extra.h_size)
     end,
-    calculate = function(self,card,context)
+    remove_from_deck = function(self, card, from_debuff)
+        G.GAME.round_resets.discards = G.GAME.round_resets.discards - card.ability.extra.discards
+        G.hand:change_size(-card.ability.extra.h_size)
     end,
-
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        return { vars = {card.ability.extra.h_size, card.ability.extra.discards}, key = self.key }
     end
 }
 
@@ -179,20 +180,23 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = 1,
     cost = 2,
-    config = { extra = {} },
+    config = { extra = {x_mult = 2} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
-    in_pool = function()
-        return false
-    end,
     calculate = function(self,card,context)
+        if context.joker_main and context.cardarea == G.jokers then
+            if G.GAME.blind.boss then
+                return {
+                    x_mult = card.ability.extra.x_mult, 
+                    colour = G.C.MULT
+                }
+            end
+        end
     end,
 
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        return { vars = {card.ability.extra.x_mult}, key = self.key }
     end
 }
 
@@ -345,20 +349,20 @@ SMODS.Joker{
     pos = { x = 5, y = 1},
     soul_pos=nil,
     rarity = 1,
-    cost = 2,
-    config = { extra = {} },
+    cost = 4,
+    config = { extra = {chips = 20}},
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
     calculate = function(self,card,context)
+        if context.joker_main then
+            return {
+                chips = card.ability.extra.chips * #context.full_hand
+            }
+        end
     end,
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
-    end,
-    in_pool = function()
-        return false
+        return {vars = {card.ability.extra.chips}}
     end,
 }
 
@@ -456,22 +460,38 @@ SMODS.Joker{
     pos = { x = 9, y = 1},
     soul_pos=nil,
     rarity = 1,
-    cost = 2,
-    config = { extra = {} },
+    cost = 4,
+    config = { extra = {mult = 0, mult_mod = 5} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
-    in_pool = function()
-        return false
-    end,
     calculate = function(self,card,context)
+        if not context.blueprint then
+            if context.before then
+                card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_mod
+                return {
+                    extra = {focus = card, message = localize('k_upgrade_ex')},
+                    colour = G.C.MULT
+                }
+            end
+            if context.end_of_round and context.game_over == false and context.main_eval then
+                card.ability.extra.mult = 0
+                return {
+                    extra = {focus = card, message = localize('k_reset')},
+                    colour = G.C.MULT
+                }
+            end
+        end
+        if context.joker_main and context.cardarea == G.jokers then
+            return {
+                mult = card.ability.extra.mult,
+            }
+        end
     end,
 
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
-    end
+        return { vars = {card.ability.extra.mult, card.ability.extra.mult_mod}, key = self.key }
+    end,
 }
 
 SMODS.Joker{
@@ -480,13 +500,11 @@ SMODS.Joker{
     pos = { x = 0, y = 2},
     soul_pos=nil,
     rarity = 1,
-    cost = 1,
-    config = { extra = {x_mult = 0.5} },
+    cost = 3,
+    config = { extra = {x_mult = 0.5, h_plays = 2} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
     calculate = function(self,card,context)              --define calculate functions here
         if context.joker_main and context.cardarea == G.jokers then
             return {
@@ -495,9 +513,15 @@ SMODS.Joker{
             }
         end
     end,
+    add_to_deck = function(self, card, from_debuff)
+        G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.h_plays
+    end,
+    remove_from_deck = function(self, card, from_debuff)
+        G.GAME.round_resets.hands = G.GAME.round_resets.hands - card.ability.extra.h_plays
+    end,
 
     loc_vars = function(self, info_queue, card)          --defines variables to use in the UI. you can use #1# for example to show the chips variable
-        return { vars = {card.ability.extra.x_mult}, key = self.key }
+        return { vars = {card.ability.extra.x_mult, card.ability.extra.h_plays}, key = self.key }
     end
 }
 
@@ -717,21 +741,26 @@ SMODS.Joker{
     pos = { x = 9, y = 2},
     soul_pos=nil,
     rarity = 1,
-    cost = 2,
-    config = { extra = {} },
+    cost = 5,
+    config = { extra = {chips = 50, mult = 6} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
-    in_pool = function()
-        return false
-    end,
     calculate = function(self,card,context)
+        if context.joker_main then
+            return SMODS.merge_effects({
+                {
+                    chips = card.ability.extra.chips
+                },
+                {
+                    mult = card.ability.extra.mult
+                }
+            })
+        end
     end,
 
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        return {vars = {card.ability.extra.chips, card.ability.extra.mult}}
     end
 }
 
@@ -1012,22 +1041,25 @@ SMODS.Joker{
     atlas = 'dwJoker',
     pos = { x = 0, y = 4},
     soul_pos=nil,
-    rarity = 1,
-    cost = 2,
-    config = { extra = {} },
+    rarity = 3,
+    cost = 7,
+    config = { extra = {x_mult = 4} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
-    unlocked = true,
-    discovered = true,
-    in_pool = function()
-        return false
-    end,
-    calculate = function(self,card,context)
+    calculate = function(self,card,context)              --define calculate functions here
+        if context.joker_main and context.cardarea == G.jokers then
+            if not G.GAME.blind.boss then
+                return {
+                    x_mult = card.ability.extra.x_mult, 
+                    colour = G.C.MULT
+                }
+            end
+        end
     end,
 
     loc_vars = function(self, info_queue, card)
-        return { vars = {}, key = self.key }
+        return { vars = {card.ability.extra.x_mult}, key = self.key }
     end
 }
 
