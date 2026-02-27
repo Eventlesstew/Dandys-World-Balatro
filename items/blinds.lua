@@ -208,7 +208,7 @@ SMODS.Blind {
     dollars = 5,
     mult = 2,
     boss = {min = 3},
-    boss_colour = HEX("ac3232"),
+    boss_colour = HEX("c6e0eb"),
     calculate = function(self, blind, context)
         if context.debuff_card then
             if 
