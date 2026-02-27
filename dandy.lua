@@ -42,8 +42,8 @@ dandysworld.extra_tabs = function()
         {label = localize('dw_options_experimentalTitle'), tab_definition_function = function()
             return {n=G.UIT.ROOT, config = {colour = G.C.BLACK, align = "cl", minw = G.ROOM.T.w*0, padding = 0.04 }, nodes = {
                 {n = G.UIT.C, config = { align = "cl", minw = G.ROOM.T.w*0, padding = 0.04 }, nodes = {
-                    create_toggle({label = localize('dw_options_earlyaccess'), ref_table = dandysworld.config, ref_value = "earlyaccess", callback = function() dandysworld:save_config() end}),
                     create_toggle({label = localize('dw_options_upcoming'), ref_table = dandysworld.config, ref_value = "upcoming", callback = function() dandysworld:save_config() end}),
+                    create_toggle({label = localize('dw_options_easter'), ref_table = dandysworld.config, ref_value = "easter", callback = function() dandysworld:save_config() end}),
                     create_toggle({label = localize('dw_options_halloween'), ref_table = dandysworld.config, ref_value = "halloween", callback = function() dandysworld:save_config() end}),
                     create_toggle({label = localize('dw_options_christmas'), ref_table = dandysworld.config, ref_value = "christmas", callback = function() dandysworld:save_config() end}),
                     UIBox_button({label = {localize('dw_options_apply')}, minw = 3.5, button = 'restart_game_smods'}),
@@ -65,6 +65,9 @@ assert(SMODS.load_file("items/tags.lua"))()
 
 if config.upcoming then
     assert(SMODS.load_file("items/experimental/jokers.lua"))()
+    assert(SMODS.load_file("items/experimental/trinketJokers.lua"))()
+    assert(SMODS.load_file("items/experimental/blinds.lua"))()
+    assert(SMODS.load_file("items/experimental/lethals.lua"))()
 end
 if config.easter then
     assert(SMODS.load_file("items/easter/jokers.lua"))()

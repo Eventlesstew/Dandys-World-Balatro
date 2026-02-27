@@ -5,7 +5,7 @@ SMODS.Atlas({
     py = 34,
 })
 
-if config.dwJokers then
+if dandysworld.config.dwJokers then
     SMODS.Tag {
         key = "epic",
         atlas = "dwTag",

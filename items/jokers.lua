@@ -564,7 +564,7 @@ SMODS.Joker{
     unlocked = false,
 
     calculate = function(self,card,context)
-        if context.end_of_round and context.game_over == false and context.main_eval then
+        if context.ending_shop then
             G.E_MANAGER:add_event(Event({
                 func = (function()
                     local tag = pseudorandom_element(card.ability.extra.tags, 'dw_gigi')
@@ -576,7 +576,9 @@ SMODS.Joker{
                     end
                 end)
             }))
-            return nil, true -- This is for Joker retrigger purposes
+            return {
+                message = localize('dw_gigi')    
+            }
         end
     end,
     loc_vars = function(self, info_queue, card)

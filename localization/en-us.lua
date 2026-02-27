@@ -339,7 +339,7 @@ return {
                 name = "Thinking Cap",
                 text = {
                     "{C:attention}+#1#{} hand size",
-                    "{C:red}-#2#{} discards"
+                    "{C:red}#2#{} discards"
                 },
             },
             j_dandy_alarm = {
@@ -368,7 +368,7 @@ return {
                 name = "Pop Pack",
                 text = {
                     "{C:red}+#1#{} discards",
-                    "{C:chips}-#2#{} hand",
+                    "{C:chips}#2#{} hand",
                 },
             },
             j_dandy_megaphone = {
@@ -674,7 +674,7 @@ return {
                 text = {
                     "Create a {C:attention}Standard{}, {C:attention}Charm{},",
                     "{C:attention}Meteor{}, {C:attention}Buffoon{} or {C:attention}Ethereal{}",
-                    "{C:attention}Tag{} when {C:attention}Blind{} is defeated",
+                    "{C:attention}Tag{} at the end of the {C:attention}shop",
                 },
                 unlock = {
                     "Discover every Tag",
@@ -1090,13 +1090,15 @@ return {
 
             dw_cardboard_armor = 'Saved by Cardboard Armor',
 
+            dw_shrimpo_punch_ex = "Punch!",
+            dw_shrimpo_hate = "I HATE YOU!",
+
             dw_rnd_odd = 'Odd',
             dw_rnd_even = 'Even',
 
-            dw_naughty_ex = "Naughty!",
+            dw_gigi = 'Yoink!',
 
-            dw_shrimpo_punch_ex = "Punch!",
-            dw_shrimpo_hate = "I HATE YOU!",
+            dw_naughty_ex = "Naughty!",
 
             dw_pebble_quote1 = "ARF!",
             dw_pebble_quote2 = "ARF ARF!",
