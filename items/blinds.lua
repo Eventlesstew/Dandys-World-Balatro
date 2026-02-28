@@ -28,6 +28,16 @@ function shakeBlind(self)
     }))
 end
 
+SMODS.DrawStep {
+    key = 'worthless',
+    order = 71,
+    func = function(card, layer)
+        if card.dw_worthless then
+
+        end
+    end,
+}
+
 SMODS.Blind {
     key = 'poppy',
     atlas = 'dwBlind',
@@ -53,6 +63,15 @@ SMODS.Blind {
     boss_colour = HEX("a84dbe"),
     in_pool = function()
         return false
+    end,
+    calculate = function(self, blind, context)
+        if context.debuff_card then
+            if context.debuff_card:is_suit('Hearts') or context.debuff_card:is_suit('Diamonds') then
+                return {
+                    dw_worthless = true
+                }
+            end
+        end
     end,
 }
 
