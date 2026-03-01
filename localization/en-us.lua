@@ -111,7 +111,9 @@ return {
             bl_dandy_gigi = {
                 name = "Twisted Gigi",
                 text = {
-                    "Incomplete"
+                    "After play or discard,",
+                    'destroys a random',
+                    'Consumable',
                 },
             },
             bl_dandy_glisten = {
@@ -123,13 +125,15 @@ return {
             bl_dandy_goob = {
                 name = "Twisted Goob",
                 text = {
-                    "Incomplete"
+                    "Destroys 1 random",
+                    'card in played hand'
                 },
             },
             bl_dandy_scraps = {
                 name = "Twisted Scraps",
                 text = {
-                    "Incomplete"
+                    "Destroys 1 random",
+                    'card held in hand'
                 },
             },
             bl_dandy_squirm = {
@@ -141,7 +145,8 @@ return {
             bl_dandy_astro = {
                 name = "Astro's Nightmare",
                 text = {
-                    "Incomplete"
+                    "Discards all cards",
+                    "per hand played"
                 },
             },
             bl_dandy_pebble = {
@@ -166,7 +171,9 @@ return {
             bl_dandy_vee = {
                 name = "Vee's Gameshow",
                 text = {
-                    "Incomplete"
+                    "All cards face down",
+                    "After play or discard",
+                    "reveal 3 random cards"
                 },
             },
             bl_dandy_eggson = {

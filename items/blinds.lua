@@ -282,11 +282,19 @@ SMODS.Blind {
     pos = {x = 0, y = 20},
     dollars = 5,
     mult = 2,
-    boss = {min = 1},
+    boss = {min = 5},
     boss_colour = HEX("abf3fb"),
-    in_pool = function()
-        return false
-    end,
+    calculate = function(self, blind, context)
+        if not blind.disabled then
+            if context.hand_drawn and (not context.first_hand_drawn) and G.consumeables.cards[1] then
+                local _card = pseudorandom_element(G.consumeables.cards, 'dw_twisted_gigi')
+                if _card then
+                    SMODS.destroy_cards(_card)
+                    shakeBlind()
+                end
+            end
+        end
+    end
 }
 
 SMODS.Blind {
@@ -297,11 +305,19 @@ SMODS.Blind {
          
     dollars = 5,
     mult = 2,
-    boss = {min = 1},
+    boss = {min = 6},
     boss_colour = HEX("5f80eb"),
-    in_pool = function()
-        return false
-    end,
+    calculate = function(self, blind, context)
+        if not blind.disabled then
+            if context.debuff_hand and not context.check then
+                local _card = pseudorandom_element(G.play.cards, 'dw_twisted_goob')
+                if _card then
+                    SMODS.destroy_cards(_card)
+                    shakeBlind()
+                end
+            end
+        end
+    end
 }
 
 SMODS.Blind {
@@ -312,13 +328,26 @@ SMODS.Blind {
          
     dollars = 5,
     mult = 2,
-    boss = {min = 1},
+    boss = {min = 6},
     boss_colour = HEX("cfb595"),
-    ignore_showdown_check = true,
-    in_pool = function()
-        return false
-    end,
+    calculate = function(self, blind, context)
+        if not blind.disabled then
+            if context.debuff_hand and not context.check then
+                local _card = pseudorandom_element(G.hand.cards, 'dw_twisted_goob')
+                if _card then
+                    SMODS.destroy_cards(_card)
+                    shakeBlind()
+                end
+            end
+        end
+    end
 }
+
+SMODS.Sound ({
+    key = 'twisted_astro',
+    path = 'dw_twisted_astro.ogg',
+    pitch = 1,
+})
 
 SMODS.Blind {
     key = 'astro',
@@ -328,20 +357,54 @@ SMODS.Blind {
          
     dollars = 5,
     mult = 2,
-    boss = {min = 1},
+    boss = {showdown = true},
     boss_colour = HEX("575757"),
-    ignore_showdown_check = true,
-    in_pool = function()
-        return false
-    end,
+    calculate = function(self, blind, context)
+        if not blind.disabled then
+            if context.press_play and G.hand.cards[1] then
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'immediate',
+                    func = function()
+                        SMODS.juice_up_blind()
+                        play_sound('dandy_twisted_astro', 1, 0.4)
+                        return true
+                    end
+                }))
+                G.E_MANAGER:add_event(Event({
+                    func = function()     
+                        local highlighted_limit_ref = G.hand.config.highlighted_limit
+                        G.hand.config.highlighted_limit = 999
+                        for _,v in ipairs(G.hand.cards) do
+                            --v:highlight(true)
+                            G.hand:add_to_highlighted(v, true)
+                        end
+                        G.hand.config.highlighted_limit = highlighted_limit_ref
+                        G.FUNCS.discard_cards_from_highlighted(nil, true)
+                        return true
+                    end
+                }))
+                blind.triggered = true -- This won't trigger Matador in this context due to a Vanilla bug (a workaround is setting it in context.debuff_hand)
+            end
+        end
+    end
 }
+
+SMODS.Sound ({
+    key = 'twisted_pebble_1',
+    path = 'dw_twisted_pebble_1.ogg',
+    pitch = 1,
+})
+
+SMODS.Sound ({
+    key = 'twisted_pebble_2',
+    path = 'dw_twisted_pebble_2.ogg',
+    pitch = 1,
+})
 
 SMODS.Blind {
     key = 'pebble',
     atlas = 'dwBlind',
     pos = {x = 0, y = 25},
-    
-         
     dollars = 5,
     mult = 2,
     boss = {showdown = true},
@@ -350,13 +413,36 @@ SMODS.Blind {
         if not blind.disabled then
             if context.modify_hand then
                 blind.triggered = true -- This won't trigger Matador in this context due to a Vanilla bug (a workaround is setting it in context.debuff_hand)
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'immediate',
+                    func = function()
+                        SMODS.juice_up_blind()
+                        play_sound('dandy_twisted_pebble_1', 1, 0.8)
+                        return true
+                    end
+                }))
                 hand_chips = 1
+                update_hand_text({modded = true }, {chips = hand_chips})
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'immediate',
+                    func = function()
+                        SMODS.juice_up_blind()
+                        play_sound('dandy_twisted_pebble_2', 1, 0.8)
+                        return true
+                    end
+                }))
                 mult = 1
-                update_hand_text({ sound = 'chips2', modded = true }, { chips = hand_chips, mult = mult })
+                update_hand_text({modded = true }, {mult = mult })
             end
         end
     end
 }
+
+SMODS.Sound ({
+    key = 'twisted_vee',
+    path = 'dw_twisted_vee.ogg',
+    pitch = 1,
+})
 
 SMODS.Blind {
     key = 'vee',
@@ -366,12 +452,41 @@ SMODS.Blind {
          
     dollars = 5,
     mult = 2,
-    boss = {min = 1},
+    boss = {showdown = true},
     boss_colour = HEX("575757"),
-    ignore_showdown_check = true,
-    in_pool = function()
-        return false
-    end,
+    calculate = function(self, blind, context)
+        if not blind.disabled then
+            if context.stay_flipped and context.to_area == G.hand then
+                return {
+                    stay_flipped = true
+                }
+            end
+            if context.hand_drawn and not context.first_hand_drawn then
+                for i=1, 3 do
+                    G.E_MANAGER:add_event(Event({
+                        trigger = 'after',
+                        delay = 0.4,
+                        func = function()
+                            local _cards = {}
+                            for _,v in ipairs(G.hand.cards) do
+                                if v.facing == 'back' then
+                                    _cards[#_cards+1] = v
+                                end
+                            end
+
+                            local chosen_card = pseudorandom_element(_cards, 'dw_twisted_vee')
+                            if chosen_card then
+                                chosen_card:flip()
+                                play_sound('dandy_twisted_vee', 1, 0.4)
+                                SMODS.juice_up_blind()
+                            end
+                            return true
+                        end,
+                    }))
+                end
+            end
+        end
+    end
 }
 
 SMODS.Sound {
