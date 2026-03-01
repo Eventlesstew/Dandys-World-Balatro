@@ -28,6 +28,7 @@ function shakeBlind(self)
     }))
 end
 
+--[[
 SMODS.DrawStep {
     key = 'worthless',
     order = 71,
@@ -36,7 +37,21 @@ SMODS.DrawStep {
 
         end
     end,
-}
+}]]
+
+local get_chip_bonus_ref = Card.get_chip_bonus
+function Card:get_chip_bonus()
+    local result = get_chip_bonus_ref(self)
+
+    if 
+        (G.GAME.blind.config.blind.key == 'bl_dandy_boxten' and (self:is_suit('Hearts') or self:is_suit('Diamonds'))) or
+        (G.GAME.blind.config.blind.key == 'bl_dandy_poppy' and (self:is_suit('Spades') or self:is_suit('Clubs'))) or 
+        (G.GAME.blind.config.blind.key == 'bl_dandy_sprout')
+    then
+        result = 0
+    end
+    return result
+end
 
 SMODS.Blind {
     key = 'poppy',
@@ -48,9 +63,6 @@ SMODS.Blind {
     mult = 2,
     boss = {min = 1},
     boss_colour = HEX("31b1cd"),
-    in_pool = function()
-        return false
-    end,
 }
 
 SMODS.Blind {
@@ -61,9 +73,7 @@ SMODS.Blind {
     mult = 2,
     boss = {min = 1},
     boss_colour = HEX("a84dbe"),
-    in_pool = function()
-        return false
-    end,
+    --[[
     calculate = function(self, blind, context)
         if context.debuff_card then
             if context.debuff_card:is_suit('Hearts') or context.debuff_card:is_suit('Diamonds') then
@@ -72,7 +82,7 @@ SMODS.Blind {
                 }
             end
         end
-    end,
+    end,]]
 }
 
 SMODS.Blind {

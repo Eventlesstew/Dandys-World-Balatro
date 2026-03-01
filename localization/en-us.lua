@@ -5,7 +5,8 @@ return {
             bl_dandy_boxten = {
                 name = "Twisted Boxten",
                 text = {
-                    "Incomplete"
+                    "Played Hearts and Diamonds",
+                    "do not score Chips"
                 },
             },
             bl_dandy_brusha = {
@@ -29,7 +30,8 @@ return {
             bl_dandy_poppy = {
                 name = "Twisted Poppy",
                 text = {
-                    "Incomplete"
+                    "Played Spades and Clubs",
+                    "do not score Chips"
                 },
             },
             bl_dandy_shrimpo = {
@@ -73,7 +75,9 @@ return {
             bl_dandy_razzledazzle = {
                 name = "Twisted RnD",
                 text = {
-                    "Incomplete"
+                    "Alternates between debuffing",
+                    "Hearts and Diamonds or",
+                    "Spades and Clubs each hand",
                 },
             },
             bl_dandy_rodger = {
@@ -165,7 +169,8 @@ return {
             bl_dandy_sprout = {
                 name = "Sprout's Catastrophe",
                 text = {
-                    "Incomplete"
+                    "All cards do",
+                    "not score Chips"
                 },
             },
             bl_dandy_vee = {
@@ -696,7 +701,7 @@ return {
             j_dandy_goob = {
                 name = "Goob",
                 text = {
-                    "Adds 1 random {C:attention}Consumable",
+                    "Moves 1 random {C:attention}Consumable",
                     "card to your possession when",
                     "opening any {C:attention}Booster Pack"
                 },
