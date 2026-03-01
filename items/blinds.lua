@@ -281,9 +281,30 @@ SMODS.Blind {
     mult = 2,
     boss = {min = 1},
     boss_colour = HEX("575757"),
-    in_pool = function()
-        return false
-    end,
+    calculate = function(self, blind, context)
+        if not blind.disabled then
+            if context.setting_blind then  
+                local jokers = {}
+                for _,v in G.jokers.cards do
+                    if not SMODS.is_eternal(v, blind) and not v.getting_sliced then
+                        jokers[#jokers+1] = v
+                    end
+                end
+                local joker_target = pseudorandom_element(jokers, 'dw_twisted_squirm')
+                if joker_target then
+                    joker_target.dandy_target = true
+                else
+                    G.E_MANAGER:add_event(Event({
+                        trigger = 'immediate',
+                        func = function()
+                            blind:disable()
+                            return true
+                        end
+                    }))
+                end
+            end
+        end
+    end
 }
 
 SMODS.Blind {

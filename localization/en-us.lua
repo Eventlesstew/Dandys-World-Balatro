@@ -635,7 +635,7 @@ return {
                 name = "Brightney",
                 text = {
                     "Gains {C:mult}+#1#{} Mult for",
-                    "each {C:attention}Face down{}",
+                    "each {C:attention}face down{}",
                     "card played",
                     "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
                 },
@@ -792,7 +792,10 @@ return {
             j_dandy_squirm = {
                 name = "Squirm",
                 text = {
-                    "UNKNOWN"
+                    "Destroys a random",
+                    "{C:attention}consumable{} in your",
+                    "possession and",
+                    "grants {X:mult,C:white}X#1#{} Mult",
                 }
             },
             j_dandy_teagan = {
