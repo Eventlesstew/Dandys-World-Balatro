@@ -463,9 +463,13 @@ SMODS.Blind {
             end
             if context.hand_drawn and not context.first_hand_drawn then
                 for i=1, 3 do
+                    local delay_time = 0.3
+                    if i == 1 then
+                        delay_time = 0
+                    end
                     G.E_MANAGER:add_event(Event({
                         trigger = 'after',
-                        delay = 0.4,
+                        delay = delay_time * G.SETTINGS.GAMESPEED,
                         func = function()
                             local _cards = {}
                             for _,v in ipairs(G.hand.cards) do
