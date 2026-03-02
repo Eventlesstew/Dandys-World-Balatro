@@ -28,26 +28,78 @@ function shakeBlind(self)
     }))
 end
 
---[[
+--[[TODO
+    Patch up the code for this and move it to the game globals thing.
+    Make it so any cards that are targetted are juiced up and the twisted spotted sound plays.
+]]
+-- TODO: Hook recalc_debuff to trigger this function.
+function recalc_dw_worthless(self, card)
+    local effect = SMODS.calculate_context(
+        {
+            dw_worthless_check = true,
+            dw_worthless_card = card,
+        },
+        true
+    )
+
+    if effect.worthless then
+        card.dw_worthless = true
+    else
+        card.dw_worthless = nil
+    end
+end
+
+SMODS.Shader {
+    key = 'dw_worthless', 
+    path = "worthless.fs"
+}
+
 SMODS.DrawStep {
     key = 'worthless',
     order = 71,
     func = function(card, layer)
-        if card.dw_worthless then
-
+        if card.dw_worthless and not card.debuff and (layer == 'card' or layer == 'both') and card.sprite_facing == 'front' then
+            card.children.center:draw_shader('dw_worthless', nil, card.ARGS.send_to_shader)
         end
     end,
-}]]
+}
+
+-- TODO: Hook recalc_debuff to trigger this function.
+function recalc_dw_target(self, card)
+    local effect = SMODS.calculate_context(
+        {
+            dw_target_check = true,
+            dw_target_card = card,
+        },
+        true
+    )
+
+    if effect.target then
+        card.dw_target = true
+    else
+        card.dw_target = nil
+    end
+end
+
+SMODS.Shader {
+    key = 'dw_target', 
+    path = "target.fs"
+}
+
+SMODS.DrawStep {
+    key = 'target',
+    order = 72,
+    func = function(card, layer)
+        if card.dw_target and (layer == 'card' or layer == 'both') and card.sprite_facing == 'front' then
+            card.children.center:draw_shader('dw_target', nil, card.ARGS.send_to_shader)
+        end
+    end,
+}
 
 local get_chip_bonus_ref = Card.get_chip_bonus
 function Card:get_chip_bonus()
     local result = get_chip_bonus_ref(self)
-
-    if 
-        (G.GAME.blind.config.blind.key == 'bl_dandy_boxten' and (self:is_suit('Hearts') or self:is_suit('Diamonds'))) or
-        (G.GAME.blind.config.blind.key == 'bl_dandy_poppy' and (self:is_suit('Spades') or self:is_suit('Clubs'))) or 
-        (G.GAME.blind.config.blind.key == 'bl_dandy_sprout')
-    then
+    if self.dw_worthless then
         result = 0
     end
     return result
@@ -63,6 +115,17 @@ SMODS.Blind {
     mult = 2,
     boss = {min = 1},
     boss_colour = HEX("31b1cd"),
+    calculate = function(self, blind, context)
+        if not blind.disabled then
+            if context.dw_worthless_check then
+                if context.dw_worthless_card:is_suit('Spades') or context.dw_worthless_card:is_suit('Clubs') then
+                    return {
+                        worthless = true
+                    }
+                end
+            end
+        end
+    end,
 }
 
 SMODS.Blind {
@@ -73,16 +136,17 @@ SMODS.Blind {
     mult = 2,
     boss = {min = 1},
     boss_colour = HEX("a84dbe"),
-    --[[
     calculate = function(self, blind, context)
-        if context.debuff_card then
-            if context.debuff_card:is_suit('Hearts') or context.debuff_card:is_suit('Diamonds') then
-                return {
-                    dw_worthless = true
-                }
+        if not blind.disabled then
+            if context.dw_worthless_check then
+                if context.dw_worthless_card:is_suit('Hearts') or context.dw_worthless_card:is_suit('Diamonds') then
+                    return {
+                        worthless = true
+                    }
+                end
             end
         end
-    end,]]
+    end,
 }
 
 SMODS.Blind {
@@ -263,48 +327,17 @@ SMODS.Blind {
             end
             blind.prepped = nil
 
-            for _,v in ipairs(G.playing_cards) do
-                SMODS.recalc_debuff(v)
-            end
+            G.E_MANAGER:add_event(Event({
+                trigger = 'immediate',
+                func = function()
+                    for _,v in ipairs(G.playing_cards) do
+                        SMODS.recalc_debuff(v)
+                    end
+                end,
+            }))
             shakeBlind()
         end
     end,
-}
-
-SMODS.Blind {
-    key = 'squirm',
-    atlas = 'dwBlind',
-    pos = {x = 0, y = 41},
-    
-         
-    dollars = 5,
-    mult = 2,
-    boss = {min = 1},
-    boss_colour = HEX("575757"),
-    calculate = function(self, blind, context)
-        if not blind.disabled then
-            if context.setting_blind then  
-                local jokers = {}
-                for _,v in G.jokers.cards do
-                    if not SMODS.is_eternal(v, blind) and not v.getting_sliced then
-                        jokers[#jokers+1] = v
-                    end
-                end
-                local joker_target = pseudorandom_element(jokers, 'dw_twisted_squirm')
-                if joker_target then
-                    joker_target.dandy_target = true
-                else
-                    G.E_MANAGER:add_event(Event({
-                        trigger = 'immediate',
-                        func = function()
-                            blind:disable()
-                            return true
-                        end
-                    }))
-                end
-            end
-        end
-    end
 }
 
 SMODS.Blind {
@@ -326,6 +359,86 @@ SMODS.Blind {
             end
         end
     end
+}
+
+
+--[[TODO
+- Add an SMODS.shader and SMODS.DrawStep to give the card targetted by Squirm a shader.
+]]
+
+SMODS.Blind {
+    key = 'squirm',
+    atlas = 'dwBlind',
+    pos = {x = 0, y = 41},
+    
+         
+    dollars = 5,
+    mult = 2,
+    boss = {min = 6},
+    boss_colour = HEX("575757"),
+    calculate = function(self, blind, context)
+        if not blind.disabled then
+            if context.dw_target_check then
+                if context.dw_target_card.dw_squirm_target then
+                    return {
+                        target = true
+                    }
+                end
+            end
+            if context.setting_blind then  
+                local jokers = {}
+                for _,v in G.jokers.cards do
+                    if not SMODS.is_eternal(v, blind) and not v.getting_sliced then
+                        jokers[#jokers+1] = v
+                    end
+                end
+                local joker_target = pseudorandom_element(jokers, 'dw_twisted_squirm')
+                if joker_target then
+                    joker_target.dw_squirm_target = true
+                else
+                    G.E_MANAGER:add_event(Event({
+                        trigger = 'immediate',
+                        func = function()
+                            blind:disable()
+                            return true
+                        end
+                    }))
+                end
+            end
+            if context.after and SMODS.calculate_round_score() >= get_blind_amount(G.GAME.round_resets.ante) then
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'immediate',
+                    func = function()
+                        blind:disable()
+                        return true
+                    end
+                }))
+            end
+        end
+    end,
+    disable = function(self)
+        for _,v in ipairs(G.jokers.cards) do
+            v.dw_squirm_target = nil
+        end
+    end,
+    
+    defeat = function(self)
+        for _,v in ipairs(G.jokers.cards) do
+            if v.dw_squirm_target then
+                if G.GAME.blind.disabled then
+                    v.dw_squirm_target = nil
+                else
+                    SMODS.destroy_cards(v)
+                end
+            end
+        end
+    end,
+    loc_vars = function(self)
+        return { vars = {get_blind_amount(G.GAME.round_resets.ante)} }
+    end,
+    collection_loc_vars = function(self)
+        return { vars = {localize('dw_twisted_squirm_collection')} }
+    end,
 }
 
 SMODS.Blind {

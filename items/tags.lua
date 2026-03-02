@@ -9,6 +9,7 @@ if dandysworld.config.dwJokers then
     SMODS.Tag {
         key = "epic",
         atlas = "dwTag",
+        min_ante = 5,
         pos = { x = 0, y = 0 },
         apply = function(self, tag, context)
             if context.type == 'store_joker_create' then

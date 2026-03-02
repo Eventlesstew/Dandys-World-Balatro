@@ -143,7 +143,10 @@ return {
             bl_dandy_squirm = {
                 name = "Twisted Squirm",
                 text = {
-                    "Incomplete"
+                    "Targets a random Joker",
+                    "Target destroyed when",
+                    "defeated unless hand",
+                    "score reaches #1#",
                 }
             },
             bl_dandy_astro = {
@@ -1145,7 +1148,7 @@ return {
 
             dw_gourdy_ability = "Boo!",
 
-            dw_rodger_attention = 'Pay attention!',
+            dw_twisted_squirm_collection = '[X1 base]',
 
             ph_dw_stage1 = "Spare some, will ya?",
             ph_dw_stage2 = "Don't Ignore Me!",
