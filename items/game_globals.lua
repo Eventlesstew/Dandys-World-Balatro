@@ -105,3 +105,77 @@ G.FUNCS.use_card = function(e, mute, nosave)
     end
     return result
 end
+
+local debuff_card_ref = Blind.debuff_card
+function Blind:debuff_card(card, from_blind)
+    debuff_card_ref(self, card, from_blind)
+    recalc_dw_worthless(card)
+    recalc_dw_target(card)
+end
+
+function recalc_dw_worthless(card)
+    if card then
+        local effect = {}
+        SMODS.calculate_context(
+            {
+                dw_worthless_card = card,
+            },
+            effect
+        )
+
+        if effect.worthless then
+            card.dw_worthless = true
+        else
+            card.dw_worthless = nil
+        end
+    end
+end
+
+SMODS.Shader {
+    key = 'dw_worthless', 
+    path = "worthless.fs"
+}
+
+SMODS.DrawStep {
+    key = 'worthless',
+    order = 71,
+    func = function(card, layer)
+        if card.dw_worthless and not card.debuff and (layer == 'card' or layer == 'both') and card.sprite_facing == 'front' then
+            card.children.center:draw_shader('dw_worthless', nil, card.ARGS.send_to_shader)
+        end
+    end,
+}
+
+-- TODO: Hook recalc_debuff to trigger this function.
+function recalc_dw_target(card)
+    if card then
+        local effect = {}
+        SMODS.calculate_context(
+            {
+                dw_target_card = card,
+            },
+            effect
+        )
+
+        if effect.target then
+            card.dw_target = true
+        else
+            card.dw_target = nil
+        end
+    end
+end
+
+SMODS.Shader {
+    key = 'dw_target', 
+    path = "target.fs"
+}
+
+SMODS.DrawStep {
+    key = 'target',
+    order = 72,
+    func = function(card, layer)
+        if card.dw_target and (layer == 'card' or layer == 'both') and card.sprite_facing == 'front' then
+            card.children.center:draw_shader('dw_target', nil, card.ARGS.send_to_shader)
+        end
+    end,
+}

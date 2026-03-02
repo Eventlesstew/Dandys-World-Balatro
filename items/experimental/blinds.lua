@@ -185,7 +185,7 @@ SMODS.Blind {
     boss_colour = HEX("575757"),
     calculate = function(self, blind, context)
         if not blind.disabled then
-            if context.dw_worthless_check then
+            if context.dw_worthless_card then
                 return {
                     worthless = true
                 }

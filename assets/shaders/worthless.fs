@@ -4,8 +4,6 @@
 	#define MY_HIGHP_OR_MEDIUMP mediump
 #endif
 
-// This is the debuff card code rn
-
 extern MY_HIGHP_OR_MEDIUMP vec2 worthless;
 extern MY_HIGHP_OR_MEDIUMP number dissolve;
 extern MY_HIGHP_OR_MEDIUMP number time;

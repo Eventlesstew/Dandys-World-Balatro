@@ -32,69 +32,6 @@ end
     Patch up the code for this and move it to the game globals thing.
     Make it so any cards that are targetted are juiced up and the twisted spotted sound plays.
 ]]
--- TODO: Hook recalc_debuff to trigger this function.
-function recalc_dw_worthless(self, card)
-    local effect = SMODS.calculate_context(
-        {
-            dw_worthless_check = true,
-            dw_worthless_card = card,
-        },
-        true
-    )
-
-    if effect.worthless then
-        card.dw_worthless = true
-    else
-        card.dw_worthless = nil
-    end
-end
-
-SMODS.Shader {
-    key = 'dw_worthless', 
-    path = "worthless.fs"
-}
-
-SMODS.DrawStep {
-    key = 'worthless',
-    order = 71,
-    func = function(card, layer)
-        if card.dw_worthless and not card.debuff and (layer == 'card' or layer == 'both') and card.sprite_facing == 'front' then
-            card.children.center:draw_shader('dw_worthless', nil, card.ARGS.send_to_shader)
-        end
-    end,
-}
-
--- TODO: Hook recalc_debuff to trigger this function.
-function recalc_dw_target(self, card)
-    local effect = SMODS.calculate_context(
-        {
-            dw_target_check = true,
-            dw_target_card = card,
-        },
-        true
-    )
-
-    if effect.target then
-        card.dw_target = true
-    else
-        card.dw_target = nil
-    end
-end
-
-SMODS.Shader {
-    key = 'dw_target', 
-    path = "target.fs"
-}
-
-SMODS.DrawStep {
-    key = 'target',
-    order = 72,
-    func = function(card, layer)
-        if card.dw_target and (layer == 'card' or layer == 'both') and card.sprite_facing == 'front' then
-            card.children.center:draw_shader('dw_target', nil, card.ARGS.send_to_shader)
-        end
-    end,
-}
 
 local get_chip_bonus_ref = Card.get_chip_bonus
 function Card:get_chip_bonus()
@@ -117,7 +54,7 @@ SMODS.Blind {
     boss_colour = HEX("31b1cd"),
     calculate = function(self, blind, context)
         if not blind.disabled then
-            if context.dw_worthless_check then
+            if context.dw_worthless_card then
                 if context.dw_worthless_card:is_suit('Spades') or context.dw_worthless_card:is_suit('Clubs') then
                     return {
                         worthless = true
@@ -138,7 +75,7 @@ SMODS.Blind {
     boss_colour = HEX("a84dbe"),
     calculate = function(self, blind, context)
         if not blind.disabled then
-            if context.dw_worthless_check then
+            if context.dw_worthless_card then
                 if context.dw_worthless_card:is_suit('Hearts') or context.dw_worthless_card:is_suit('Diamonds') then
                     return {
                         worthless = true
@@ -378,7 +315,7 @@ SMODS.Blind {
     boss_colour = HEX("575757"),
     calculate = function(self, blind, context)
         if not blind.disabled then
-            if context.dw_target_check then
+            if context.dw_target_card then
                 if context.dw_target_card.dw_squirm_target then
                     return {
                         target = true
@@ -387,7 +324,7 @@ SMODS.Blind {
             end
             if context.setting_blind then  
                 local jokers = {}
-                for _,v in G.jokers.cards do
+                for _,v in ipairs(G.jokers.cards) do
                     if not SMODS.is_eternal(v, blind) and not v.getting_sliced then
                         jokers[#jokers+1] = v
                     end
@@ -395,6 +332,7 @@ SMODS.Blind {
                 local joker_target = pseudorandom_element(jokers, 'dw_twisted_squirm')
                 if joker_target then
                     joker_target.dw_squirm_target = true
+                    recalc_dw_target(card)
                 else
                     G.E_MANAGER:add_event(Event({
                         trigger = 'immediate',
@@ -419,6 +357,7 @@ SMODS.Blind {
     disable = function(self)
         for _,v in ipairs(G.jokers.cards) do
             v.dw_squirm_target = nil
+            recalc_dw_target(card)
         end
     end,
     
@@ -427,6 +366,7 @@ SMODS.Blind {
             if v.dw_squirm_target then
                 if G.GAME.blind.disabled then
                     v.dw_squirm_target = nil
+                    recalc_dw_target(card)
                 else
                     SMODS.destroy_cards(v)
                 end
