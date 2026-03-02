@@ -107,23 +107,11 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
 	if (worthless.g > 0.0 || worthless.g < 0.0) { // Test ingame to see if this could be removed.
 		width = 0.1;
 	}
-	bool test = false;
-	if ((uv.y > 0.5 - width && uv.y < 0.5 + width))
-	{
-		test = true;
-		SAT.r = 0.8*SAT.r;
-		SAT.g = 0.7;
-		SAT.b = 1.;
-	} else{
-		SAT.g = SAT.g*0.5;
-		SAT.r = SAT.r*0.7;
-	}
+	SAT.g = SAT.g*0.5;
+	SAT.r = SAT.r*0.7;
 
 
 	tex = RGB(SAT);
-	if (!test){
-		tex.a = tex.a*0.3;
-	}
 
 	return dissolve_mask(tex*colour, texture_coords, uv);
 }
