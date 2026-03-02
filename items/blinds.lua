@@ -28,20 +28,6 @@ function shakeBlind(self)
     }))
 end
 
---[[TODO
-    Patch up the code for this and move it to the game globals thing.
-    Make it so any cards that are targetted are juiced up and the twisted spotted sound plays.
-]]
-
-local get_chip_bonus_ref = Card.get_chip_bonus
-function Card:get_chip_bonus()
-    local result = get_chip_bonus_ref(self)
-    if self.dw_worthless then
-        result = 0
-    end
-    return result
-end
-
 SMODS.Blind {
     key = 'poppy',
     atlas = 'dwBlind',

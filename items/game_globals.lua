@@ -92,7 +92,6 @@ function SMODS.current_mod.calculate(self, context)
     end
 end
 
--- This resets the shop skip count when a Booster is bought.
 local use_card_ref = G.FUNCS.use_card
 G.FUNCS.use_card = function(e, mute, nosave)
     local result = use_card_ref(e, mute, nosave)
@@ -155,7 +154,15 @@ SMODS.DrawStep {
     end,
 }
 
--- TODO: Hook recalc_debuff to trigger this function.
+local get_chip_bonus_ref = Card.get_chip_bonus
+function Card:get_chip_bonus()
+    local result = get_chip_bonus_ref(self)
+    if self.dw_worthless then -- TODO: Figure out why this doesn't work.
+        result = 0
+    end
+    return result
+end
+
 function recalc_dw_target(card)
     if card then
         local effect = {}
