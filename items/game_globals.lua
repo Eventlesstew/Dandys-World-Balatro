@@ -123,7 +123,16 @@ function recalc_dw_worthless(card)
             effect
         )
 
-        if effect.worthless then
+        local valid = false
+        for _,v in ipairs(effect) do
+            print(v.individual)
+            if v.individual and v.individual.worthless then
+                valid = true
+                break
+            end
+        end
+
+        if valid then
             card.dw_worthless = true
         else
             card.dw_worthless = nil
@@ -132,7 +141,7 @@ function recalc_dw_worthless(card)
 end
 
 SMODS.Shader {
-    key = 'dw_worthless', 
+    key = 'worthless', 
     path = "worthless.fs"
 }
 
@@ -141,7 +150,7 @@ SMODS.DrawStep {
     order = 71,
     func = function(card, layer)
         if card.dw_worthless and not card.debuff and (layer == 'card' or layer == 'both') and card.sprite_facing == 'front' then
-            card.children.center:draw_shader('dw_worthless', nil, card.ARGS.send_to_shader)
+            card.children.center:draw_shader('dandy_worthless', nil, card.ARGS.send_to_shader)
         end
     end,
 }
@@ -166,7 +175,7 @@ function recalc_dw_target(card)
 end
 
 SMODS.Shader {
-    key = 'dw_target', 
+    key = 'target', 
     path = "target.fs"
 }
 
@@ -175,7 +184,7 @@ SMODS.DrawStep {
     order = 72,
     func = function(card, layer)
         if card.dw_target and (layer == 'card' or layer == 'both') and card.sprite_facing == 'front' then
-            card.children.center:draw_shader('dw_target', nil, card.ARGS.send_to_shader)
+            card.children.center:draw_shader('dandy_target', nil, card.ARGS.send_to_shader)
         end
     end,
 }
