@@ -4,7 +4,7 @@
 	#define MY_HIGHP_OR_MEDIUMP mediump
 #endif
 
-extern MY_HIGHP_OR_MEDIUMP vec2 worthless;
+extern MY_HIGHP_OR_MEDIUMP vec2 dw_worthless;
 extern MY_HIGHP_OR_MEDIUMP number dissolve;
 extern MY_HIGHP_OR_MEDIUMP number time;
 extern MY_HIGHP_OR_MEDIUMP vec4 texture_details;
@@ -100,16 +100,8 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
 	vec2 uv = (((texture_coords)*(image_details)) - texture_details.xy*texture_details.ba)/texture_details.ba;
 
     vec4 SAT = HSL(tex*0.8 + 0.2*vec4(1., 0., 0., tex.a));
-    SAT.g = 0.5;
-    
-	number width = 0;
-
-	if (worthless.g > 0.0 || worthless.g < 0.0) { // Test ingame to see if this could be removed.
-		width = 0.1;
-	}
-	SAT.g = SAT.g*0.5;
-	SAT.r = SAT.r*0.7;
-
+	SAT.g = 0.25;
+	SAT.b = SAT.b*0.7;
 
 	tex = RGB(SAT);
 

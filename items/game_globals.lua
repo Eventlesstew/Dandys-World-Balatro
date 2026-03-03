@@ -173,7 +173,16 @@ function recalc_dw_target(card)
             effect
         )
 
-        if effect.target then
+        local valid = false
+        for _,v in ipairs(effect) do
+            print(v.individual)
+            if v.individual and v.individual.target then
+                valid = true
+                break
+            end
+        end
+
+        if valid then
             card.dw_target = true
         else
             card.dw_target = nil
