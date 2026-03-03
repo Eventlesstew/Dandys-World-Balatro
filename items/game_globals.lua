@@ -134,7 +134,7 @@ function recalc_dw_worthless(card)
         end
 
         if valid then
-            card.ability.dandy_worthless = true
+            card.ability.dandy_worthless = true -- Force-applies the sticker
         else
             card.ability.dandy_worthless = nil
         end
@@ -152,6 +152,9 @@ SMODS.Sticker {
     pos = { x = 10, y = 10 },
     rate = 0.0,
     default_compat = false,
+    apply = function(self, card, val)
+        card.ability[self.key] = nil
+    end,
     draw = function(self, card, layer)
         if not card.debuff and (layer == 'card' or layer == 'both') and card.sprite_facing == 'front' then
             card.children.center:draw_shader('dandy_worthless', nil, card.ARGS.send_to_shader)

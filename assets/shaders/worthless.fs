@@ -111,12 +111,12 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
 	if (((1.-uv.x)+uv.y > 1. - width && (1.-uv.x)+uv.y < 1. + width))
 	{
 		test = true;
-		SAT.r = 1.;
+		SAT.r = 0.8*SAT.r;
 		SAT.g = 0.7;
-		SAT.b = 0.8*SAT.b;
+		SAT.b = 1.;
 	} else{
 		SAT.g = SAT.g*0.5;
-		SAT.b = SAT.b*0.7;
+		SAT.r = SAT.r*0.7;
 	}
 
 
