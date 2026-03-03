@@ -104,7 +104,7 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
     
 	number width = 0;
 
-	if (target.g > 0.0 || target.g < 0.0) { // Test ingame to see if this could be removed.
+	if (dw_target.g > 0.0 || dw_target.g < 0.0) { // Test ingame to see if this could be removed.
 		width = 0.1;
 	}
 	bool test = false;

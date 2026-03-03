@@ -353,7 +353,7 @@ SMODS.Joker{
     soul_pos=nil,
     rarity = (next(SMODS.find_mod('Cryptid')) and 'cry_epic') or ((dandysworld.config.epic ~= 1) and 'dandy_epic') or 3,
     cost = ((next(SMODS.find_mod('Cryptid')) or (dandysworld.config.epic ~= 1)) and 10) or 20,
-    config = { extra = {hand_mod = 1, dollars = 20} },
+    config = { extra = {hand_mod = 1, dollars = 15} },
     blueprint_compat=true,
     eternal_compat=true,
     perishable_compat=true,
