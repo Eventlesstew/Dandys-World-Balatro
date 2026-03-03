@@ -4,7 +4,7 @@
 	#define MY_HIGHP_OR_MEDIUMP mediump
 #endif
 
-extern MY_HIGHP_OR_MEDIUMP vec2 dw_target;
+extern MY_HIGHP_OR_MEDIUMP vec2 target;
 extern MY_HIGHP_OR_MEDIUMP number dissolve;
 extern MY_HIGHP_OR_MEDIUMP number time;
 extern MY_HIGHP_OR_MEDIUMP vec4 texture_details;
@@ -104,7 +104,7 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
     
 	number width = 0;
 
-	if (dw_target.g > 0.0 || dw_target.g < 0.0) { // Test ingame to see if this could be removed.
+	if (target.g > 0.0 || target.g < 0.0) { // Test ingame to see if this could be removed.
 		width = 0.1;
 	}
 	bool test = false;

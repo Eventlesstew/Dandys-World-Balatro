@@ -4,7 +4,7 @@
 	#define MY_HIGHP_OR_MEDIUMP mediump
 #endif
 
-//extern MY_HIGHP_OR_MEDIUMP vec2 worthless;
+extern MY_HIGHP_OR_MEDIUMP vec2 worthless;
 extern MY_HIGHP_OR_MEDIUMP number dissolve;
 extern MY_HIGHP_OR_MEDIUMP number time;
 extern MY_HIGHP_OR_MEDIUMP vec4 texture_details;
@@ -102,9 +102,9 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
     vec4 SAT = HSL(tex*0.8 + 0.2*vec4(1., 0., 0., tex.a));
 	SAT.g = 0.25;
 	SAT.b = SAT.b*0.7;
-
-	tex = RGB(SAT);
-
+	if (worthless.g > 0 || worthless.g < 0){
+		tex = RGB(SAT);
+	}
 	return dissolve_mask(tex*colour, texture_coords, uv);
 }
 
