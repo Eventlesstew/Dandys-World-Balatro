@@ -1081,6 +1081,14 @@ return {
                     "{X:mult,C:white}INCOMPLETE{}",
                 },
             },
+        },
+        Other = {
+            dandy_worthless = {
+                name = "Worthless",
+                text = {
+                    "Scores no chips",
+                },
+            },
         }
     },
     misc = {
@@ -1186,6 +1194,7 @@ return {
         labels = {
             dandy_leader = "Lethal",
             dandy_epic = "Epic",
+            dandy_worthless = 'Worthless',
         },
     }
 }

@@ -112,6 +112,9 @@ function Blind:debuff_card(card, from_blind)
     recalc_dw_target(card)
 end
 
+-- CODE FOR WORTHLESS CARDS
+
+
 function recalc_dw_worthless(card)
     if card then
         local effect = {}
@@ -124,7 +127,6 @@ function recalc_dw_worthless(card)
 
         local valid = false
         for _,v in ipairs(effect) do
-            print(v.individual)
             if v.individual and v.individual.worthless then
                 valid = true
                 break
@@ -132,9 +134,9 @@ function recalc_dw_worthless(card)
         end
 
         if valid then
-            card.dw_worthless = true
+            card.ability.dandy_worthless = true
         else
-            card.dw_worthless = nil
+            card.ability.dandy_worthless = nil
         end
     end
 end
@@ -144,20 +146,23 @@ SMODS.Shader {
     path = "worthless.fs"
 }
 
-SMODS.DrawStep {
+SMODS.Sticker {
     key = 'worthless',
-    order = 71,
-    func = function(card, layer)
-        if card.dw_worthless and not card.debuff and (layer == 'card' or layer == 'both') and card.sprite_facing == 'front' then
+    badge_colour = HEX '008be3',
+    pos = { x = 10, y = 10 },
+    rate = 0.0,
+    default_compat = false,
+    draw = function(self, card, layer)
+        if not card.debuff and (layer == 'card' or layer == 'both') and card.sprite_facing == 'front' then
             card.children.center:draw_shader('dandy_worthless', nil, card.ARGS.send_to_shader)
         end
-    end,
+    end
 }
 
 local get_chip_bonus_ref = Card.get_chip_bonus
 function Card:get_chip_bonus()
     local result = get_chip_bonus_ref(self)
-    if self.dw_worthless then -- TODO: Figure out why this doesn't work.
+    if self.ability.dandy_worthless then -- TODO: Figure out why this doesn't work.
         result = 0
     end
     return result
