@@ -1091,6 +1091,13 @@ return {
                     "Scores no chips",
                 },
             },
+            dandy_target = {
+                name = "Targetted",
+                text = {
+                    "This card is affected by",
+                    "the current {C:attention}Boss Blind"
+                },
+            },
         }
     },
     misc = {
@@ -1197,6 +1204,7 @@ return {
             dandy_leader = "Lethal",
             dandy_epic = "Epic",
             dandy_worthless = 'Worthless',
+            dandy_target = 'Targetted'
         },
     }
 }
