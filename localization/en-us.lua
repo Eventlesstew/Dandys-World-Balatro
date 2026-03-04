@@ -687,9 +687,11 @@ return {
             j_dandy_gigi = {
                 name = "Gigi",
                 text = {
-                    "Create a {C:attention}Standard{}, {C:attention}Charm{},",
-                    "{C:attention}Meteor{}, {C:attention}Buffoon{} or {C:attention}Ethereal{}",
-                    "{C:attention}Tag{} at the end of the {C:attention}shop",
+                    "Create a {C:attention}Standard Tag{},",
+                    "{C:tarot}Charm Tag{}, {C:planet}Meteor Tag{},",
+                    "{C:attention}Buffoon Tag{} or {C:spectral}Ethereal",
+                    "{C:spectral}Tag{} at the end",
+                    "of the {C:attention}shop",
                 },
                 unlock = {
                     "Discover every Tag",
