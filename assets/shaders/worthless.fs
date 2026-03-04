@@ -99,7 +99,7 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
     vec4 tex = Texel(texture, texture_coords);
 	vec2 uv = (((texture_coords)*(image_details)) - texture_details.xy*texture_details.ba)/texture_details.ba;
 
-    vec4 SAT = HSL(tex*0.8 + 0.2*vec4(1., 0., 0., tex.a));
+    vec4 SAT = HSL(tex*0.8 + 0.2*vec4(0., 0., 1., tex.a));
 	SAT.g = 0.5;
     
 	number width = 0.0;
@@ -111,18 +111,19 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
 	if (((1.-uv.x)+uv.y > 1. - width && (1.-uv.x)+uv.y < 1. + width))
 	{
 		test = true;
-		SAT.r = 0.8*SAT.r;
-		SAT.g = 0.7;
-		SAT.b = 1.;
+		SAT.g = SAT.g*0.5;
+		SAT.b = SAT.b*0.7;
 	} else{
 		SAT.g = SAT.g*0.5;
-		SAT.r = SAT.r*0.7;
+		SAT.b = SAT.b*0.7;
 	}
 
 
 	tex = RGB(SAT);
 	if (!test){
-		tex.a = tex.a*0.3;
+		tex.a = tex.a*0.2;
+	} else {
+		tex.a = tex.a*0.75;
 	}
 	return dissolve_mask(tex*colour, texture_coords, uv);
 }
