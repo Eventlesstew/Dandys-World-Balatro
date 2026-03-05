@@ -285,9 +285,11 @@ SMODS.Blind {
 }
 
 
---[[TODO
-- Add an SMODS.shader and SMODS.DrawStep to give the card targetted by Squirm a shader.
-]]
+SMODS.Sound ({
+    key = 'target',
+    path = 'dw_target.ogg',
+    pitch = 1,
+})
 
 SMODS.Blind {
     key = 'squirm',
@@ -318,6 +320,15 @@ SMODS.Blind {
                 local joker_target = pseudorandom_element(jokers, 'dw_twisted_squirm')
                 if joker_target then
                     joker_target.dw_squirm_target = true
+                    G.E_MANAGER:add_event(Event({
+                        trigger = 'immediate',
+                        func = function()
+                            play_sound('dandy_target', 1, 0.4)
+                            return true
+                        end
+                    }))
+                    joker_target:juice_up()
+                    
                     recalc_dw_target(card)
                 else
                     G.E_MANAGER:add_event(Event({
@@ -338,6 +349,13 @@ SMODS.Blind {
                     end
                 }))
             end
+            if context.end_of_round and context.game_over == false and context.main_eval then
+                for _,v in ipairs(G.jokers.cards) do
+                    if v.dw_squirm_target then
+                        SMODS.destroy_cards(v)
+                    end
+                end
+            end
         end
     end,
     disable = function(self)
@@ -350,12 +368,8 @@ SMODS.Blind {
     defeat = function(self)
         for _,v in ipairs(G.jokers.cards) do
             if v.dw_squirm_target then
-                if G.GAME.blind.disabled then
-                    v.dw_squirm_target = nil
-                    recalc_dw_target(card)
-                else
-                    SMODS.destroy_cards(v)
-                end
+                v.dw_squirm_target = nil
+                recalc_dw_target(card)
             end
         end
     end,

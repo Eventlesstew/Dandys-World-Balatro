@@ -125,18 +125,12 @@ function recalc_dw_worthless(card)
             effect
         )
 
-        local valid = false
+        card.ability.dandy_worthless = nil
         for _,v in ipairs(effect) do
             if v.individual and v.individual.worthless then
-                valid = true
+                card.ability.dandy_worthless = true -- Force-applies the sticker
                 break
             end
-        end
-
-        if valid then
-            card.ability.dandy_worthless = true -- Force-applies the sticker
-        else
-            card.ability.dandy_worthless = nil
         end
     end
 end
@@ -181,19 +175,12 @@ function recalc_dw_target(card)
             effect
         )
 
-        local valid = false
+        card.ability.dandy_target = nil
         for _,v in ipairs(effect) do
-            print(v.individual)
             if v.individual and v.individual.target then
-                valid = true
+                card.ability.dandy_target = true
                 break
             end
-        end
-
-        if valid then
-            card.dw_target = true
-        else
-            card.dw_target = nil
         end
     end
 end
@@ -203,12 +190,18 @@ SMODS.Shader {
     path = "target.fs"
 }
 
-SMODS.DrawStep {
+SMODS.Sticker {
     key = 'target',
-    order = 72,
-    func = function(card, layer)
-        if card.dw_target and (layer == 'card' or layer == 'both') and card.sprite_facing == 'front' then
+    badge_colour = HEX 'ca534c',
+    pos = { x = 10, y = 10 },
+    rate = 0.0,
+    default_compat = false,
+    apply = function(self, card, val)
+        card.ability[self.key] = nil
+    end,
+    draw = function(self, card, layer)
+        if not card.debuff and (layer == 'card' or layer == 'both') and card.sprite_facing == 'front' then
             card.children.center:draw_shader('dandy_target', nil, card.ARGS.send_to_shader)
         end
-    end,
+    end
 }
