@@ -202,17 +202,6 @@ SMODS.Blind {
             end
         end
     end,
-    collection_loc_vars = function(self)
-        localize('dw_rodger_attention')
-        return {vars = {localize('dw_rodger_attention')}}
-    end,
-    loc_vars = function(self)
-        return {vars = {localize('dw_rodger_attention')}}
-    end,
-    get_loc_debuff_text = function(self)
-        return G.GAME.blind.loc_debuff_text ..
-            (G.GAME.blind.hand and ' [' .. localize(G.GAME.blind.hand, 'poker_hands') .. ']' or '')
-    end,
 }
 
 SMODS.Blind {
@@ -256,6 +245,7 @@ SMODS.Blind {
                     for _,v in ipairs(G.playing_cards) do
                         SMODS.recalc_debuff(v)
                     end
+                    return true
                 end,
             }))
             shakeBlind()
