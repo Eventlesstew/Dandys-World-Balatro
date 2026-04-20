@@ -534,7 +534,7 @@ SMODS.Joker{
     calculate = function(self,card,context)
         if context.joker_main then
             local consumables = {}
-            for _,v in G.consumeables.cards do
+            for _,v in ipairs(G.consumeables.cards) do
                 if not v.getting_sliced then
                     consumables[#consumables+1] = V
                 end

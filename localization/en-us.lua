@@ -84,7 +84,7 @@ return {
                 name = "Twisted Rodger",
                 text = {
                     "Cannot play a random",
-                    "poker hand. #1#"
+                    "poker hand. Pay attention!"
                 },
             },
             bl_dandy_teagan = {
