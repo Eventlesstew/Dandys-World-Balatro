@@ -739,12 +739,12 @@ return {
             j_dandy_razzledazzle = {
                 name = "Razzle & Dazzle",
                 text = {
-                    "Played {V:1}#1#{} and {V:2}#2#{}",
-                    "cards grant {C:mult}+#7#{} Mult on",
-                    "{C:attention}#5#{} numbered Rounds",
-                    "{C:inactive}(Played {V:3}#3#{C:inactive} and {V:4}#4#",
-                    "{C:inactive}cards grant {C:mult}+#7#{C:inactive} Mult on",
-                    "{C:attention}#6#{C:inactive} numbered rounds)",
+                    "On {C:attention}#5#{} numbered Rounds",
+                    "Played {V:1}#1#{} and {V:2}#2#{} cards",
+                    "grant {C:mult}+#7#{} Mult when scored",
+                    "{C:inactive}On {C:attention}#6#{C:inactive} numbered Rounds",
+                    "{C:inactive}Played {V:3}#3#{C:inactive} and {V:4}#4#{C:inactive} cards",
+                    "{C:inactive}grant {C:mult}+#7#{C:inactive} Mult when scored",
                 },
                 unlock = {
                     "Play a 5 card hand",
